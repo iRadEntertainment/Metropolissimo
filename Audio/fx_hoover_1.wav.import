@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fx_hoover_1.wav-6ec6c464e728f3d9084d5f6b1a3a9865.sample"
+
+[deps]
+
+source_file="res://Audio/fx_hoover_1.wav"
+dest_files=[ "res://.import/fx_hoover_1.wav-6ec6c464e728f3d9084d5f6b1a3a9865.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

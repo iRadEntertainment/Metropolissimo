@@ -1,0 +1,388 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Sprites/tileset/tl_test_32x32.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/tileset/tl_test_32x16.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/tileset/tl_test_rampa2x1a.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/tileset/tl_test_rampa2x1b.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/tileset/tl_test_45gradi.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/tileset/tl_test_arrampicata.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/tileset/tl_test_32x8.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/tileset/tl_test_scala_top.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/tileset/tl_test_scala.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/tileset/tl_test_corda_top.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/tileset/tl_test_corda.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/tileset/tl_test_bg_32x32.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/tileset/tl_test_bg_rampa2x1.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/tileset/tl_test_bg_45gradi.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/tileset/tl_test_bg_rail.png" type="Texture" id=15]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( -16, 0, 16, 0, 16, 16, -16, 16 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( 16, 0, 16, 16, -16, 16 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( -16, 0, -16, 16, 16, 16, 16, -16 )
+
+[sub_resource type="OccluderPolygon2D" id=5]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( 16, -16, 16, 16, -16, 16 )
+
+[sub_resource type="OccluderPolygon2D" id=6]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
+
+[sub_resource type="OccluderPolygon2D" id=7]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( -16, -16, 16, -16, 16, -8, -16, -8 )
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[node name="tileset_test" type="Node" index="0"]
+
+[node name="pieno" type="Sprite" parent="." index="0"]
+
+editor/display_folded = true
+position = Vector2( 16, 16 )
+texture = ExtResource( 1 )
+
+[node name="area" type="StaticBody2D" parent="pieno" index="0"]
+
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="poly" type="CollisionPolygon2D" parent="pieno/area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
+
+[node name="occl" type="LightOccluder2D" parent="pieno" index="1"]
+
+visible = false
+occluder = SubResource( 1 )
+light_mask = 1
+
+[node name="mezzo" type="Sprite" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( 56, 16 )
+texture = ExtResource( 2 )
+
+[node name="area" type="StaticBody2D" parent="mezzo" index="0"]
+
+editor/display_folded = true
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="poly" type="CollisionPolygon2D" parent="mezzo/area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -16, 0, 16, 0, 16, 16, -16, 16 )
+
+[node name="occl2" type="LightOccluder2D" parent="mezzo" index="1"]
+
+visible = false
+occluder = SubResource( 2 )
+light_mask = 1
+
+[node name="rampa_iniz" type="Sprite" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 96, 16 )
+texture = ExtResource( 3 )
+
+[node name="area" type="StaticBody2D" parent="rampa_iniz" index="0"]
+
+editor/display_folded = true
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="poly" type="CollisionPolygon2D" parent="rampa_iniz/area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 16, 0, 16, 16, -16, 16 )
+
+[node name="occl3" type="LightOccluder2D" parent="rampa_iniz" index="1"]
+
+visible = false
+occluder = SubResource( 3 )
+light_mask = 1
+
+[node name="rampa_fine" type="Sprite" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( 136, 16 )
+texture = ExtResource( 4 )
+
+[node name="area" type="StaticBody2D" parent="rampa_fine" index="0"]
+
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="poly" type="CollisionPolygon2D" parent="rampa_fine/area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 16, 16, -16, 16, -16, 0, 16, -16 )
+
+[node name="occl4" type="LightOccluder2D" parent="rampa_fine" index="1"]
+
+visible = false
+occluder = SubResource( 4 )
+light_mask = 1
+
+[node name="rampa_45" type="Sprite" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 176, 16 )
+texture = ExtResource( 5 )
+
+[node name="area" type="StaticBody2D" parent="rampa_45" index="0"]
+
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="poly" type="CollisionPolygon2D" parent="rampa_45/area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 16, 16, -16, 16, 16, -16 )
+
+[node name="occl5" type="LightOccluder2D" parent="rampa_45" index="1"]
+
+visible = false
+occluder = SubResource( 5 )
+light_mask = 1
+
+[node name="scalata" type="Sprite" parent="." index="5"]
+
+editor/display_folded = true
+position = Vector2( 216, 16 )
+texture = ExtResource( 6 )
+
+[node name="occl2" type="LightOccluder2D" parent="scalata" index="0"]
+
+visible = false
+occluder = SubResource( 6 )
+light_mask = 1
+
+[node name="area" type="StaticBody2D" parent="scalata" index="1"]
+
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision" ]
+
+[node name="poly" type="CollisionPolygon2D" parent="scalata/area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 16, 16, -16, 16, -16, -16, 16, -16 )
+
+[node name="piattaf" type="Sprite" parent="." index="6"]
+
+editor/display_folded = true
+position = Vector2( 256, 16 )
+texture = ExtResource( 7 )
+
+[node name="area" type="StaticBody2D" parent="piattaf" index="0"]
+
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="poly" type="CollisionPolygon2D" parent="piattaf/area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 16, -8, -16, -8, -16, -16, 16, -16 )
+
+[node name="occl3" type="LightOccluder2D" parent="piattaf" index="1"]
+
+occluder = SubResource( 7 )
+light_mask = 1
+
+[node name="scala_top" type="Sprite" parent="." index="7"]
+
+editor/display_folded = true
+position = Vector2( 16, 56 )
+texture = ExtResource( 8 )
+
+[node name="area" type="Area2D" parent="scala_top" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Pickable" ]
+
+[node name="poly" type="CollisionShape2D" parent="scala_top/area" index="0"]
+
+shape = SubResource( 8 )
+
+[node name="scala" type="Sprite" parent="." index="8"]
+
+editor/display_folded = true
+position = Vector2( 56, 56 )
+texture = ExtResource( 9 )
+
+[node name="area" type="Area2D" parent="scala" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="poly" type="CollisionShape2D" parent="scala/area" index="0"]
+
+shape = SubResource( 8 )
+
+[node name="corda_top" type="Sprite" parent="." index="9"]
+
+editor/display_folded = true
+position = Vector2( 96, 56 )
+texture = ExtResource( 10 )
+
+[node name="area" type="Area2D" parent="corda_top" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="poly" type="CollisionShape2D" parent="corda_top/area" index="0"]
+
+shape = SubResource( 8 )
+
+[node name="corda" type="Sprite" parent="." index="10"]
+
+editor/display_folded = true
+position = Vector2( 136, 56 )
+texture = ExtResource( 11 )
+
+[node name="area" type="Area2D" parent="corda" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="poly" type="CollisionShape2D" parent="corda/area" index="0"]
+
+shape = SubResource( 8 )
+
+[node name="bg_pieno" type="Sprite" parent="." index="11"]
+
+position = Vector2( 16, 96 )
+z_index = -3
+texture = ExtResource( 12 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="bg_rampa_iniz" type="Sprite" parent="." index="12"]
+
+position = Vector2( 56, 96 )
+z_index = -3
+texture = ExtResource( 13 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Region", "Z Index" ]
+
+[node name="bg_rampa_fin" type="Sprite" parent="." index="13"]
+
+position = Vector2( 96, 96 )
+z_index = -3
+texture = ExtResource( 13 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="bg_rampa_45" type="Sprite" parent="." index="14"]
+
+position = Vector2( 136, 96 )
+z_index = -3
+texture = ExtResource( 14 )
+
+[node name="bg_railing" type="Sprite" parent="." index="15"]
+
+position = Vector2( 176, 96 )
+z_index = -3
+texture = ExtResource( 15 )
+
+

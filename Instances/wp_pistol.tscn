@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/wp_pistol.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/weapons/wp_pistol.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/weapons/muzzle_spreadsheet.png" type="Texture" id=3]
+[ext_resource path="res://Audio/pistol-holster.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/pistol-gunshot-indoors.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/pistol-reload.wav" type="AudioStream" id=6]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+render_priority = 0
+blend_mode = 1
+light_mode = 0
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "anim"
+length = 0.1
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="wp_pistol" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 128
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 2.18811, -0.16554 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="coll" type="CollisionPolygon2D" parent="." index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -2.10345, 3.16355, -1.74612, -3.01313, 7.085, -2.91104 )
+
+[node name="nozzle" type="Position2D" parent="." index="2"]
+
+position = Vector2( 7.63964, -2.46355 )
+
+[node name="direct" type="Position2D" parent="nozzle" index="0"]
+
+visible = false
+position = Vector2( 123.512, 0 )
+
+[node name="ray" type="RayCast2D" parent="nozzle" index="1"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 4000, 0 )
+collision_mask = 125
+_sections_unfolded = [ "Transform" ]
+
+[node name="muzzle" type="Sprite" parent="nozzle" index="2"]
+
+modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 1 )
+texture = ExtResource( 3 )
+offset = Vector2( 20, 0 )
+vframes = 4
+hframes = 5
+_sections_unfolded = [ "Animation", "Material", "Offset", "Transform", "Visibility" ]
+
+[node name="anim" type="AnimationPlayer" parent="nozzle/muzzle" index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/anim = SubResource( 2 )
+blend_times = [  ]
+
+[node name="bullet_eject" type="Position2D" parent="." index="3"]
+
+visible = false
+position = Vector2( 2.21136, -2.85633 )
+
+[node name="recoil" type="Tween" parent="." index="4"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="sfx" type="Node" parent="." index="5"]
+
+[node name="holster" type="AudioStreamPlayer" parent="sfx" index="0"]
+
+stream = ExtResource( 4 )
+volume_db = -12.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "player"
+
+[node name="fire" type="AudioStreamPlayer" parent="sfx" index="1"]
+
+stream = ExtResource( 5 )
+volume_db = -4.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "player"
+
+[node name="reload" type="AudioStreamPlayer" parent="sfx" index="2"]
+
+stream = ExtResource( 6 )
+volume_db = -4.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "player"
+
+

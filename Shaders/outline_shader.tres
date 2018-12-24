@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Shaders/outline.tres" type="Shader" id=1]
+
+[resource]
+
+render_priority = 0
+shader = ExtResource( 1 )
+shader_param/intensity = 8
+shader_param/precision = 0.02
+shader_param/outline_color = Color( 0.902344, 0.352478, 0.352478, 1 )
+_sections_unfolded = [ "shader_param" ]
+

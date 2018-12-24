@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pistol-holster.wav-9a33a8abce8f20e06f32b98d3fd81968.sample"
+
+[deps]
+
+source_file="res://Audio/pistol-holster.wav"
+dest_files=[ "res://.import/pistol-holster.wav-9a33a8abce8f20e06f32b98d3fd81968.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

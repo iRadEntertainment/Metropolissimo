@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_time_slow_up1.wav-3a597c40d509c7e7cda11bd4d62c3b09.sample"
+
+[deps]
+
+source_file="res://Audio/sfx_time_slow_up1.wav"
+dest_files=[ "res://.import/sfx_time_slow_up1.wav-3a597c40d509c7e7cda11bd4d62c3b09.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

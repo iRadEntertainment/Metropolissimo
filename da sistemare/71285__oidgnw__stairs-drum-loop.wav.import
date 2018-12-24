@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/71285__oidgnw__stairs-drum-loop.wav-5ddd766e6fe4c1f8d84e409c88b864b3.sample"
+
+[deps]
+
+source_file="res://da sistemare/71285__oidgnw__stairs-drum-loop.wav"
+dest_files=[ "res://.import/71285__oidgnw__stairs-drum-loop.wav-5ddd766e6fe4c1f8d84e409c88b864b3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

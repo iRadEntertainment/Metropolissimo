@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/amb_steampunk_factory.ogg-895a7aec25323ee68199fadd5bb2902c.oggstr"
+
+[deps]
+
+source_file="res://Audio/amb_steampunk_factory.ogg"
+dest_files=[ "res://.import/amb_steampunk_factory.ogg-895a7aec25323ee68199fadd5bb2902c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

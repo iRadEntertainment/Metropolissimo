@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fx_hi-tensionpower.wav-93c86881de1404490f446609152f42ec.sample"
+
+[deps]
+
+source_file="res://Audio/fx_hi-tensionpower.wav"
+dest_files=[ "res://.import/fx_hi-tensionpower.wav-93c86881de1404490f446609152f42ec.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=true
+force/max_rate=true
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

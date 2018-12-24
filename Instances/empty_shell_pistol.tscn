@@ -1,0 +1,104 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "#chasing_shell_pistol
+
+extends RigidBody2D
+
+var expire
+
+func _ready():
+	randomize()
+	expire = randi()%3+4
+	apply_impulse( Vector2() , Vector2( -randi()%5-2,-12 ).rotated(global_rotation)*20 )
+
+func _process(d):
+	expire -= d
+	if expire < 0:
+		queue_free()"
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.917969, 0.767953, 0.369339, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 1
+border_color = Color( 0.515625, 0.407679, 0.12085, 1 )
+border_blend = true
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 1.68192
+height = 3.90828
+
+[node name="empty_shell_pistol" type="RigidBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 8
+collision_mask = 1025
+mode = 0
+mass = 0.05
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = SubResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="sprite" type="Panel" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -3.0
+margin_top = -1.0
+margin_right = 3.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/panel = SubResource( 2 )
+_sections_unfolded = [ "Rect", "custom_styles" ]
+
+[node name="coll" type="CollisionShape2D" parent="." index="1"]
+
+rotation = -1.5708
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+

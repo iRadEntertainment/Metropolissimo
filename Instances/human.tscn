@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/class_human.gd" type="Script" id=1]
+
+[node name="human" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1024
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+max_speed = 6
+climb_speed = 400
+acc_speed = 25
+gravity = 50
+jump = 1000
+
+[node name="poly_coll" type="CollisionPolygon2D" parent="." index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array(  )
+
+[node name="area_hitbox" type="Area2D" parent="." index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+

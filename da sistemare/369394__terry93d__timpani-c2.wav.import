@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/369394__terry93d__timpani-c2.wav-b581515527d6e665ea14b8fe21260594.sample"
+
+[deps]
+
+source_file="res://da sistemare/369394__terry93d__timpani-c2.wav"
+dest_files=[ "res://.import/369394__terry93d__timpani-c2.wav-b581515527d6e665ea14b8fe21260594.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

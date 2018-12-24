@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/audio_mng.gd" type="Script" id=1]
+[ext_resource path="res://Audio/music/first_0_intro.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Audio/sfx_time_slow_down1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/sfx_time_slow_up1.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/fx_hoover_1.wav" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "music_fade"
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("intro_music:volume_db")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -72.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop_intro_music"
+} ]
+}
+
+[node name="audio_mng" type="Node" index="0"]
+
+pause_mode = 2
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
+
+[node name="music" type="AudioStreamPlayer" parent="." index="0"]
+
+stream = ExtResource( 2 )
+volume_db = -12.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "music"
+
+[node name="quick_menu_in" type="AudioStreamPlayer" parent="." index="1"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "gui_sound"
+
+[node name="quick_menu_out" type="AudioStreamPlayer" parent="." index="2"]
+
+stream = ExtResource( 4 )
+volume_db = -6.0
+pitch_scale = 1.3
+autoplay = false
+mix_target = 0
+bus = "gui_sound"
+
+[node name="menu" type="Node" parent="." index="3"]
+
+[node name="intro_music" type="AudioStreamPlayer" parent="menu" index="0"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "music"
+
+[node name="btn" type="AudioStreamPlayer" parent="menu" index="1"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "gui_sound"
+
+[node name="music_fade" type="AnimationPlayer" parent="menu" index="2"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/music_fade = SubResource( 1 )
+blend_times = [  ]
+
+[connection signal="finished" from="music" to="." method="_on_music_finished"]
+
+[connection signal="finished" from="menu/intro_music" to="." method="_on_intro_music_finished"]
+
+

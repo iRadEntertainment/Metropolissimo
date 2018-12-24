@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://shaders/voronoi.shader" type="Shader" id=1]
+
+[resource]
+
+render_priority = 0
+shader = ExtResource( 1 )
+shader_param/offset_Y = null
+shader_param/brightness = null
+shader_param/u_resolution = null
+shader_param/u_time = null
+_sections_unfolded = [ "shader_param" ]
+

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/PiK_01_Aaaaa.ogg-4b2601769581aa6afeaabafa1399f80d.oggstr"
+
+[deps]
+
+source_file="res://Audio/music/PiK_01_Aaaaa.ogg"
+dest_files=[ "res://.import/PiK_01_Aaaaa.ogg-4b2601769581aa6afeaabafa1399f80d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://shaders/glitch.shader" type="Shader" id=1]
+[ext_resource path="res://glitch_texture.png" type="Texture" id=2]
+
+[resource]
+
+render_priority = 0
+shader = ExtResource( 1 )
+shader_param/displ_amount = 0.014
+shader_param/displ_size = 0.1
+shader_param/aberrationX = -0.003
+shader_param/aberrationY = -0.002
+shader_param/mov_speed = 0.06
+shader_param/mov_magnitude = 0.5
+shader_param/transparency = 0.607
+shader_param/displace = ExtResource( 2 )
+_sections_unfolded = [ "shader_param" ]
+

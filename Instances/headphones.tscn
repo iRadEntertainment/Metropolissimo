@@ -1,0 +1,709 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Scripts/headphones.gd" type="Script" id=1]
+[ext_resource path="res://Themes/fonts/minikstt.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Sprites/gui/player_stop.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/gui/player_loop.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/gui/player_play.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/gui/player_prew.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/gui/player_next.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/gui/player_shuffle.png" type="Texture" id=8]
+[ext_resource path="res://Themes/sliders.tres" type="Theme" id=9]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.102722, 0.259659, 0.730469, 0.160235 )
+draw_center = true
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0494385, 0.127665, 0.210938, 1 )
+border_blend = false
+corner_radius_top_left = 12
+corner_radius_top_right = 0
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
+
+[sub_resource type="Theme" id=2]
+
+Panel/styles/panel = SubResource( 1 )
+Panel/styles/panelf = null
+Panel/styles/panelnc = null
+_sections_unfolded = [ "Panel", "Panel/styles" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+extra_spacing_top = -2
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="Theme" id=4]
+
+default_font = SubResource( 3 )
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="GDScript" id=8]
+
+resource_name = "btn_headphones_loop"
+script/source = "#btn_headphones_loop
+
+extends TextureButton
+
+func _ready():
+	connect(\"mouse_entered\",self,\"_mouse_in\")
+	connect(\"mouse_exited\",self,\"_mouse_out\")
+
+func _pressed():   modulate = get_parent().get_parent().btn_color_prs
+func _mouse_in():  modulate = get_parent().get_parent().btn_color_hov
+func _mouse_out():
+	if pressed: modulate = get_parent().get_parent().btn_color_prs
+	else:       modulate = get_parent().get_parent().btn_color_nor"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="GDScript" id=10]
+
+resource_name = "btn_headphones_shuffle"
+script/source = "#btn_headphones_shuffle
+extends TextureButton
+
+func _ready():
+	connect(\"mouse_entered\",self,\"_mouse_in\")
+	connect(\"mouse_exited\",self,\"_mouse_out\")
+
+func _pressed():   modulate = get_parent().get_parent().btn_color_prs
+func _mouse_in():  modulate = get_parent().get_parent().btn_color_hov
+func _mouse_out():
+	if pressed: modulate = get_parent().get_parent().btn_color_prs
+	else:       modulate = get_parent().get_parent().btn_color_nor"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="StyleBoxFlat" id=5]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.180392, 0.686275, 0.858824, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 3
+border_width_right = 0
+border_width_bottom = 3
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.0470588, 0.12549, 0.211765, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 2
+border_width_right = 0
+border_width_bottom = 2
+border_color = Color( 0.392157, 0.466667, 0.737255, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
+
+[sub_resource type="Theme" id=15]
+
+default_font = SubResource( 3 )
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="DynamicFont" id=13]
+
+size = 12
+use_mipmaps = false
+use_filter = false
+extra_spacing_top = -2
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="Theme" id=14]
+
+default_font = SubResource( 13 )
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="StyleBoxFlat" id=11]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.344696, 0.9375, 0.26001, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 2
+border_width_right = 0
+border_width_bottom = 2
+border_color = Color( 0.256134, 0.851563, 0.474768, 0.0607451 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
+
+[sub_resource type="StyleBoxFlat" id=12]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.0991516, 0.141606, 0.222656, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 1
+border_width_right = 0
+border_width_bottom = 1
+border_color = Color( 0.694885, 0.871381, 0.988281, 1 )
+border_blend = true
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
+
+[node name="headphones" type="Container"]
+
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -384.0
+margin_top = -128.0
+margin_right = -16.0
+margin_bottom = -16.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Margin" ]
+
+[node name="panel" type="Panel" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = SubResource( 2 )
+_sections_unfolded = [ "Theme" ]
+
+[node name="track_name" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 224.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = SubResource( 4 )
+text = "Capocchia - track 01"
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="btns" type="HBoxContainer" parent="." index="2"]
+
+editor/display_folded = true
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -132.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 4
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="stop" type="TextureButton" parent="btns" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 16, 16 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+group = null
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 5 )
+script = SubResource( 8 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="play" type="TextureButton" parent="btns" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 16, 16 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+group = null
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 5 )
+script = SubResource( 8 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="prew" type="TextureButton" parent="btns" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 16, 16 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+group = null
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 5 )
+script = SubResource( 8 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="next" type="TextureButton" parent="btns" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 60.0
+margin_right = 76.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 16, 16 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+group = null
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 7 )
+script = SubResource( 8 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="loop" type="TextureButton" parent="btns" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 80.0
+margin_right = 96.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 16, 16 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 0
+shortcut = null
+group = null
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+script = SubResource( 8 )
+
+[node name="shuffle" type="TextureButton" parent="btns" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 100.0
+margin_right = 116.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 16, 16 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 0
+shortcut = null
+group = null
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 8 )
+texture_disabled = ExtResource( 8 )
+texture_focused = ExtResource( 8 )
+script = SubResource( 10 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="progress" type="ProgressBar" parent="." index="3"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -72.0
+margin_right = -16.0
+margin_bottom = -48.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 35.0
+exp_edit = false
+rounded = false
+percent_visible = false
+_sections_unfolded = [ "Percent", "custom_fonts", "custom_styles" ]
+
+[node name="time_elaps" type="Label" parent="progress" index="0"]
+
+modulate = Color( 0.192157, 0.219608, 0.294118, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = SubResource( 15 )
+text = "10:06"
+align = 1
+valign = 1
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme", "Visibility" ]
+
+[node name="lb_l" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 24.0
+margin_top = 71.0
+margin_right = 31.0
+margin_bottom = 81.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = SubResource( 14 )
+text = "L"
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="lb_r" type="Label" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 24.0
+margin_top = 80.0
+margin_right = 33.0
+margin_bottom = 90.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = SubResource( 14 )
+text = "R"
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="lb_vol" type="Label" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = 95.0
+margin_right = 36.0
+margin_bottom = 105.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = SubResource( 14 )
+text = "-24"
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="audio_lv_l" type="ProgressBar" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -40.0
+margin_right = -16.0
+margin_bottom = -32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
+min_value = -72.0
+max_value = 12.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = false
+_sections_unfolded = [ "Percent", "custom_fonts", "custom_styles" ]
+
+[node name="audio_lv_r" type="ProgressBar" parent="." index="8"]
+
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -32.0
+margin_right = -16.0
+margin_bottom = -24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
+min_value = -72.0
+max_value = 12.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = false
+_sections_unfolded = [ "Percent", "custom_fonts", "custom_styles" ]
+
+[node name="sld_music" type="HSlider" parent="." index="9"]
+
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -16.0
+margin_right = -16.0
+margin_bottom = -8.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+theme = ExtResource( 9 )
+min_value = -72.0
+max_value = 12.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+editable = true
+tick_count = 0
+ticks_on_borders = false
+focus_mode = 0
+_sections_unfolded = [ "Theme" ]
+
+[node name="move_in_out" type="Tween" parent="." index="10"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
+
+[connection signal="pressed" from="btns/stop" to="." method="_on_stop_pressed"]
+
+[connection signal="pressed" from="btns/play" to="." method="_on_play_pressed"]
+
+[connection signal="pressed" from="btns/prew" to="." method="_on_prew_pressed"]
+
+[connection signal="pressed" from="btns/next" to="." method="_on_next_pressed"]
+
+[connection signal="toggled" from="btns/loop" to="." method="_on_loop_toggled"]
+
+[connection signal="toggled" from="btns/shuffle" to="." method="_on_shuffle_toggled"]
+
+[connection signal="tween_completed" from="move_in_out" to="." method="_on_move_in_out_tween_completed"]
+
+

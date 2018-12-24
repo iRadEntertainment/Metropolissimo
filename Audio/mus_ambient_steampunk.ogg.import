@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mus_ambient_steampunk.ogg-3e9671a0777c35324148d50d07a2dfe3.oggstr"
+
+[deps]
+
+source_file="res://Audio/mus_ambient_steampunk.ogg"
+dest_files=[ "res://.import/mus_ambient_steampunk.ogg-3e9671a0777c35324148d50d07a2dfe3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/PiK_08_Esparianto.ogg-9e61eb48a049f524399082977a482c80.oggstr"
+
+[deps]
+
+source_file="res://Audio/music/PiK_08_Esparianto.ogg"
+dest_files=[ "res://.import/PiK_08_Esparianto.ogg-9e61eb48a049f524399082977a482c80.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/PiK_05_Fleek_Rin.ogg-5917dd89c9e811192a90100ee232646c.oggstr"
+
+[deps]
+
+source_file="res://Audio/music/PiK_05_Fleek_Rin.ogg"
+dest_files=[ "res://.import/PiK_05_Fleek_Rin.ogg-5917dd89c9e811192a90100ee232646c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

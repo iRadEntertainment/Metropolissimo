@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://shaders/smoke.shader" type="Shader" id=1]
+
+[resource]
+
+render_priority = 0
+shader = ExtResource( 1 )
+shader_param/ratio = 0.4
+shader_param/resolution = 2.2
+shader_param/trasparency = 1.0
+shader_param/color_add = 0.2
+shader_param/side_fade = true
+shader_param/side_mul = 3.0
+shader_param/displ = 0.01
+_sections_unfolded = [ "shader_param" ]
+

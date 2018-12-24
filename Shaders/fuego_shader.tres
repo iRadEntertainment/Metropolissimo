@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://shaders/fuego.shader" type="Shader" id=1]
+
+[resource]
+
+render_priority = 0
+shader = ExtResource( 1 )
+shader_param/offset_Y = 0.6
+shader_param/brightness = 1.3
+shader_param/thrust = 2.1
+shader_param/speed = 0.6
+shader_param/consistency = 0.35
+shader_param/res = 1.75
+shader_param/base = 0.0
+shader_param/thickness = 2.6
+_sections_unfolded = [ "shader_param" ]
+

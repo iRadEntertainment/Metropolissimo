@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fx_casino_radio.wav-7e5dadd6d8f94053f8a6d75588172a0e.sample"
+
+[deps]
+
+source_file="res://Audio/fx_casino_radio.wav"
+dest_files=[ "res://.import/fx_casino_radio.wav-7e5dadd6d8f94053f8a6d75588172a0e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

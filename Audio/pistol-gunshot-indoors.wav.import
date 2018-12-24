@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pistol-gunshot-indoors.wav-39937dc4b448904cf96e0552e78253bc.sample"
+
+[deps]
+
+source_file="res://Audio/pistol-gunshot-indoors.wav"
+dest_files=[ "res://.import/pistol-gunshot-indoors.wav-39937dc4b448904cf96e0552e78253bc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
