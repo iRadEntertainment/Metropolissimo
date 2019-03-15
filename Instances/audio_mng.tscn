@@ -7,11 +7,8 @@
 [ext_resource path="res://Audio/fx_hoover_1.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
-
 resource_name = "music_fade"
 length = 2.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("intro_music:volume_db")
 tracks/0/interp = 2
@@ -39,71 +36,36 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="audio_mng" type="Node" index="0"]
-
+[node name="audio_mng" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
-_sections_unfolded = [ "Pause" ]
 
-[node name="music" type="AudioStreamPlayer" parent="." index="0"]
-
+[node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -12.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
 bus = "music"
 
-[node name="quick_menu_in" type="AudioStreamPlayer" parent="." index="1"]
-
+[node name="quick_menu_in" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
 bus = "gui_sound"
 
-[node name="quick_menu_out" type="AudioStreamPlayer" parent="." index="2"]
-
+[node name="quick_menu_out" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -6.0
 pitch_scale = 1.3
-autoplay = false
-mix_target = 0
 bus = "gui_sound"
 
-[node name="menu" type="Node" parent="." index="3"]
+[node name="menu" type="Node" parent="."]
 
-[node name="intro_music" type="AudioStreamPlayer" parent="menu" index="0"]
-
-stream = null
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
+[node name="intro_music" type="AudioStreamPlayer" parent="menu"]
 bus = "music"
 
-[node name="btn" type="AudioStreamPlayer" parent="menu" index="1"]
-
+[node name="btn" type="AudioStreamPlayer" parent="menu"]
 stream = ExtResource( 5 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
 bus = "gui_sound"
 
-[node name="music_fade" type="AnimationPlayer" parent="menu" index="2"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
+[node name="music_fade" type="AnimationPlayer" parent="menu"]
 anims/music_fade = SubResource( 1 )
-blend_times = [  ]
 
 [connection signal="finished" from="music" to="." method="_on_music_finished"]
-
 [connection signal="finished" from="menu/intro_music" to="." method="_on_intro_music_finished"]
-
-

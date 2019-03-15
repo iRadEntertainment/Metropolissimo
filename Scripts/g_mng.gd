@@ -48,7 +48,7 @@ func _vfx_enabled(val):
 
 #============= loading scenes management
 func on_scene_loaded(): #not called TODO
-	n_mng.update_nodes() #(at the moment is called by stage1-1)
+#	n_mng.update_nodes() #(at the moment is called by stage1-1)
 	fl_ingame = true
 
 func load_new_game(path):

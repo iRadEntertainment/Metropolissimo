@@ -38,11 +38,11 @@ func _ready():
 func start_menu_music():
 	randomize()
 	$menu/intro_music.stream = load([pik1,pik2,pik3,pik4,pik5,pik6,pik7,pik8][randi()%8])
+	$menu/intro_music.volume_db = -12
 	$menu/intro_music.play()
 
 func music_fade_out(): $menu/music_fade.play("music_fade")
 func stop_intro_music():
-	$menu/intro_music.volume_db = 0
 	$menu/intro_music.stop()
 
 func play_btn(val): #plays button sounds

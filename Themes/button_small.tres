@@ -3,160 +3,65 @@
 [ext_resource path="res://Themes/fonts/MILLENNIA.TTF" type="DynamicFontData" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
-draw_center = true
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.809601, 0.846411, 0.933594, 1 )
-border_blend = false
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-corner_detail = 8
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-_sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
 [sub_resource type="StyleBoxFlat" id=2]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 bg_color = Color( 0.109467, 0.132813, 0.113662, 0.88949 )
-draw_center = true
 border_width_left = 1
 border_width_top = 1
-border_width_right = 0
 border_width_bottom = 1
 border_color = Color( 0.311462, 0.984375, 0.511233, 1 )
-border_blend = false
 corner_radius_top_left = 3
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
 corner_radius_bottom_left = 3
-corner_detail = 8
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-_sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
 [sub_resource type="StyleBoxFlat" id=3]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
-draw_center = true
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.809601, 0.846411, 0.933594, 1 )
-border_blend = false
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-corner_detail = 8
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-_sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
 [sub_resource type="StyleBoxFlat" id=4]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
-draw_center = true
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 1, 1, 1, 1 )
-border_blend = false
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 7
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-_sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
 [sub_resource type="StyleBoxFlat" id=5]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 bg_color = Color( 0.159531, 0.332031, 0.170312, 0.790039 )
-draw_center = true
 border_width_left = 1
 border_width_top = 1
-border_width_right = 0
 border_width_bottom = 1
 border_color = Color( 0.187473, 0.863281, 0.0472107, 1 )
-border_blend = false
 corner_radius_top_left = 3
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
 corner_radius_bottom_left = 3
-corner_detail = 8
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-_sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
 [sub_resource type="DynamicFont" id=6]
-
 size = 22
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 1 )
-_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [resource]
-
 default_font = SubResource( 6 )
 Button/colors/font_color = Color( 0.6875, 0.787598, 1, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
@@ -185,5 +90,4 @@ CheckBox/styles/focus = null
 CheckBox/styles/hover = null
 CheckBox/styles/normal = null
 CheckBox/styles/pressed = null
-_sections_unfolded = [ "Button", "Button/colors", "Button/fonts", "Button/styles", "Label", "Label/fonts" ]
 

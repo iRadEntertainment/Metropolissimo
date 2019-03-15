@@ -34,11 +34,10 @@ func count_files(path, extention):
 
 #-------------- Time format from Xrayez
 #----(https://godotengine.org/qa/32785/is-there-simple-way-convert-seconds-to-hh-mm-ss-format-in-godot)
-enum TimeFormat {
+enum  {
 	FORMAT_HOURS   = 1 << 0,
 	FORMAT_MINUTES = 1 << 1,
-	FORMAT_SECONDS = 1 << 2,
-	FORMAT_DEFAULT = FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS
+	FORMAT_SECONDS = 1 << 2
 }
 
 func format_time(time, format = FORMAT_MINUTES | FORMAT_SECONDS, digit_format = "%02d"):

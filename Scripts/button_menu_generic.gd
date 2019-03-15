@@ -7,7 +7,8 @@ func _ready():
 	connect("mouse_entered",self,"_mouse_in")
 	connect("mouse_exited",self,"_mouse_out")
 	connect("focus_entered",self,"_focus")
-	if self.has_method("setup_button"): setup_button()
+#	if has_method("setup_button"):
+#		setup_button()
 
 
 func _mouse_in():  audio_mng.play_btn(1)
