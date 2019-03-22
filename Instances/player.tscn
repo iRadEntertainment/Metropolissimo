@@ -8135,8 +8135,14 @@ var col = Color(0.8 , 0.15 , 0.15)
 func _ready():
 	show()
 
+var time = 0
 func _process(delta):
 	update()
+	time += delta
+	
+	if time >= 0.1:
+		$vec_mov.text = str(stepify(get_parent().vec_mov.x,0.1), \",\" , stepify(get_parent().vec_mov.y,0.1))
+		time=0
 
 func _draw():
 	if n_mng.gui.fl_debug_mode:
@@ -8145,11 +8151,10 @@ func _draw():
 		draw_line(Vector2(),vec,col,2,true)
 		
 		if !$vec_mov.visible: $vec_mov.visible = true
-		$vec_mov.text = str(stepify(vec.x,0.001), \",\" , stepify(vec.y,0.001))
 		
 	elif $vec_mov.visible: $vec_mov.visible = false"
 
-[node name="player" instance=ExtResource( 1 )]
+[node name="player" index="0" instance=ExtResource( 1 )]
 collision_layer = 4
 collision_mask = 1025
 collision/safe_margin = 0.01
@@ -9062,7 +9067,6 @@ wait_time = 0.3
 one_shot = true
 
 [node name="draw_debug" type="Node2D" parent="." index="10"]
-editor/display_folded = true
 visible = false
 script = SubResource( 47 )
 

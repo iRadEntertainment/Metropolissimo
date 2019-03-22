@@ -5,7 +5,7 @@
 extends Node
 
 #---------- config_files
-var data_dir  = str(OS.get_system_dir(0),"/metropolissimo_data")
+var data_dir  = str("res://metropolissimo_data")
 var data_filename = "metropolissimo_data.cfg"
 var data_path = str(data_dir,"/",data_filename)
 
@@ -45,7 +45,15 @@ func create_default_config():
 	
 	#--------- default values
 	var file_config = ConfigFile.new()
+	#--- general settings
 	file_config.set_value("settings","thumb_size",thumb_size)
+	file_config.set_value("settings","full_screen",true)
+	
+	#--- audio
+	file_config.set_value("audio","master_bus_vol",-6)
+	file_config.set_value("audio","music_bus_vol",-24)
+	file_config.set_value("audio","sound_bus_vol",-24)
+	
 	
 	#--------- finalizing
 	var err_cfg = file_config.save(data_path)
@@ -54,99 +62,21 @@ func create_default_config():
 	else:
 		prints("DATA MANAGER: unable to save config file -> Error", err_cfg)
 
-#func carica_dati(dicosa):
-#	if dicosa == "tutto" and not Directory.new().file_exists(perc_file_conf):
-#		print("CARICAMENTO FALLITO: file di config non presente")
-#		print("CHECK PRIMO AVVIO: genero file di default")
-#		salva_dati("tutto")
-#	var file_config = ConfigFile.new()
-#	file_config.load(perc_file_conf)
-#
-#	if dicosa in ["settaggi", "tutto"]:
-#		print("CARICAMENTO: settaggi")
-#		fl_fullscreen   = file_config.get_value("settaggi","fl_fullscreen",false)
-#		fl_low_process  = file_config.get_value("settaggi","fl_low_process",true)
-#		fl_orologio     = file_config.get_value("settaggi","fl_orologio",true)
-#		fl_mostra_fin   = file_config.get_value("settaggi","fl_mostra_fin",0)
-#		bak_manuale     = file_config.get_value("settaggi","bak_manuale","")
-#		fl_soffice_inst = file_config.get_value("settaggi","fl_soffice_inst",false)
-#		fl_cont_vis     = file_config.get_value("settaggi","fl_cont_vis",false)
-#		arrotonda       = file_config.get_value("settaggi","arrotonda",0.05)
-#
-#		_set_contabilita_visibile(fl_cont_vis)
-#	if dicosa in ["ultimo_avvio", "tutto"]:
-#		print("CARICAMENTO: ultimo_avvio")
-#		ultimo_avvio_gio = file_config.get_value("date_avvio","ultimo_avvio_gio",str(giorno)+" "+mese+" "+str(anno))
-#		ultimo_avvio_set = file_config.get_value("date_avvio","ultimo_avvio_set",settimana_corr)
-#	if dicosa in ["turni", "tutto"]:
-#		print("CARICAMENTO: turni")
-#		var scheda_vuota = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
-#		scheda_pass = file_config.get_value("schede_turni","scheda_pass",scheda_vuota)
-#		scheda_corr = file_config.get_value("schede_turni","scheda_corr",scheda_vuota)
-#		scheda_pros = file_config.get_value("schede_turni","scheda_pros",scheda_vuota)
-#	if dicosa in ["rubrica", "tutto"]:
-#		print("CARICAMENTO: rubrica")
-#		lista_nomi   = file_config.get_value("rubrica","lista_nomi",[])
-#		diz_contatti = file_config.get_value("rubrica","diz_contatti",{})
-#	if dicosa in ["preventivi", "preventivi_prezzi", "tutto"]:
-#		print("CARICAMENTO: preventivi")
-##		diz_preventivi_prezzi_default = {"tipo"      :[ ["creazione",1.6],["riparazione",1],["produzione",1.4],["creazione partecipata",1.8] ],
-##										"difficolta" :[ ["facile",15],["media",20],["difficile",25] ],
-##										"metalli"    :[ ["argento",0.4],["oro",35],["rame",0.006] ],
-##										"pacchetti"  :[ ["economy - orecchini",3],["economy - bracciale",7],["economy - anello",3] ],
-##										"pietre"     :[ ["pietra di prova",15.3] ],
-##										"IVA"        : 22}
-#		lista_preventivi      = file_config.get_value("preventivi","lista_preventivi",[])
-#		diz_preventivi_prezzi = file_config.get_value("preventivi","diz_preventivi_prezzi",diz_preventivi_prezzi_default)
-#
-#		for chiave in diz_preventivi_prezzi_default.keys():
-#			if not diz_preventivi_prezzi.has(chiave):
-#				diz_preventivi_prezzi[chiave] = diz_preventivi_prezzi_default[chiave]
-#
-#		for chiave in diz_preventivi_prezzi.keys():
-#			if typeof(diz_preventivi_prezzi[chiave]) != TYPE_INT:
-#				if diz_preventivi_prezzi[chiave] == null or diz_preventivi_prezzi[chiave].empty():
-#					diz_preventivi_prezzi[chiave] = diz_preventivi_prezzi_default[chiave]
-#	if dicosa in ["contabilita", "tutto"]:
-#		print("CARICAMENTO: contabilita")
-#		diz_contabilita         = file_config.get_value("contabilita","diz_contabilita",[])
-#		lista_date_cont         = file_config.get_value("contabilita","lista_date_cont",[])
-#
-#
-#func salva_dati():
-#	var file_config = ConfigFile.new()
-#	if Directory.new().file_exists(perc_file_conf): file_config.load(perc_file_conf)
-#
-#	file_config.set_value("settaggi","fl_fullscreen",fl_fullscreen)
-#	file_config.save(perc_file_conf)
-#	print(str("SALVATAGGIO: Completato in - ",perc_file_conf))
+func load_settings():
+	var file_config = ConfigFile.new()
+	#--- check
+	var err = file_config.load(data_path)
+	if err != OK:
+		print("DATA MANAGER: impossible to load %s"%data_path)
+		return
+	
+	#--- load sections
+	thumb_size = file_config.get_value("settings","thumb_size",512)
+	
 
-#func esegui_backup(tipo = "pre-apertura"):
-#	if not Directory.new().file_exists(perc_file_conf):
-#		print("RIPRISTINO: Nessun file di config presente")
-#		return
-#
-#	var file_config = ConfigFile.new()
-#	if   tipo == "pre-apertura":
-#		print("RIPRISTINO: Salvataggio backup pre-apertura")
-#		file_config.load(perc_file_conf)
-#		file_config.save(perc_file_conf+".bak")
-#	elif tipo == "manuale":
-#		print("RIPRISTINO: Salvataggio backup manuale")
-#		bak_manuale = str(giorno)+"_"+mese_c
-#		salva_dati("settaggi")
-#		file_config.load(perc_file_conf)
-#		file_config.save(perc_file_conf+"_"+bak_manuale+".bak")
-#
-#func ripristina_backup(quale = "pre-apertura"):
-#	print("RIPRISTINO: " + quale)
-#	var file_config = ConfigFile.new()
-#	if quale == "pre-apertura":
-#		if Directory.new().file_exists(perc_file_conf+".bak"):
-#			file_config.load(perc_file_conf+".bak")
-#			file_config.save(perc_file_conf)
-#			carica_dati("tutto")
-#		else: print("Nessun back-up presente")
+
+#========== GAME SAVES ================
+
 func save_game():
 	var save_game = File.new()
 	save_game.open("user://savegame.save", File.WRITE)

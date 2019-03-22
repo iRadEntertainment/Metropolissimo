@@ -30,12 +30,27 @@ var track_length
 var fl_loop_track = false
 var fl_shuffle    = false
 
+#----------- audio_mng vars
+
+var master_bus_vol = -6   setget _set_master_bus
+var music_bus_vol  = -24  setget _set_music_bus
+var sound_bus_vol  = -24  setget _set_sound_bus
+
+
+
 func _ready():
 #	AudioServer.set_bus_volume_db( 1, -24 )
 	pass
 
 #============= MENU
+func audio_init():
+	AudioServer.set_bus_volume_db( 0, master_bus_vol )
+	AudioServer.set_bus_volume_db( 1, music_bus_vol )
+	AudioServer.set_bus_volume_db( 2, sound_bus_vol )
+
 func start_menu_music():
+	audio_init()
+	
 	$menu/intro_music.stop()
 	randomize()
 	$menu/intro_music.stream = load([pik1,pik2,pik3,pik4,pik5,pik6,pik7,pik8][randi()%8])
@@ -95,3 +110,21 @@ func _on_music_finished():
 		next = now_playing+1
 		if next > 8: next = 1
 	set_ingame_music(next)
+
+
+
+#=========== setter
+func _set_master_bus(val):
+	master_bus_vol = val
+	AudioServer.set_bus_volume_db( 0, master_bus_vol )
+
+func _set_music_bus(val):
+	music_bus_vol = val
+	AudioServer.set_bus_volume_db( 1, music_bus_vol )
+
+func _set_sound_bus(val):
+	sound_bus_vol = val
+	AudioServer.set_bus_volume_db( 2, sound_bus_vol )
+
+
+
