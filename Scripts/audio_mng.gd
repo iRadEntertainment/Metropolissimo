@@ -36,6 +36,7 @@ func _ready():
 
 #============= MENU
 func start_menu_music():
+	$menu/intro_music.stop()
 	randomize()
 	$menu/intro_music.stream = load([pik1,pik2,pik3,pik4,pik5,pik6,pik7,pik8][randi()%8])
 	$menu/intro_music.volume_db = -12

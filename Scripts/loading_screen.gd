@@ -5,7 +5,6 @@
 extends Control
 
 signal loading_complete
-#var scn_menu_inst = preload("res://stages/menu.tscn").instance()
 
 var actual_scene
 var loader
@@ -16,9 +15,6 @@ var fl_anim_on = false
 var tempo_max = 50 #msec
 var wait_frames = 10
 
-func _ready():
-	
-	pass
 
 func load_next_scene(scene, just_preload = false):
 	fl_just_preload = just_preload
@@ -64,16 +60,11 @@ func update_percentage():
 func open_next_scene(loaded_scene):
 	fl_old_scene_freed = false
 	actual_scene = loaded_scene.instance()
-	#---------- NEW SCENE SETUP
-	g_mng.add_stage_instances(actual_scene)
-#TODO: calculate navigation_nodes_and_path
-#	naviga_platform.avvia()
-# TODO: Add in_game_menu.tscn or GUI.tscn
-#	utilita.nodo_base().add_child(scn_menu_inst)
-	#---------- ADD NEW SCENE
-	get_node("/root").add_child(actual_scene)
-	emit_signal("loading_complete")
+
+	#---------- send the scene resource to g_mng with the signal
+	emit_signal("loading_complete",actual_scene)
 	queue_free()
+
 
 func loading_error():
 	print ("LOADING_SCREEN: !!!Loading error!!!")

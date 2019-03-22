@@ -1,5 +1,6 @@
 extends Node2D
 
+#--- solid grid arrays
 var grid_cell     = []
 var grid_flipx    = []
 var grid_flipy    = []

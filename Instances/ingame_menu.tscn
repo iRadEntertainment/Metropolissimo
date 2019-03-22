@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Shaders/colorize_shader.tres" type="Material" id=1]
 [ext_resource path="res://Themes/button_small.tres" type="Theme" id=2]
@@ -22,6 +22,27 @@ shader = SubResource( 1 )
 shader_param/base = Color( 0.533333, 0.580392, 0.545098, 1 )
 
 [sub_resource type="GDScript" id=3]
+script/source = "#btn_main_menu
+
+extends \"res://Scripts/button_menu_generic.gd\"
+
+func _pressed():
+	get_tree().paused = false
+	# Remove the current level
+	var level = utl.n_base()
+#	remove_child(level)
+	level.call_deferred(\"queue_free\")
+	
+	
+	
+	# Add the next level
+	var menu_resource = load(\"res://Instances/main_menu.tscn\")
+	var menu = menu_resource.instance()
+	
+#	get_tree().current_scene = menu
+	get_tree().get_root().add_child(menu)"
+
+[sub_resource type="GDScript" id=4]
 script/source = "#btn_tm_debug
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -30,7 +51,7 @@ func _pressed():
 	utl.n_base().get_node(\"tm\").debug = !utl.n_base().get_node(\"tm\").debug
 	utl.n_base().get_node(\"tm/tm_debug\").visible = utl.n_base().get_node(\"tm\").debug"
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=5]
 script/source = "#btn_quit
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -38,14 +59,14 @@ extends \"res://Scripts/button_menu_generic.gd\"
 func _pressed():
 	get_tree().quit()"
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=6]
 script/source = "#btn_fullscreen
 
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func _pressed(): OS.window_fullscreen = !OS.window_fullscreen"
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=7]
 script/source = "#slider_pan_speed
 
 extends HSlider
@@ -58,13 +79,13 @@ func _changed(val):
 	n_mng.gui.pan_velocity = val
 	$lb.text = str(\"Pan speed: \",val)"
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 29
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 5 )
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=9]
 script/source = "#bullet_time debug menu
 
 extends HSlider
@@ -177,42 +198,52 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -107.0
-margin_top = -88.0
-margin_right = 107.0
-margin_bottom = 88.0
-custom_constants/separation = 16
-
-[node name="tm_debug" type="Button" parent="btns"]
+margin_left = -134.0
+margin_top = -117.0
 margin_right = 214.0
+margin_bottom = 144.0
+custom_constants/separation = 8
+
+[node name="main_menu" type="Button" parent="btns"]
+margin_right = 348.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 192, 32 )
 theme = ExtResource( 2 )
-text = "tm debug"
+text = "Main Menu"
 script = SubResource( 3 )
 
+[node name="tm_debug" type="Button" parent="btns"]
+margin_top = 40.0
+margin_right = 348.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 192, 32 )
+theme = ExtResource( 2 )
+text = "tm debug"
+script = SubResource( 4 )
+
 [node name="quit" type="Button" parent="btns"]
-margin_top = 48.0
-margin_right = 214.0
-margin_bottom = 80.0
+margin_top = 80.0
+margin_right = 348.0
+margin_bottom = 112.0
 rect_min_size = Vector2( 192, 32 )
 theme = ExtResource( 2 )
 text = "quit"
-script = SubResource( 4 )
+script = SubResource( 5 )
 
 [node name="fullscreen" type="Button" parent="btns"]
-margin_top = 96.0
-margin_right = 214.0
-margin_bottom = 128.0
+margin_top = 120.0
+margin_right = 348.0
+margin_bottom = 152.0
 rect_min_size = Vector2( 192, 32 )
 theme = ExtResource( 2 )
 text = "fullscreen"
-script = SubResource( 5 )
+script = SubResource( 6 )
 
 [node name="pan_speed" type="HSlider" parent="btns"]
 editor/display_folded = true
+visible = false
 margin_top = 144.0
-margin_right = 214.0
+margin_right = 288.0
 margin_bottom = 176.0
 rect_min_size = Vector2( 0, 32 )
 focus_mode = 0
@@ -222,7 +253,7 @@ step = 10.0
 value = 10.0
 ticks_on_borders = true
 focus_mode = 0
-script = SubResource( 6 )
+script = SubResource( 7 )
 
 [node name="lb" type="Label" parent="btns/pan_speed"]
 margin_left = 225.0
@@ -230,7 +261,7 @@ margin_top = -4.0
 margin_right = 431.0
 margin_bottom = 36.0
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "pan velocity (WASD)"
 
 [node name="btns_bg3" type="ColorRect" parent="btns/pan_speed"]
@@ -245,9 +276,10 @@ color = Color( 0.363281, 0.363281, 0.363281, 0.690588 )
 
 [node name="bullet_time" type="HSlider" parent="btns"]
 editor/display_folded = true
-margin_top = 192.0
-margin_right = 214.0
-margin_bottom = 224.0
+visible = false
+margin_top = 144.0
+margin_right = 288.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 0, 32 )
 focus_mode = 0
 theme = ExtResource( 3 )
@@ -257,7 +289,7 @@ step = 0.1
 value = 1.9
 ticks_on_borders = true
 focus_mode = 0
-script = SubResource( 8 )
+script = SubResource( 9 )
 
 [node name="lb" type="LineEdit" parent="btns/bullet_time"]
 margin_left = 225.0
@@ -265,7 +297,7 @@ margin_top = -4.0
 margin_right = 431.0
 margin_bottom = 36.0
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "pan velocity (WASD)"
 caret_blink = true
 

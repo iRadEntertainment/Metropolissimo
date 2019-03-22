@@ -25,7 +25,6 @@ var slow_time_fade   = 0.5 #seconds
 
 
 func _ready():
-	loading_screen.connect("loading_complete",self,"game_setup_and_start")
 	VisualServer.set_default_clear_color( Color(0,0,0,1) )
 
 #============ Input and menu
@@ -48,12 +47,24 @@ func _vfx_enabled(val):
 	emit_signal("vfx_enabled",val)
 
 #============= loading scenes management
-func on_scene_loaded(): #not called TODO
-#	n_mng.update_nodes() #(at the moment is called by stage1-1)
-	fl_ingame = true
-
 func load_new_game(path):
+	#--- add loading_screen.tscn
+	var loading_screen = load(loading_scene_path).instance()
+	get_node("/root").add_child(loading_screen)
+	loading_screen.connect("loading_complete",self,"scene_loaded")
+	
+	#--- add info for the title of the loading screen
+	#TODO
+	
+	#--- load the next scene and wait for the signal
 	loading_screen.load_next_scene(path)
+
+func scene_loaded(incoming_scene):
+	add_stage_instances(incoming_scene)
+	n_mng.update_nodes(incoming_scene)
+	get_node("/root").add_child(incoming_scene)
+	game_setup_and_start()
+	fl_ingame = true
 
 func add_stage_instances(incoming_scene):
 	var name = incoming_scene.get_name()
@@ -62,12 +73,11 @@ func add_stage_instances(incoming_scene):
 		prints("G_MNG: adding",name,"instances")
 		incoming_scene.add_child(gui_preload.instance())
 		incoming_scene.add_child(pl_preload.instance())
-	n_mng.update_nodes(incoming_scene)
 
 func game_setup_and_start():
 	n_mng.pl.global_position  = n_mng.spawn.get_node("1").global_position
 	n_mng.cam.global_position = n_mng.spawn.get_node("1").global_position
-#	OS.window_fullscreen = true
+	n_mng.cnt.generate_pickups()
 	audio_mng.set_ingame_music(0 , false)
 
 #=============== Game mechanics

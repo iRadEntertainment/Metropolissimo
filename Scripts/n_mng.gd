@@ -17,7 +17,7 @@ signal nodes_updated
 
 func update_nodes(scene):
 	var nodes = []
-	var paths = ["tm/solid","tm/climb","tm/platf","cam_ctrl","GUI","player","spawn","cnt"]
+	var paths = ["tm/solid","tm/climb","tm/platf","cam_ctrl","GUI","player","cnt/spawn","cnt"]
 	
 	for i in range(paths.size()):
 		if scene.get_node(paths[i]) == null:

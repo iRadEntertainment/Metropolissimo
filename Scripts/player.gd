@@ -661,7 +661,6 @@ func _on_can_jump_timeout():
 
 func _on_platform_ignore_timeout():
 	ignore_platforms(false)
-	print("PLAYER: timer ignore platform DONE")
 
 #========================== SFX ==============================
 onready var sfx_step_water1 = preload("res://Audio/sfx_step_water1.wav")

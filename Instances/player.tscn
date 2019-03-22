@@ -8546,6 +8546,12 @@ data = {
 "position": Vector2( 1406, 134 ),
 "type": "output"
 }, {
+"filter": [ NodePath("../body_parts/hips/body:rotation_degrees") ],
+"from": "idle0",
+"id": "idle0",
+"position": Vector2( 73, 9 ),
+"type": "animation"
+}, {
 "filter": [  ],
 "from": "fr_walk0",
 "id": "anim 5",
@@ -8622,12 +8628,6 @@ data = {
 "from": "fr_crouch_walk01",
 "id": "anim 18",
 "position": Vector2( 32, 521 ),
-"type": "animation"
-}, {
-"filter": [ NodePath("../body_parts/hips/body:rotation_degrees") ],
-"from": "idle0",
-"id": "idle0",
-"position": Vector2( 73, 9 ),
 "type": "animation"
 }, {
 "blend": 0.0,
@@ -8807,6 +8807,18 @@ data = {
 "type": "output"
 }, {
 "filter": [  ],
+"from": "fr_jump1",
+"id": "fr_jump1",
+"position": Vector2( 906, 473 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "idle0",
+"id": "idle0",
+"position": Vector2( 15, 5 ),
+"type": "animation"
+}, {
+"filter": [  ],
 "from": "fr_run01",
 "id": "anim 5",
 "position": Vector2( 603, 384 ),
@@ -8881,12 +8893,6 @@ data = {
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "idle0",
-"id": "idle0",
-"position": Vector2( 15, 5 ),
-"type": "animation"
-}, {
-"filter": [  ],
 "from": "fr_crouch_walk01",
 "id": "anim 12",
 "position": Vector2( 250, 429 ),
@@ -8910,12 +8916,6 @@ data = {
 "from": "fr_walk1",
 "id": "anim 6",
 "position": Vector2( 253, 213 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "idle_relax1",
-"id": "random_idle",
-"position": Vector2( 10, 112 ),
 "type": "animation"
 }, {
 "id": "tr_crouch_walk",
@@ -8959,12 +8959,6 @@ data = {
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_jump1",
-"id": "fr_jump1",
-"position": Vector2( 906, 473 ),
-"type": "animation"
-}, {
-"filter": [  ],
 "from": "fr_run1",
 "id": "anim 3",
 "position": Vector2( 612, 412 ),
@@ -8974,12 +8968,6 @@ data = {
 "from": "fr_crouch_walk1",
 "id": "anim 13",
 "position": Vector2( 258, 457 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_idle_crouch",
-"id": "crouch",
-"position": Vector2( 563, 101 ),
 "type": "animation"
 }, {
 "id": "tr_main",
@@ -9018,6 +9006,18 @@ data = {
 "from": "fr_jump0",
 "id": "anim 4",
 "position": Vector2( 916, 365 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "idle_relax1",
+"id": "random_idle",
+"position": Vector2( 10, 112 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_idle_crouch",
+"id": "crouch",
+"position": Vector2( 563, 101 ),
 "type": "animation"
 }, {
 "autorestart": false,
