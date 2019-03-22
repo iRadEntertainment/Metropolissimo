@@ -189,6 +189,8 @@ func _physics_process(d):
 			vec_mov.x -= acc_speed*d
 	else:
 		vec_mov.x /= stop_multiplier
+		if abs(vec_mov.x) < 20 and vec_mov.x != 0:
+			vec_mov.x = 0
 	
 	vec_mov.x = clamp(vec_mov.x,-max_speed,max_speed)
 	

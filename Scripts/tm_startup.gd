@@ -1,3 +1,5 @@
+# tm_startup.gd
+
 extends Node2D
 
 #--- solid grid arrays
@@ -12,8 +14,8 @@ var debug = false setget _debug_set
 
 func _ready():
 	set_process_input(false)
-	calculate_solid_grid()
-	replace_solid_cells()
+#	calculate_solid_grid()
+#	replace_solid_cells()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -23,7 +25,7 @@ func _input(event):
 				debug_tm()
 			else:
 				show_debug = false
-	
+
 	#code for dragging the debug graphical node
 	if show_debug and event is InputEventMouseMotion:
 		debug_tm()
@@ -46,7 +48,7 @@ func debug_tm():
 func calculate_solid_grid():
 	var used_rect = $solid.get_used_rect()
 	start_pos = used_rect.position
-	
+
 	for v in range( used_rect.position.y , used_rect.end.y ):
 		var row_cell  = PoolIntArray()
 		var row_flipx = PoolIntArray()
@@ -57,7 +59,7 @@ func calculate_solid_grid():
 			row_trans.append( int($solid.is_cell_transposed(u,v)) )
 			row_flipx.append( int($solid.is_cell_x_flipped(u,v)) )
 			row_flipx.append( int($solid.is_cell_y_flipped(u,v)) )
-		
+
 		grid_cell.append(row_cell)
 		grid_flipx.append(row_flipx)
 		grid_flipy.append(row_flipy)

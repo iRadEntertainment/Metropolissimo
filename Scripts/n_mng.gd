@@ -4,6 +4,7 @@
 
 extends Node
 
+var tm
 var tm_solid
 var tm_climb
 var tm_platf
@@ -12,12 +13,13 @@ var gui
 var pl
 var spawn
 var cnt
+var tools
 
 signal nodes_updated
 
 func update_nodes(scene):
 	var nodes = []
-	var paths = ["tm/solid","tm/climb","tm/platf","cam_ctrl","GUI","player","cnt/spawn","cnt"]
+	var paths = ["tm","tm/solid","tm/climb","tm/platf","cam_ctrl","GUI","player","cnt/spawn","cnt","tools"]
 	
 	for i in range(paths.size()):
 		if scene.get_node(paths[i]) == null:
@@ -25,12 +27,14 @@ func update_nodes(scene):
 		else:
 			nodes.append(scene.get_node(paths[i]))
 	
-	tm_solid = nodes[0]
-	tm_climb = nodes[1]
-	tm_platf = nodes[2]
-	cam      = nodes[3]
-	gui      = nodes[4]
-	pl       = nodes[5]
-	spawn    = nodes[6]
-	cnt      = nodes[7]
+	tm       = nodes[0]
+	tm_solid = nodes[1]
+	tm_climb = nodes[2]
+	tm_platf = nodes[3]
+	cam      = nodes[4]
+	gui      = nodes[5]
+	pl       = nodes[6]
+	spawn    = nodes[7]
+	cnt      = nodes[8]
+	tools    = nodes[9]
 	emit_signal("nodes_updated")

@@ -62,7 +62,18 @@ func load_new_game(path):
 func scene_loaded(incoming_scene):
 	add_stage_instances(incoming_scene)
 	n_mng.update_nodes(incoming_scene)
+	
+	#--- scene setup
+	get_tree().paused = true
 	get_node("/root").add_child(incoming_scene)
+	
+	n_mng.tm.calculate_solid_grid()
+	astar_grid_gen.start()
+	n_mng.tm.replace_solid_cells()
+	n_mng.cnt.generate_pickups()
+	
+	get_tree().paused = false
+	#--- game setup
 	game_setup_and_start()
 	fl_ingame = true
 
@@ -77,7 +88,7 @@ func add_stage_instances(incoming_scene):
 func game_setup_and_start():
 	n_mng.pl.global_position  = n_mng.spawn.get_node("1").global_position
 	n_mng.cam.global_position = n_mng.spawn.get_node("1").global_position
-	n_mng.cnt.generate_pickups()
+	
 	audio_mng.set_ingame_music(0 , false)
 
 #=============== Game mechanics

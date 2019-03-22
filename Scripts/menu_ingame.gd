@@ -26,6 +26,7 @@ func _input(event):
 		if event.scancode == KEY_F2 and event.is_pressed():
 			$debug.visible = !$debug.visible
 			fl_debug_mode = $debug.visible
+			n_mng.tools.draw_As_points_toggle()
 		
 		if event.scancode == KEY_ESCAPE and event.is_pressed():
 			get_tree().paused = !get_tree().paused
