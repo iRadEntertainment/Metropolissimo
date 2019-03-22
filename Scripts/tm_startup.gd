@@ -22,6 +22,8 @@ func _input(event):
 				debug_tm()
 			else:
 				show_debug = false
+	
+	#code for dragging the debug graphical node
 	if show_debug and event is InputEventMouseMotion:
 		debug_tm()
 
@@ -82,4 +84,4 @@ func replace_solid_cells():
 func _debug_set(val):
 	debug = val
 	set_process_input(val)
-	$solid.collision_layer
+#	$solid.collision_layer

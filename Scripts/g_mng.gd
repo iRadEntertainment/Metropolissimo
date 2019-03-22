@@ -23,6 +23,7 @@ var tween_slow_time = null
 var slow_time_factor = .02
 var slow_time_fade   = 0.5 #seconds
 
+
 func _ready():
 	loading_screen.connect("loading_complete",self,"game_setup_and_start")
 	VisualServer.set_default_clear_color( Color(0,0,0,1) )

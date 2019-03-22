@@ -4,37 +4,37 @@
 
 extends "res://Scripts/class_human.gd"
 #player status
-var st_on_floor  = true
-var st_back_unbal = false
-var st_fron_unbal = false
+var st_on_floor   : bool = true
+var st_back_unbal : bool = false
+var st_fron_unbal : bool = false
 
-var st_action    = false setget _st_action_changed
-var st_aim       = false setget _st_aim_changed
-var st_armed     = false setget _st_armed_changed
-var st_look_at   = false
+var st_action     : bool = false setget _st_action_changed
+var st_aim        : bool = false setget _st_aim_changed
+var st_armed      : bool = false setget _st_armed_changed
+var st_look_at    : bool = false
 var looking_at_pos = Vector2()
-var looking_at_mouse = false
-var st_can_jump  = true
+var looking_at_mouse : bool = false
+var st_can_jump   : bool = true
 
-var st_att_ladd  = false
-var st_att_rope  = false
-var st_next_ladd = false
-var st_on_ladd   = false
-var st_next_rope = false
-var st_on_rope   = false
-var st_on_plat   = false
-var st_is_center = false
+var st_att_ladd   : bool = false
+var st_att_rope   : bool = false
+var st_next_ladd  : bool = false
+var st_on_ladd    : bool = false
+var st_next_rope  : bool = false
+var st_on_rope    : bool = false
+var st_on_plat    : bool = false
+var st_is_center  : bool = false
 
-var st_moving     = false
-var st_sprinting  = false
-var st_crouching  = false
-var st_jumping    = false
-var st_fire_trig  = false
+var st_moving     : bool = false
+var st_sprinting  : bool = false
+var st_crouching  : bool = false
+var st_jumping    : bool = false
+var st_fire_trig  : bool = false
 
-var anim_busy     = false
-var anim_busy_top = false
-var anim_busy_bot = false
-var pl_movement  = 1
+var anim_busy     : bool = false
+var anim_busy_top : bool = false
+var anim_busy_bot : bool = false
+var pl_movement   : int = 1
 enum PlMove {BUSY,
 IDLE, CROUCH_IDLE, PRONE,
 WALK, RUN, SPRINT, JUMP,
@@ -64,7 +64,7 @@ var tr_bot_detect = false
 var pl_stat_aim_pistol        = 0.08    # seconds
 var pl_stat_aim_follow_pistol = 10     # multiplier
 
-var stop_multiplier = 1.3
+var stop_multiplier = 1.1
 var speed_walk      = 170
 var speed_run       = 400
 var speed_sprint    = 550
@@ -99,7 +99,8 @@ func _input(event):
 		st_jumping = false
 	
 	if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
-		st_moving = true
+		if not (st_att_ladd or st_att_rope):
+			st_moving = true
 		if (st_att_ladd or st_att_rope) and st_on_floor:
 			st_att_ladd = false
 			st_att_rope = false
@@ -160,8 +161,8 @@ func _physics_process(d):
 	
 	if st_jumping and st_crouching and st_on_plat and st_can_jump: #----------jump off platform
 		st_can_jump = false
-		vec_mov.y = -jump/3
-		ignore_platforms(true , 1.6)
+		vec_mov.y = -jump/4
+		ignore_platforms(true , 0.3)
 	if st_jumping and st_can_jump and st_on_floor: #----------jump
 		st_can_jump = false
 		vec_mov.y = -jump
@@ -172,25 +173,28 @@ func _physics_process(d):
 	
 	#----------- movement --------------
 	if (st_att_ladd or st_att_rope):
-		center_on_tile(d)
-	if Input.is_action_pressed("ui_right"):
+		vec_mov.x /= stop_multiplier
+	
+	elif Input.is_action_pressed("ui_right"):
 		if fl_flipped: fl_flipped = false
 		if not (st_att_ladd or st_att_rope):
 			if vec_mov.x < 0: vec_mov.x /= 1.5
-			if vec_mov.x < 20: vec_mov.x = 20
+			elif vec_mov.x < 20: vec_mov.x = 20
 			vec_mov.x += acc_speed*d
 	elif Input.is_action_pressed("ui_left"):
 		if !fl_flipped: fl_flipped = true
 		if not (st_att_ladd or st_att_rope):
 			if vec_mov.x > 0: vec_mov.x /= 1.5
-			if vec_mov.x > -20: vec_mov.x = -20
+			elif vec_mov.x > -20: vec_mov.x = -20
 			vec_mov.x -= acc_speed*d
 	else:
 		vec_mov.x /= stop_multiplier
+	
 	vec_mov.x = clamp(vec_mov.x,-max_speed,max_speed)
 	
 	#----------- movement climb --------------
 	if (st_att_ladd or st_att_rope):
+		center_on_tile(d)
 		if Input.is_action_pressed("ui_up"):   vec_mov.y = -climb_speed
 		if Input.is_action_pressed("ui_down"): vec_mov.y =  climb_speed
 		if Input.is_action_pressed("ui_down"): vec_mov.y =  climb_speed
@@ -322,13 +326,39 @@ func check_env_status(): #processed
 	if !st_on_floor and st_can_jump: st_can_jump = false
 	
 	#----- top and bottom trigger areas
-	if not $triggers/env_detect_top.get_overlapping_bodies().empty():
-		if not tr_top_detect: tr_top_detect = true
-	elif tr_top_detect:       tr_top_detect = false
+	tr_top_detect = not $triggers/env_detect_top.get_overlapping_bodies().empty()
+	tr_bot_detect = not $triggers/env_detect_bot.get_overlapping_bodies().empty()
 	
-	if not $triggers/env_detect_bot.get_overlapping_bodies().empty():
-		if not tr_bot_detect: tr_bot_detect = true
-	elif tr_bot_detect:       tr_bot_detect = false
+	
+	#----- st_is_centered to ladders or ropes
+	#TODO
+	
+	#----- st_on_plat
+	if tr_bot_detect:
+		if not n_mng.tm_climb in $triggers/env_detect_bot.get_overlapping_bodies():
+			if not st_on_plat: st_on_plat = true
+	else:   if     st_on_plat: st_on_plat = false
+	
+	#----- crouching
+	if Input.is_action_pressed("ui_down"):
+		if not st_att_ladd or not st_att_rope:
+			st_crouching = true
+	else:
+		st_crouching = false
+	
+	#----- st_on_ladders or ropes
+	if tr_bot_detect:
+		if n_mng.tm_climb in $triggers/env_detect_bot.get_overlapping_bodies():
+#			if not (st_on_ladd or st_on_rope):
+			var tm_pos = n_mng.tm_climb.world_to_map($triggers/env_detect_bot.global_position)
+			if   n_mng.tm_climb.get_cell(tm_pos.x , tm_pos.y) in [0]: st_on_ladd = true
+			else:                                                     st_on_ladd = false
+			if   n_mng.tm_climb.get_cell(tm_pos.x , tm_pos.y) in [2]: st_on_rope = true
+			else:                                                     st_on_rope = false
+		else:
+			st_on_ladd = false ; st_on_rope = false
+	else:
+		st_on_ladd = false ; st_on_rope = false
 	
 	#----- st_next_ladders or ropes
 	if tr_top_detect:# and not (st_att_ladd or st_att_rope):
@@ -340,52 +370,38 @@ func check_env_status(): #processed
 	else:
 		st_next_ladd = false ; st_next_rope = false
 	
-	#----- st_on_ladders or ropes
-	if tr_bot_detect and not (st_att_ladd or st_att_rope):
-		if n_mng.tm_climb in $triggers/env_detect_bot.get_overlapping_bodies():
-			if not (st_on_ladd or st_on_rope):
-				var tm_pos = n_mng.tm_climb.world_to_map($triggers/env_detect_bot.global_position)
-				if   n_mng.tm_climb.get_cell(tm_pos.x , tm_pos.y) in [0]: st_on_ladd = true
-				elif n_mng.tm_climb.get_cell(tm_pos.x , tm_pos.y) in [2]: st_on_rope = true
-	else:
-		st_on_ladd = false ; st_on_rope = false
 	
-	#----- st_is_centered to ladders or ropes
+	if st_att_ladd and not st_next_ladd: st_att_ladd = false
+	if st_att_rope and not st_next_rope: st_att_rope = false
 	
-	
-	#----- st_on_plat
-	if tr_bot_detect:
-		if not n_mng.tm_climb in $triggers/env_detect_bot.get_overlapping_bodies():
-			if not st_on_plat: st_on_plat = true
-	else:   if     st_on_plat: st_on_plat = false
 	
 	#----- st_attached to ladders or ropes
 	if Input.is_action_pressed("ui_up"):
 		if st_next_ladd and not st_att_ladd: st_att_ladd = true
 		if st_next_rope and not st_att_rope: st_att_rope = true
+	
+	
 	if Input.is_action_pressed("ui_down"):
-		if not st_att_ladd or not st_att_rope:
-			st_crouching = true
-		if (st_att_ladd or st_att_rope) and st_on_floor and not (st_on_plat or st_on_rope):
+		if (st_att_ladd or st_att_rope) and st_on_floor:
 			st_att_ladd = false
 			st_att_rope = false
-		if st_on_ladd and not (st_att_ladd or st_att_rope): st_att_ladd = true
-		if st_on_rope and not (st_att_ladd or st_att_rope): st_att_rope = true
-	else:
-		st_crouching = false
+		#-- on top of climbs
+		if st_on_ladd and not st_att_ladd: st_att_ladd = true
+		if st_on_rope and not st_att_rope: st_att_rope = true
+		
+		if (st_on_ladd and st_att_ladd) or (st_on_rope and st_att_rope):
+			ignore_platforms(true,0.1)
 	
 	
-	if st_att_ladd and not st_next_ladd: st_att_ladd = false
-	if st_att_rope and not st_next_rope: st_att_ladd = false
 	
-	if st_on_ladd and st_crouching: st_att_ladd = true
-	if st_on_rope and st_crouching: st_att_rope = true
+#	if st_on_ladd and st_crouching: st_att_ladd = true
+#	if st_on_rope and st_crouching: st_att_rope = true
 	
-	if st_att_ladd or st_att_rope:  ignore_platforms(true)
-	else:                           ignore_platforms(false)
+#	if st_att_ladd or st_att_rope:  ignore_platforms(true)
+#	else:                           ignore_platforms(false)
 	
-	#----- reached the floor after climbing down
-	if (st_att_ladd or st_att_rope) and st_on_floor:
+	#----- reached the floor after climbing down from ladders or ropes
+	if (st_att_ladd or st_att_rope) and st_on_floor and vec_mov.y > 0:
 		st_att_ladd = false
 		st_att_rope = false
 	
@@ -612,22 +628,26 @@ func weapon_reload():
 
 
 #========================== UTILS ==============================
-func ignore_platforms(val = true, time = 0): #PROCESSED
-	if val and n_mng.tm_platf.collision_layer != 0:
+func ignore_platforms(val = true, time = 0):
+	if val:
 		n_mng.tm_platf.collision_layer = 0
-	elif n_mng.tm_platf.collision_layer != 1024:
-		if $timers/platform_ignore.is_stopped():
-			n_mng.tm_platf.collision_layer = 1024
+		n_mng.tm_platf.collision_mask = 0
+	else:
+		n_mng.tm_platf.collision_layer = 1024
+		n_mng.tm_platf.collision_mask = 2 + 4 + 8 + 16
 	
-	if time != 0:
+	#if it's timed the timer start and at the end triggers _ ignore_platform(false) _
+	if time != 0 and $timers/platform_ignore.is_stopped():
 		$timers/platform_ignore.wait_time = time
 		$timers/platform_ignore.start()
 
-func center_on_tile(d):
+const centering_speed : int = 50
+func center_on_tile(d): #PROCESSED
+	
 	if   (int(global_position.x))%32 <= 15.5:
-		translate( Vector2( d*30 , 0) )
+		translate( Vector2( d*centering_speed , 0) )
 	elif (int(global_position.x))%32 >= 16.5:
-		translate( Vector2(-d*30 , 0) )
+		translate( Vector2(-d*centering_speed , 0) )
 
 func player_can_move():
 	return true
@@ -640,7 +660,8 @@ func _on_can_jump_timeout():
 	st_can_jump = true
 
 func _on_platform_ignore_timeout():
-	n_mng.tm_platf.collision_layer = 1024
+	ignore_platforms(false)
+	print("PLAYER: timer ignore platform DONE")
 
 #========================== SFX ==============================
 onready var sfx_step_water1 = preload("res://Audio/sfx_step_water1.wav")
@@ -657,7 +678,13 @@ var tiletype = 0
 enum TileType {CONCRETE, WATER, GRAVEL}
 
 func reproduce_footstep(): #called by animations
-	tiletype = TileType.WATER
+	#----------
+	return
+	#---------- skipped
+	#TODO
+	if $sfx/steps.playing: return
+	
+	tiletype = TileType.GRAVEL
 	match tiletype:
 		TileType.WATER:  $sfx/steps.stream = sfx_steps_water[randi()%4]
 		TileType.GRAVEL: $sfx/steps.stream = sfx_steps_gravel[randi()%3]

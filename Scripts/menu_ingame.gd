@@ -15,6 +15,7 @@ var mouse_info_offset = Vector2()
 var fl_mouse_info = false
 
 func _ready():
+	connect_player_var_box()
 	$mouse_info.visible = false
 	$menu.visible  = false
 	$debug.visible = fl_debug_mode
@@ -73,7 +74,40 @@ func _process(delta):
 			set_process(false)
 
 
+#========== player Var
 
+func connect_player_var_box():
+	$debug/player_var/st1/st.text = str(n_mng.pl.acc_speed)
+	$debug/player_var/st2/st.text = str(n_mng.pl.jump)
+	$debug/player_var/st3/st.text = str(n_mng.pl.climb_speed)
+	$debug/player_var/st4/st.text = str(n_mng.pl.stop_multiplier)
+	
+	$debug/player_var/st1/st.connect("text_entered",self,"_pl_acc_speed_set")
+	$debug/player_var/st2/st.connect("text_entered",self,"_pl_jump_set")
+	$debug/player_var/st3/st.connect("text_entered",self,"_pl_climb_set")
+	$debug/player_var/st4/st.connect("text_entered",self,"_pl_stop_mult_set")
+
+
+#export (int) var gravity     = 50
+
+#var speed_walk      = 170
+#var speed_run       = 400
+#var speed_sprint    = 550
+#var speed_stealth   = 80
+#var speed_crouch    = 140
+
+func _pl_acc_speed_set(val):
+	n_mng.pl.acc_speed       = int(val)
+	$debug/player_var/st1/st.release_focus()
+func _pl_jump_set(val):
+	n_mng.pl.jump            = int(val)
+	$debug/player_var/st2/st.release_focus()
+func _pl_climb_set(val):
+	n_mng.pl.climb_speed     = int(val)
+	$debug/player_var/st3/st.release_focus()
+func _pl_stop_mult_set(val):
+	n_mng.pl.stop_multiplier = float(val)
+	$debug/player_var/st4/st.release_focus()
 
 
 

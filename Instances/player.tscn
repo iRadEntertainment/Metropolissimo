@@ -26,20 +26,14 @@
 [ext_resource path="res://Audio/sfx_jump.wav" type="AudioStream" id=24]
 
 [sub_resource type="CapsuleShape2D" id=1]
-
-custom_solver_bias = 0.0
 radius = 8.0
 height = 32.0
 
 [sub_resource type="CircleShape2D" id=2]
-
-custom_solver_bias = 0.0
 radius = 4.0
 
 [sub_resource type="Animation" id=3]
-
 length = 0.01
-loop = false
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/arm_l/forearm_l/hand_l/ctrl_hand_l:position")
@@ -475,10 +469,7 @@ tracks/35/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-
 length = 3.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/arm_r:rotation_degrees")
 tracks/0/interp = 1
@@ -721,11 +712,8 @@ tracks/19/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-
 resource_name = "fr_crouch_walk0"
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/arm_r/forearm_r/hand_r:rotation_degrees")
 tracks/0/interp = 1
@@ -944,11 +932,8 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-
 resource_name = "fr_crouch_walk01"
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/arm_r/forearm_r/hand_r:position")
 tracks/0/interp = 1
@@ -1167,11 +1152,8 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-
 resource_name = "fr_crouch_walk1"
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/arm_r/forearm_r/hand_r:position")
 tracks/0/interp = 1
@@ -1390,10 +1372,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=8]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/link/head:position")
 tracks/0/interp = 1
@@ -1612,10 +1591,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=9]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/link/head:position")
 tracks/0/interp = 1
@@ -1834,10 +1810,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=10]
-
-length = 1.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/link/head:rotation_degrees")
 tracks/0/interp = 2
@@ -2056,10 +2029,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/link/head:position")
 tracks/0/interp = 1
@@ -2278,10 +2248,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=12]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/link/head:rotation_degrees")
 tracks/0/interp = 1
@@ -2500,10 +2467,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=13]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/link/head:position")
 tracks/0/interp = 1
@@ -2722,10 +2686,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=14]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body:position")
 tracks/0/interp = 1
@@ -2944,10 +2905,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=15]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body:position")
 tracks/0/interp = 1
@@ -3166,10 +3124,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=16]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body:position")
 tracks/0/interp = 1
@@ -3388,10 +3343,8 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=17]
-
 length = 2.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body/arm_r:position")
 tracks/0/interp = 2
@@ -3610,10 +3563,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=18]
-
 length = 0.2
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body:rotation_degrees")
 tracks/0/interp = 1
@@ -3832,10 +3782,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=19]
-
 length = 15.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/body:rotation_degrees")
 tracks/0/interp = 1
@@ -4054,10 +4001,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="Animation" id=20]
-
 length = 0.3
-loop = false
-step = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("..")
 tracks/0/interp = 1
@@ -4074,10 +4018,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=21]
-
 length = 0.3
-loop = false
-step = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("..")
 tracks/0/interp = 1
@@ -4094,10 +4035,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=22]
-
 length = 0.3
-loop = false
-step = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("..")
 tracks/0/interp = 1
@@ -4117,10 +4055,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=23]
-
 length = 0.3
-loop = false
-step = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("..")
 tracks/0/interp = 1
@@ -4137,11 +4072,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=24]
-
 resource_name = "fr_crouch_walk0"
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -4326,11 +4258,8 @@ tracks/14/keys = {
 }
 
 [sub_resource type="Animation" id=25]
-
 resource_name = "fr_crouch_walk01"
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -4515,11 +4444,8 @@ tracks/14/keys = {
 }
 
 [sub_resource type="Animation" id=26]
-
 resource_name = "fr_crouch_walk1"
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -4704,11 +4630,8 @@ tracks/14/keys = {
 }
 
 [sub_resource type="Animation" id=27]
-
 resource_name = "fr_crouch_walk11"
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -4893,11 +4816,8 @@ tracks/14/keys = {
 }
 
 [sub_resource type="Animation" id=28]
-
 resource_name = "fr_idle_crouch"
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -5068,10 +4988,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=29]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -5242,10 +5159,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=30]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -5416,10 +5330,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=31]
-
-length = 1.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -5590,10 +5501,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=32]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -5762,12 +5670,23 @@ tracks/13/keys = {
 "update": 0,
 "values": [ -60.0874 ]
 }
+tracks/14/type = "method"
+tracks/14/path = NodePath("..")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reproduce_footstep"
+} ]
+}
 
 [sub_resource type="Animation" id=33]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -5938,10 +5857,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=34]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -6110,12 +6026,23 @@ tracks/13/keys = {
 "update": 0,
 "values": [ 32.5058 ]
 }
+tracks/14/type = "method"
+tracks/14/path = NodePath("..")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reproduce_footstep"
+} ]
+}
 
 [sub_resource type="Animation" id=35]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -6286,10 +6213,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=36]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/leg_l/up_leg_l/foot_l:position")
 tracks/0/interp = 1
@@ -6458,12 +6382,23 @@ tracks/13/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/14/type = "method"
+tracks/14/path = NodePath("..")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reproduce_footstep"
+} ]
+}
 
 [sub_resource type="Animation" id=37]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -6634,10 +6569,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=38]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/leg_l/up_leg_l/foot_l:position")
 tracks/0/interp = 1
@@ -6806,12 +6738,23 @@ tracks/13/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/14/type = "method"
+tracks/14/path = NodePath("..")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reproduce_footstep"
+} ]
+}
 
 [sub_resource type="Animation" id=39]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips:position")
 tracks/0/interp = 1
@@ -6982,7 +6925,6 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=40]
-
 length = 5.0
 loop = true
 step = 0.2
@@ -7156,9 +7098,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=41]
-
 length = 0.25
-loop = false
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/leg_l:position")
@@ -7330,10 +7270,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=42]
-
 length = 1.4
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/leg_r:rotation_degrees")
 tracks/0/interp = 2
@@ -7504,10 +7441,6 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=43]
-
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/leg_l/up_leg_l/foot_l:position")
 tracks/0/interp = 1
@@ -7678,10 +7611,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=44]
-
 length = 0.5
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/leg_l/up_leg_l/foot_l:position")
 tracks/0/interp = 1
@@ -7852,10 +7782,7 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=45]
-
 length = 15.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body_parts/hips/leg_r:position")
 tracks/0/interp = 1
@@ -8026,7 +7953,6 @@ tracks/13/keys = {
 }
 
 [sub_resource type="Animation" id=46]
-
 length = 0.6
 loop = true
 step = 0.05
@@ -8200,7 +8126,6 @@ tracks/13/keys = {
 }
 
 [sub_resource type="GDScript" id=47]
-
 script/source = "#player_draw_debug
 
 extends Node2D
@@ -8224,478 +8149,330 @@ func _draw():
 		
 	elif $vec_mov.visible: $vec_mov.visible = false"
 
-[node name="player" index="0" instance=ExtResource( 1 )]
-
+[node name="player" instance=ExtResource( 1 )]
 collision_layer = 4
 collision_mask = 1025
 collision/safe_margin = 0.01
 script = ExtResource( 2 )
-_sections_unfolded = [ "Collision", "collision" ]
-max_speed = 500
-acc_speed = 350
+climb_speed = 250
+acc_speed = 1000
+jump = 600
 
 [node name="poly_coll" parent="." index="0"]
-
 visible = false
 position = Vector2( 56, 0 )
 polygon = PoolVector2Array( -56, 0, -64, -4, -64, -44, -56, -56, -48, -44, -48, -4 )
 
 [node name="area_hitbox" parent="." index="1"]
-
 visible = false
 
 [node name="body_parts" type="Node2D" parent="." index="2"]
-
 editor/display_folded = true
-_sections_unfolded = [ "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="hips" type="RemoteTransform2D" parent="body_parts" index="0"]
-
 position = Vector2( 0, -27 )
 remote_path = NodePath("../../rmted_front/hips_rmted")
-use_global_coordinates = true
-update_position = true
-update_rotation = true
-update_scale = true
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_ik_": true
 }
 
 [node name="body" type="Sprite" parent="body_parts/hips" index="0"]
-
 position = Vector2( 0, -2 )
 texture = ExtResource( 3 )
 normal_map = ExtResource( 4 )
 offset = Vector2( 0, -8 )
-_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
 }
 
 [node name="link" type="Sprite" parent="body_parts/hips/body" index="0"]
-
 position = Vector2( 0, -17 )
 texture = ExtResource( 5 )
 offset = Vector2( 0, -1 )
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="head" type="Sprite" parent="body_parts/hips/body/link" index="0"]
-
 position = Vector2( 0, -2 )
 texture = ExtResource( 6 )
 normal_map = ExtResource( 7 )
 offset = Vector2( 0, -4 )
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="eyebeam" type="Light2D" parent="body_parts/hips/body/link/head" index="0"]
-
 visible = false
 position = Vector2( 106.766, 1.08758 )
-enabled = true
-editor_only = false
 texture = ExtResource( 8 )
-offset = Vector2( 0, 0 )
-texture_scale = 1.0
-color = Color( 1, 1, 1, 1 )
 energy = 0.8
-mode = 0
 range_height = 0.5
-range_z_min = -1024
-range_z_max = 1024
-range_layer_min = 0
-range_layer_max = 0
-range_item_cull_mask = 1
 shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 0.745882 )
-shadow_buffer_size = 2048
-shadow_gradient_length = 0.0
 shadow_filter = 1
 shadow_filter_smooth = 1.0
-shadow_item_cull_mask = 1
-_sections_unfolded = [ "Shadow" ]
 
 [node name="ctrl_head" type="Position2D" parent="body_parts/hips/body/link/head" index="1"]
-
 position = Vector2( 0, -6 )
-_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="sight" type="RemoteTransform2D" parent="body_parts/hips/body/link/head/ctrl_head" index="0"]
-
 position = Vector2( 4, 2 )
 remote_path = NodePath("../../../../../../../rays/sight")
-use_global_coordinates = true
-update_position = true
-update_rotation = true
-update_scale = true
-_sections_unfolded = [ "Transform", "Update" ]
 
 [node name="arm_r" type="Sprite" parent="body_parts/hips/body" index="1"]
-
 position = Vector2( -5, -16 )
 texture = ExtResource( 9 )
 normal_map = ExtResource( 10 )
 offset = Vector2( 0, 4 )
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
 }
 
 [node name="forearm_r" type="RemoteTransform2D" parent="body_parts/hips/body/arm_r" index="0"]
-
 position = Vector2( 0, 10 )
 remote_path = NodePath("../../../../../rmted_front2/forearm_r")
-use_global_coordinates = true
-update_position = true
-update_rotation = true
-update_scale = true
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="hand_r" type="RemoteTransform2D" parent="body_parts/hips/body/arm_r/forearm_r" index="0"]
-
 position = Vector2( 1, 10 )
 remote_path = NodePath("../../../../../../rmted_front2/forearm_r/hand_r")
-use_global_coordinates = true
-update_position = true
-update_rotation = true
-update_scale = true
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="ctrl_hand_r" type="Position2D" parent="body_parts/hips/body/arm_r/forearm_r/hand_r" index="0"]
-
 position = Vector2( 0, 3 )
-_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="arm_l" type="Sprite" parent="body_parts/hips/body" index="2"]
-
 show_behind_parent = true
 position = Vector2( 5, -16 )
 texture = ExtResource( 9 )
 normal_map = ExtResource( 10 )
 offset = Vector2( 0, 4 )
-_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
 }
 
 [node name="forearm_l" type="Sprite" parent="body_parts/hips/body/arm_l" index="0"]
-
 position = Vector2( 0, 10 )
 texture = ExtResource( 11 )
 normal_map = ExtResource( 12 )
 offset = Vector2( 0, 4 )
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="hand_l" type="Sprite" parent="body_parts/hips/body/arm_l/forearm_l" index="0"]
-
 position = Vector2( 1, 10 )
 texture = ExtResource( 13 )
 offset = Vector2( 0, 1 )
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="ctrl_hand_l" type="Position2D" parent="body_parts/hips/body/arm_l/forearm_l/hand_l" index="0"]
-
 position = Vector2( 0, 3 )
-_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="leg_r" type="RemoteTransform2D" parent="body_parts/hips" index="1"]
-
 position = Vector2( -4, 5 )
 remote_path = NodePath("../../../rmted_front/leg_r_rmted")
-use_global_coordinates = true
-update_position = true
-update_rotation = true
-update_scale = true
-_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
 }
 
 [node name="up_leg_r" type="Sprite" parent="body_parts/hips/leg_r" index="0"]
-
 position = Vector2( 0, 9 )
 texture = ExtResource( 14 )
 normal_map = ExtResource( 15 )
 offset = Vector2( 0, 4 )
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="foot_r" type="Sprite" parent="body_parts/hips/leg_r/up_leg_r" index="0"]
-
 position = Vector2( 0, 10 )
 scale = Vector2( 0.999999, 0.999999 )
 texture = ExtResource( 16 )
 offset = Vector2( 1, 1 )
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="ctrl_foot_r" type="Position2D" parent="body_parts/hips/leg_r/up_leg_r/foot_r" index="0"]
-
 position = Vector2( 4, 3 )
-_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_lock_": true
 }
 
 [node name="leg_l" type="Sprite" parent="body_parts/hips" index="2"]
-
 show_behind_parent = true
 position = Vector2( 4, 5 )
 texture = ExtResource( 17 )
 normal_map = ExtResource( 18 )
 offset = Vector2( 0, 4 )
-_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
 }
 
 [node name="up_leg_l" type="Sprite" parent="body_parts/hips/leg_l" index="0"]
-
 position = Vector2( 0, 9 )
 texture = ExtResource( 14 )
 normal_map = ExtResource( 15 )
 offset = Vector2( 0, 4 )
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="foot_l" type="Sprite" parent="body_parts/hips/leg_l/up_leg_l" index="0"]
-
 position = Vector2( 0, 10 )
 texture = ExtResource( 16 )
 offset = Vector2( 1, 1 )
-_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="ctrl_foot_l" type="Position2D" parent="body_parts/hips/leg_l/up_leg_l/foot_l" index="0"]
-
 position = Vector2( 4, 3 )
-_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_lock_": true
 }
 
 [node name="rmted_front" type="Node2D" parent="." index="3"]
-
 editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="hips_rmted" type="Sprite" parent="rmted_front" index="0"]
-
 position = Vector2( 0, -27 )
 texture = ExtResource( 19 )
 offset = Vector2( 0, 2 )
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
 [node name="wp_holster" type="RemoteTransform2D" parent="rmted_front/hips_rmted" index="0"]
-
 position = Vector2( -6.18471, 0.301243 )
 rotation = 1.5708
 remote_path = NodePath("../../../weapons/wp_pistol")
-use_global_coordinates = true
-update_position = true
-update_rotation = true
-update_scale = true
-_sections_unfolded = [ "Transform", "Update" ]
 
 [node name="leg_r_rmted" type="Sprite" parent="rmted_front" index="1"]
-
 position = Vector2( -4, -22 )
 texture = ExtResource( 17 )
 normal_map = ExtResource( 18 )
 offset = Vector2( 0, 4 )
-_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_ik_": true
 }
 
 [node name="weapons" type="Node2D" parent="." index="4"]
-
+editor/display_folded = true
 position = Vector2( 48, -32 )
 script = ExtResource( 20 )
-_sections_unfolded = [ "Visibility", "Z Index" ]
 
 [node name="wp_pistol" parent="weapons" index="0" instance=ExtResource( 21 )]
-
 visible = false
 position = Vector2( -54.1847, 5.30124 )
 rotation = 1.5708
-_sections_unfolded = [ "Collision", "Transform", "Visibility", "Z Index" ]
 
 [node name="wp_assault_rifle" parent="weapons" index="1" instance=ExtResource( 22 )]
-
 visible = false
 
 [node name="extra" type="Node2D" parent="weapons" index="2"]
-
 editor/display_folded = true
 position = Vector2( -48, 32 )
 
 [node name="key_keep_pressed" type="Timer" parent="weapons/extra" index="0"]
-
-process_mode = 1
 wait_time = 0.3
 one_shot = true
-autostart = false
 
 [node name="rmted_front2" type="Node2D" parent="." index="5"]
-
 editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="forearm_r" type="Sprite" parent="rmted_front2" index="0"]
-
 position = Vector2( -5, -35 )
 texture = ExtResource( 11 )
 normal_map = ExtResource( 12 )
 offset = Vector2( 0, 4 )
-_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="hand_r" type="Sprite" parent="rmted_front2/forearm_r" index="0"]
-
 position = Vector2( 1, 10 )
 texture = ExtResource( 13 )
 offset = Vector2( 0, 1 )
-_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="wp_hand" type="RemoteTransform2D" parent="rmted_front2/forearm_r/hand_r" index="0"]
-
 position = Vector2( 1.48082, 1.00421 )
 rotation = 1.5708
-remote_path = NodePath("")
-use_global_coordinates = true
-update_position = true
-update_rotation = true
-update_scale = true
-_sections_unfolded = [ "Transform", "Update", "Z Index" ]
 
 [node name="triggers" type="Node2D" parent="." index="6"]
-
-editor/display_folded = true
 visible = false
 
 [node name="env_detect_top" type="Area2D" parent="triggers" index="0"]
-
-editor/display_folded = true
 position = Vector2( 0, -24 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 2
 collision_mask = 2
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Visibility" ]
 
 [node name="shape_coll" type="CollisionShape2D" parent="triggers/env_detect_top" index="0"]
-
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="env_detect_bot" type="Area2D" parent="triggers" index="1"]
-
-editor/display_folded = true
 position = Vector2( 0, 4 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 2
 collision_mask = 2
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
 
 [node name="shape_coll" type="CollisionShape2D" parent="triggers/env_detect_bot" index="0"]
-
 shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="rays" type="Node2D" parent="." index="7"]
-
 editor/display_folded = true
 visible = false
 
 [node name="floor_f" type="RayCast2D" parent="rays" index="0"]
-
 position = Vector2( 8, -8 )
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 8.5 )
 collision_mask = 1025
-_sections_unfolded = [ "Transform" ]
 
 [node name="floor_c" type="RayCast2D" parent="rays" index="1"]
-
 position = Vector2( 0, -4 )
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 8 )
 collision_mask = 1025
-_sections_unfolded = [ "Transform" ]
 
 [node name="floor_b" type="RayCast2D" parent="rays" index="2"]
-
 position = Vector2( -8, -8 )
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 8.5 )
 collision_mask = 1025
-_sections_unfolded = [ "Transform" ]
 
 [node name="sight" type="RayCast2D" parent="rays" index="3"]
-
 position = Vector2( 4, -52 )
-enabled = false
-exclude_parent = true
 cast_to = Vector2( 10, 0 )
 collision_mask = 56
-_sections_unfolded = [ "Transform" ]
 
 [node name="anim" type="Node2D" parent="." index="8"]
-
 editor/display_folded = true
 visible = false
 __meta__ = {
@@ -8703,22 +8480,9 @@ __meta__ = {
 }
 
 [node name="base" type="AnimationPlayer" parent="anim" index="0"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
 anims/base = SubResource( 3 )
-blend_times = [  ]
 
 [node name="body" type="AnimationPlayer" parent="anim" index="1"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
 anims/aim_pistol = SubResource( 4 )
 anims/fr_crouch_walk0 = SubResource( 5 )
 anims/fr_crouch_walk01 = SubResource( 6 )
@@ -8739,15 +8503,8 @@ anims/tr_get_pistol = SubResource( 20 )
 anims/tr_get_pistol_crouch = SubResource( 21 )
 anims/tr_put_pistol = SubResource( 22 )
 anims/tr_put_pistol_crouch = SubResource( 23 )
-blend_times = [  ]
 
 [node name="legs" type="AnimationPlayer" parent="anim" index="2"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
 anims/fr_crouch_walk0 = SubResource( 24 )
 anims/fr_crouch_walk01 = SubResource( 25 )
 anims/fr_crouch_walk1 = SubResource( 26 )
@@ -8771,17 +8528,12 @@ anims/idle_relax2 = SubResource( 43 )
 anims/idle_relax3 = SubResource( 44 )
 anims/jump = SubResource( 45 )
 anims/walk_norm = SubResource( 46 )
-blend_times = [  ]
 
 [node name="tree_body" type="AnimationTreePlayer" parent="anim" index="3"]
-
-playback_process_mode = 1
 master_player = NodePath("../body")
-base_path = NodePath("..")
-active = false
 data = {
 "active": false,
-"connections": [ "blend_aim", "out", 0, "get_wp", "blend_aim", 0, "aim_seek", "blend_aim", 1, "anim 3", "aim_seek", 0, "tr_main", "get_wp", 0, "anim 6", "get_wp", 1, "anim 2", "jump_up", 0, "anim 14", "jump_up", 1, "anim 15", "jump_up", 2, "anim", "tr_stealth", 0, "anim 16", "tr_stealth", 1, "anim 17", "tr_stealth", 2, "anim 18", "tr_stealth", 3, "anim 10", "tr_run", 0, "anim 11", "tr_run", 1, "anim 12", "tr_run", 2, "anim 13", "tr_run", 3, "anim 5", "tr_walk", 0, "anim 7", "tr_walk", 1, "anim 8", "tr_walk", 2, "anim 9", "tr_walk", 3, "idle0", "tr_main", 0, "anim 4", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "anim 19", "tr_crouch_walk", 0, "anim 20", "tr_crouch_walk", 1, "anim 21", "tr_crouch_walk", 2, "anim 22", "tr_crouch_walk", 3 ],
+"connections": [ "blend_aim", "out", 0, "anim", "tr_stealth", 0, "anim 16", "tr_stealth", 1, "anim 17", "tr_stealth", 2, "anim 18", "tr_stealth", 3, "anim 2", "jump_up", 0, "anim 14", "jump_up", 1, "anim 15", "jump_up", 2, "anim 3", "aim_seek", 0, "get_wp", "blend_aim", 0, "aim_seek", "blend_aim", 1, "anim 5", "tr_walk", 0, "anim 7", "tr_walk", 1, "anim 8", "tr_walk", 2, "anim 9", "tr_walk", 3, "anim 19", "tr_crouch_walk", 0, "anim 20", "tr_crouch_walk", 1, "anim 21", "tr_crouch_walk", 2, "anim 22", "tr_crouch_walk", 3, "anim 10", "tr_run", 0, "anim 11", "tr_run", 1, "anim 12", "tr_run", 2, "anim 13", "tr_run", 3, "tr_main", "get_wp", 0, "anim 6", "get_wp", 1, "idle0", "tr_main", 0, "anim 4", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6 ],
 "master": NodePath("../body"),
 "nodes": [ {
 "filter": [  ],
@@ -8794,80 +8546,16 @@ data = {
 "position": Vector2( 1406, 134 ),
 "type": "output"
 }, {
-"filter": [ NodePath("../body_parts/hips/body:rotation_degrees") ],
-"from": "idle0",
-"id": "idle0",
-"position": Vector2( 73, 9 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_jump0",
-"id": "anim 2",
-"position": Vector2( 678, 377 ),
-"type": "animation"
-}, {
 "filter": [  ],
 "from": "fr_walk0",
 "id": "anim 5",
 "position": Vector2( 186, 204 ),
 "type": "animation"
 }, {
-"filter": [ NodePath("..") ],
-"from": "tr_get_pistol",
-"id": "anim 6",
-"position": Vector2( 953, 386 ),
-"type": "animation"
-}, {
 "filter": [  ],
-"from": "aim_pistol",
-"id": "anim 3",
-"position": Vector2( 928, 5 ),
-"type": "animation"
-}, {
-"filter": [ NodePath("../body_parts/hips:position"), NodePath("../body_parts/hips:rotation_degrees") ],
-"from": "idle_crouch",
-"id": "anim 4",
-"position": Vector2( 73, 111 ),
-"type": "animation"
-}, {
-"blend": 0.0,
-"filter": [  ],
-"id": "blend_aim",
-"position": Vector2( 1256, 95 ),
-"type": "blend2"
-}, {
-"id": "aim_seek",
-"position": Vector2( 1056, 5 ),
-"type": "timeseek"
-}, {
-"filter": [  ],
-"from": "fr_walk01",
-"id": "anim 7",
-"position": Vector2( 194, 235 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_walk01",
-"id": "anim 9",
-"position": Vector2( 212, 295 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_walk1",
-"id": "anim 8",
-"position": Vector2( 204, 265 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_run01",
-"id": "anim 13",
-"position": Vector2( 382, 519 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_run1",
-"id": "anim 12",
-"position": Vector2( 373, 489 ),
+"from": "fr_crouch_walk01",
+"id": "anim 16",
+"position": Vector2( 18, 458 ),
 "type": "animation"
 }, {
 "filter": [  ],
@@ -8880,59 +8568,6 @@ data = {
 "from": "fr_run0",
 "id": "anim 10",
 "position": Vector2( 353, 430 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_jump1",
-"id": "anim 14",
-"position": Vector2( 685, 405 ),
-"type": "animation"
-}, {
-"autorestart": false,
-"autorestart_delay": 1.0,
-"autorestart_random_delay": 0.807843,
-"fade_in": 0.0,
-"fade_out": 0.0,
-"filter": [ NodePath("../body_parts/hips:position"), NodePath("../body_parts/hips:rotation_degrees") ],
-"id": "get_wp",
-"mix": false,
-"position": Vector2( 1096, 256 ),
-"type": "oneshot"
-}, {
-"filter": [  ],
-"from": "fr_jump3",
-"id": "anim 15",
-"position": Vector2( 693, 433 ),
-"type": "animation"
-}, {
-"id": "jump_up",
-"position": Vector2( 805, 368 ),
-"transitions": [ {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": false
-} ],
-"type": "transition",
-"xfade": 0.3
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 18",
-"position": Vector2( 32, 521 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk1",
-"id": "anim 17",
-"position": Vector2( 26, 490 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 16",
-"position": Vector2( 18, 458 ),
 "type": "animation"
 }, {
 "id": "tr_stealth",
@@ -8949,19 +8584,63 @@ data = {
 "type": "transition",
 "xfade": 0.26
 }, {
-"id": "tr_run",
-"position": Vector2( 515, 452 ),
+"id": "jump_up",
+"position": Vector2( 805, 368 ),
 "transitions": [ {
 "auto_advance": true
 }, {
 "auto_advance": true
 }, {
-"auto_advance": true
-}, {
-"auto_advance": true
+"auto_advance": false
 } ],
 "type": "transition",
-"xfade": 0.13
+"xfade": 0.3
+}, {
+"id": "aim_seek",
+"position": Vector2( 1056, 5 ),
+"type": "timeseek"
+}, {
+"filter": [  ],
+"from": "fr_jump0",
+"id": "anim 2",
+"position": Vector2( 678, 377 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_walk01",
+"id": "anim 7",
+"position": Vector2( 194, 235 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_walk1",
+"id": "anim 8",
+"position": Vector2( 204, 265 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk01",
+"id": "anim 18",
+"position": Vector2( 32, 521 ),
+"type": "animation"
+}, {
+"filter": [ NodePath("../body_parts/hips/body:rotation_degrees") ],
+"from": "idle0",
+"id": "idle0",
+"position": Vector2( 73, 9 ),
+"type": "animation"
+}, {
+"blend": 0.0,
+"filter": [  ],
+"id": "blend_aim",
+"position": Vector2( 1256, 95 ),
+"type": "blend2"
+}, {
+"filter": [  ],
+"from": "fr_run1",
+"id": "anim 12",
+"position": Vector2( 373, 489 ),
+"type": "animation"
 }, {
 "id": "tr_walk",
 "position": Vector2( 339, 203 ),
@@ -8976,6 +8655,93 @@ data = {
 } ],
 "type": "transition",
 "xfade": 0.13
+}, {
+"filter": [ NodePath("..") ],
+"from": "tr_get_pistol",
+"id": "anim 6",
+"position": Vector2( 953, 386 ),
+"type": "animation"
+}, {
+"id": "tr_crouch_walk",
+"position": Vector2( 516, 624 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+} ],
+"type": "transition",
+"xfade": 0.13
+}, {
+"filter": [  ],
+"from": "fr_jump1",
+"id": "anim 14",
+"position": Vector2( 685, 405 ),
+"type": "animation"
+}, {
+"id": "tr_run",
+"position": Vector2( 515, 452 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+} ],
+"type": "transition",
+"xfade": 0.13
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk01",
+"id": "anim 22",
+"position": Vector2( 377, 711 ),
+"type": "animation"
+}, {
+"autorestart": false,
+"autorestart_delay": 1.0,
+"autorestart_random_delay": 0.807843,
+"fade_in": 0.0,
+"fade_out": 0.0,
+"filter": [ NodePath("../body_parts/hips:position"), NodePath("../body_parts/hips:rotation_degrees") ],
+"id": "get_wp",
+"mix": false,
+"position": Vector2( 1096, 256 ),
+"type": "oneshot"
+}, {
+"filter": [  ],
+"from": "fr_walk01",
+"id": "anim 9",
+"position": Vector2( 212, 295 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk01",
+"id": "anim 20",
+"position": Vector2( 360, 649 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "aim_pistol",
+"id": "anim 3",
+"position": Vector2( 928, 5 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk1",
+"id": "anim 21",
+"position": Vector2( 370, 679 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_run01",
+"id": "anim 13",
+"position": Vector2( 382, 519 ),
+"type": "animation"
 }, {
 "id": "tr_main",
 "position": Vector2( 780, 39 ),
@@ -8997,19 +8763,17 @@ data = {
 "type": "transition",
 "xfade": 0.13
 }, {
-"id": "tr_crouch_walk",
-"position": Vector2( 516, 624 ),
-"transitions": [ {
-"auto_advance": true
+"filter": [  ],
+"from": "fr_jump3",
+"id": "anim 15",
+"position": Vector2( 693, 433 ),
+"type": "animation"
 }, {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-} ],
-"type": "transition",
-"xfade": 0.13
+"filter": [  ],
+"from": "fr_crouch_walk1",
+"id": "anim 17",
+"position": Vector2( 26, 490 ),
+"type": "animation"
 }, {
 "filter": [  ],
 "from": "fr_crouch_walk0",
@@ -9017,35 +8781,19 @@ data = {
 "position": Vector2( 350, 621 ),
 "type": "animation"
 }, {
-"filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 20",
-"position": Vector2( 360, 649 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk1",
-"id": "anim 21",
-"position": Vector2( 370, 679 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 22",
-"position": Vector2( 377, 711 ),
+"filter": [ NodePath("../body_parts/hips:position"), NodePath("../body_parts/hips:rotation_degrees") ],
+"from": "idle_crouch",
+"id": "anim 4",
+"position": Vector2( 73, 111 ),
 "type": "animation"
 } ]
 }
 
 [node name="tree_legs" type="AnimationTreePlayer" parent="anim" index="4"]
-
-playback_process_mode = 1
 master_player = NodePath("../legs")
-base_path = NodePath("..")
-active = false
 data = {
 "active": false,
-"connections": [ "tr_main", "out", 0, "anim 4", "jump_up", 0, "fr_jump1", "jump_up", 1, "anim 10", "jump_up", 2, "anim 11", "tr_stealth", 0, "anim 12", "tr_stealth", 1, "anim 13", "tr_stealth", 2, "anim 14", "tr_stealth", 3, "anim 2", "tr_run", 0, "anim 5", "tr_run", 1, "anim 3", "tr_run", 2, "anim 8", "tr_run", 3, "anim 6", "tr_walk", 0, "anim", "tr_walk", 1, "anim 7", "tr_walk", 2, "anim 9", "tr_walk", 3, "anxiety", "tr_main", 0, "crouch", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "anim 16", "tr_crouch_walk", 0, "anim 15", "tr_crouch_walk", 1, "anim 17", "tr_crouch_walk", 2, "anim 18", "tr_crouch_walk", 3, "idle0", "anxiety", 0, "random_idle", "anxiety", 1 ],
+"connections": [ "tr_main", "out", 0, "anim 11", "tr_stealth", 0, "anim 12", "tr_stealth", 1, "anim 13", "tr_stealth", 2, "anim 14", "tr_stealth", 3, "anim 4", "jump_up", 0, "fr_jump1", "jump_up", 1, "anim 10", "jump_up", 2, "anim 6", "tr_walk", 0, "anim", "tr_walk", 1, "anim 7", "tr_walk", 2, "anim 9", "tr_walk", 3, "anim 16", "tr_crouch_walk", 0, "anim 15", "tr_crouch_walk", 1, "anim 17", "tr_crouch_walk", 2, "anim 18", "tr_crouch_walk", 3, "anim 2", "tr_run", 0, "anim 5", "tr_run", 1, "anim 3", "tr_run", 2, "anim 8", "tr_run", 3, "anxiety", "tr_main", 0, "crouch", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "idle0", "anxiety", 0, "random_idle", "anxiety", 1 ],
 "master": NodePath("../legs"),
 "nodes": [ {
 "filter": [  ],
@@ -9059,75 +8807,15 @@ data = {
 "type": "output"
 }, {
 "filter": [  ],
-"from": "fr_jump1",
-"id": "fr_jump1",
-"position": Vector2( 906, 473 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "idle0",
-"id": "idle0",
-"position": Vector2( 15, 5 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_run0",
-"id": "anim 2",
-"position": Vector2( 594, 357 ),
-"type": "animation"
-}, {
-"filter": [  ],
 "from": "fr_run01",
 "id": "anim 5",
 "position": Vector2( 603, 384 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_walk1",
-"id": "anim 6",
-"position": Vector2( 253, 213 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_run1",
-"id": "anim 3",
-"position": Vector2( 612, 412 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_jump0",
-"id": "anim 4",
-"position": Vector2( 916, 365 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_walk0",
-"id": "anim 7",
-"position": Vector2( 275, 272 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_walk01",
-"id": "anim 9",
-"position": Vector2( 284, 299 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_run11",
-"id": "anim 8",
-"position": Vector2( 620, 440 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk1",
-"id": "anim 13",
-"position": Vector2( 258, 457 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 12",
-"position": Vector2( 250, 429 ),
+"from": "fr_crouch_walk0",
+"id": "anim 16",
+"position": Vector2( 579, 542 ),
 "type": "animation"
 }, {
 "filter": [  ],
@@ -9140,48 +8828,6 @@ data = {
 "from": "fr_jump3",
 "id": "anim 10",
 "position": Vector2( 919, 586 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk11",
-"id": "anim 14",
-"position": Vector2( 265, 487 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 15",
-"position": Vector2( 589, 571 ),
-"type": "animation"
-}, {
-"id": "jump_up",
-"position": Vector2( 1077, 360 ),
-"transitions": [ {
-"auto_advance": true
-}, {
-"auto_advance": false
-}, {
-"auto_advance": false
-} ],
-"type": "transition",
-"xfade": 0.09
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk11",
-"id": "anim 18",
-"position": Vector2( 612, 628 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk1",
-"id": "anim 17",
-"position": Vector2( 600, 599 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk0",
-"id": "anim 16",
-"position": Vector2( 579, 542 ),
 "type": "animation"
 }, {
 "id": "tr_stealth",
@@ -9198,19 +8844,53 @@ data = {
 "type": "transition",
 "xfade": 0.26
 }, {
-"id": "tr_run",
-"position": Vector2( 755, 357 ),
+"id": "jump_up",
+"position": Vector2( 1077, 360 ),
 "transitions": [ {
 "auto_advance": true
 }, {
-"auto_advance": true
+"auto_advance": false
 }, {
-"auto_advance": true
-}, {
-"auto_advance": true
+"auto_advance": false
 } ],
 "type": "transition",
-"xfade": 0.13
+"xfade": 0.09
+}, {
+"filter": [  ],
+"from": "fr_run0",
+"id": "anim 2",
+"position": Vector2( 594, 357 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_walk0",
+"id": "anim 7",
+"position": Vector2( 275, 272 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_run11",
+"id": "anim 8",
+"position": Vector2( 620, 440 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk11",
+"id": "anim 18",
+"position": Vector2( 612, 628 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "idle0",
+"id": "idle0",
+"position": Vector2( 15, 5 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk01",
+"id": "anim 12",
+"position": Vector2( 250, 429 ),
+"type": "animation"
 }, {
 "id": "tr_walk",
 "position": Vector2( 431, 210 ),
@@ -9225,6 +8905,82 @@ data = {
 } ],
 "type": "transition",
 "xfade": 0.13
+}, {
+"filter": [  ],
+"from": "fr_walk1",
+"id": "anim 6",
+"position": Vector2( 253, 213 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "idle_relax1",
+"id": "random_idle",
+"position": Vector2( 10, 112 ),
+"type": "animation"
+}, {
+"id": "tr_crouch_walk",
+"position": Vector2( 749, 540 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+} ],
+"type": "transition",
+"xfade": 0.13
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk11",
+"id": "anim 14",
+"position": Vector2( 265, 487 ),
+"type": "animation"
+}, {
+"id": "tr_run",
+"position": Vector2( 755, 357 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+} ],
+"type": "transition",
+"xfade": 0.13
+}, {
+"filter": [  ],
+"from": "fr_walk01",
+"id": "anim 9",
+"position": Vector2( 284, 299 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_jump1",
+"id": "fr_jump1",
+"position": Vector2( 906, 473 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_run1",
+"id": "anim 3",
+"position": Vector2( 612, 412 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk1",
+"id": "anim 13",
+"position": Vector2( 258, 457 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_idle_crouch",
+"id": "crouch",
+"position": Vector2( 563, 101 ),
+"type": "animation"
 }, {
 "id": "tr_main",
 "position": Vector2( 991, 37 ),
@@ -9246,24 +9002,22 @@ data = {
 "type": "transition",
 "xfade": 0.3
 }, {
-"id": "tr_crouch_walk",
-"position": Vector2( 749, 540 ),
-"transitions": [ {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-} ],
-"type": "transition",
-"xfade": 0.13
+"filter": [  ],
+"from": "fr_crouch_walk01",
+"id": "anim 15",
+"position": Vector2( 589, 571 ),
+"type": "animation"
 }, {
 "filter": [  ],
-"from": "idle_relax1",
-"id": "random_idle",
-"position": Vector2( 10, 112 ),
+"from": "fr_crouch_walk1",
+"id": "anim 17",
+"position": Vector2( 600, 599 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_jump0",
+"id": "anim 4",
+"position": Vector2( 916, 365 ),
 "type": "animation"
 }, {
 "autorestart": false,
@@ -9276,141 +9030,68 @@ data = {
 "mix": false,
 "position": Vector2( 142, 18 ),
 "type": "oneshot"
-}, {
-"filter": [  ],
-"from": "fr_idle_crouch",
-"id": "crouch",
-"position": Vector2( 563, 101 ),
-"type": "animation"
 } ]
 }
 
-[node name="blend" type="Tween" parent="anim" index="5"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
 [node name="timers" type="Node2D" parent="." index="9"]
-
 editor/display_folded = true
 visible = false
 
 [node name="ready_fire" type="Timer" parent="timers" index="0"]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
-
 [node name="can_jump" type="Timer" parent="timers" index="1"]
-
-process_mode = 1
 wait_time = 0.15
 one_shot = true
-autostart = false
 
 [node name="double_tap" type="Timer" parent="timers" index="2"]
-
-process_mode = 1
 wait_time = 0.3
 one_shot = true
-autostart = false
 
 [node name="key_keep_pressed" type="Timer" parent="timers" index="3"]
-
-process_mode = 1
 wait_time = 0.3
 one_shot = true
-autostart = false
 
 [node name="platform_ignore" type="Timer" parent="timers" index="4"]
-
-process_mode = 1
-wait_time = 1.0
+wait_time = 0.4
 one_shot = true
-autostart = false
 
 [node name="random_anim" type="Timer" parent="timers" index="5"]
-
-process_mode = 1
 wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="steps" type="Timer" parent="timers" index="6"]
-
-process_mode = 1
 wait_time = 0.3
 one_shot = true
-autostart = false
 
 [node name="draw_debug" type="Node2D" parent="." index="10"]
-
 editor/display_folded = true
 visible = false
 script = SubResource( 47 )
 
 [node name="vec_mov" type="Label" parent="draw_debug" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = -20.0
 margin_top = 4.0
 margin_right = 20.0
 margin_bottom = 18.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 23 )
 text = "120,120"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
 [node name="sfx" type="Node2D" parent="." index="11"]
 
-[node name="jump" type="AudioStreamPlayer2D" parent="sfx" index="0"]
-
+[node name="jump" type="AudioStreamPlayer" parent="sfx" index="0"]
 stream = ExtResource( 24 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+volume_db = -4.588
 bus = "player"
-area_mask = 1
 
-[node name="steps" type="AudioStreamPlayer2D" parent="sfx" index="1"]
-
-stream = null
+[node name="steps" type="AudioStreamPlayer" parent="sfx" index="1"]
 volume_db = -8.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
+bus = "player"
 
 [connection signal="timeout" from="weapons/extra/key_keep_pressed" to="." method="_on_key_keep_pressed_timeout"]
-
 [connection signal="timeout" from="timers/can_jump" to="." method="_on_can_jump_timeout"]
-
 [connection signal="timeout" from="timers/key_keep_pressed" to="." method="_on_key_keep_pressed_timeout"]
-
 [connection signal="timeout" from="timers/platform_ignore" to="." method="_on_platform_ignore_timeout"]
-
 [connection signal="timeout" from="timers/random_anim" to="." method="_on_random_anim_timeout"]
-
-

@@ -19,7 +19,8 @@ func _ready():
 
 func just_hit():
 	status += 0.5
-	$body.texture = load("res://Sprites/enemies/dummy_"+str(int(floor(status)))+".png")
+	status = min (status, 3)
+	$body.texture = load( "res://Sprites/enemies/dummy_%s.png"% (int(floor(status))) )
 	if randi()%7 < 3:
 		$anim.play("hit")
 

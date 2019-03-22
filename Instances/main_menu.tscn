@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/menu/menu_bg.png" type="Texture" id=2]
@@ -6,8 +6,8 @@
 [ext_resource path="res://Sprites/menu/intro_banner_princ.jpg" type="Texture" id=4]
 [ext_resource path="res://Themes/button.tres" type="Theme" id=5]
 [ext_resource path="res://Themes/fonts/Nickodemus-Extremus.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Themes/button_small.tres" type="Theme" id=7]
-[ext_resource path="res://Instances/thumb_load.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Instances/thumb_load.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Themes/button_small.tres" type="Theme" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -52,47 +52,23 @@ tracks/0/keys = {
 [sub_resource type="GDScript" id=5]
 script/source = "#btn_strat_menu_new_game
 
-extends \"res://Scripts/button_menu_generic.gd\"
-
-signal new_game_click
-
-func _pressed():
-	audio_mng.play_btn(0)
-	emit_signal(\"new_game_click\")"
+extends \"res://Scripts/button_menu_generic.gd\""
 
 [sub_resource type="GDScript" id=6]
 resource_name = "btn_start_menu_load_game"
 script/source = "#btn_start_menu_load_game
 
-extends \"res://Scripts/button_menu_generic.gd\"
-
-signal load_game_click
-
-func _pressed():
-	audio_mng.play_btn(0)
-	emit_signal(\"load_game_click\")"
+extends \"res://Scripts/button_menu_generic.gd\""
 
 [sub_resource type="GDScript" id=7]
 script/source = "#btn_start_menu_options
 
-extends \"res://Scripts/button_menu_generic.gd\"
-
-signal btn_option_click
-
-func _pressed():
-	audio_mng.play_btn(0)
-	emit_signal(\"btn_option_click\")"
+extends \"res://Scripts/button_menu_generic.gd\""
 
 [sub_resource type="GDScript" id=8]
 script/source = "#btn_start_menu_debug
 
-extends \"res://Scripts/button_menu_generic.gd\"
-
-signal btn_debug_click
-
-func _pressed():
-	audio_mng.play_btn(0)
-	emit_signal(\"btn_debug_click\")"
+extends \"res://Scripts/button_menu_generic.gd\""
 
 [sub_resource type="GDScript" id=9]
 script/source = "#btn_start_menu_quit
@@ -100,7 +76,6 @@ script/source = "#btn_start_menu_quit
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func _pressed():
-	audio_mng.play_btn(0)
 	$conf.show()
 	set(\"self_modulate\", Color(0))
 	$conf/yes.grab_focus()
@@ -179,7 +154,6 @@ script/source = "#btn_start_menu_quit_ok
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func _pressed():
-	audio_mng.play_btn(0)
 	get_tree().quit()"
 
 [sub_resource type="StyleBoxFlat" id=18]
@@ -251,7 +225,6 @@ script/source = "#btn_start_menu_quit_no
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func _pressed():
-	audio_mng.play_btn(0)
 	get_parent().hide()
 	get_node(\"../..\").set(\"self_modulate\",Color(1,1,1,1))
 	get_node(\"../..\").focus_mode = 2"
@@ -274,14 +247,18 @@ func _pressed():
 	audio_mng.play_btn(0)
 	g_mng.fl_vfx_enabled = !g_mng.fl_vfx_enabled"
 
+[sub_resource type="GDScript" id=28]
+script/source = "#btn_stage_test
+
+extends \"res://Scripts/button_menu_generic.gd\""
+
 [sub_resource type="GDScript" id=27]
 script/source = "#btn_debug_mode
 
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func _pressed():
-	audio_mng.play_btn(0)
-	g_mng.fl_vfx_enabled = !g_mng.fl_vfx_enabled"
+	g_mng.fl_debug_mode = !g_mng.fl_debug_mode"
 
 [node name="main_menu" type="Control"]
 anchor_right = 1.0
@@ -312,8 +289,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="vfx" type="Container" parent="."]
-editor/display_folded = true
+[node name="vfx" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -354,6 +330,7 @@ margin_bottom = -16.0
 custom_constants/separation = 16
 
 [node name="btns_main" type="GridContainer" parent="hbox_bttm"]
+editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 304.0
 custom_constants/vseparation = 8
@@ -368,7 +345,6 @@ size_flags_vertical = 3
 theme = ExtResource( 5 )
 text = "New Game"
 script = SubResource( 5 )
-_sections_unfolded = [ "Size Flags", "Theme" ]
 
 [node name="g_load" type="Button" parent="hbox_bttm/btns_main"]
 margin_top = 62.0
@@ -380,7 +356,6 @@ size_flags_vertical = 3
 theme = ExtResource( 5 )
 text = "Load Game"
 script = SubResource( 6 )
-_sections_unfolded = [ "Size Flags", "Theme" ]
 
 [node name="options" type="Button" parent="hbox_bttm/btns_main"]
 margin_top = 124.0
@@ -392,7 +367,6 @@ size_flags_vertical = 3
 theme = ExtResource( 5 )
 text = "Options"
 script = SubResource( 7 )
-_sections_unfolded = [ "Size Flags", "Theme" ]
 
 [node name="debug" type="Button" parent="hbox_bttm/btns_main"]
 margin_top = 186.0
@@ -404,7 +378,6 @@ size_flags_vertical = 3
 theme = ExtResource( 5 )
 text = "Debug Tools"
 script = SubResource( 8 )
-_sections_unfolded = [ "Rect", "Theme" ]
 
 [node name="quit" type="Button" parent="hbox_bttm/btns_main"]
 editor/display_folded = true
@@ -417,7 +390,6 @@ size_flags_vertical = 3
 theme = ExtResource( 5 )
 text = "Quit"
 script = SubResource( 9 )
-_sections_unfolded = [ "Size Flags", "Theme", "Visibility" ]
 
 [node name="conf" type="HBoxContainer" parent="hbox_bttm/btns_main/quit"]
 visible = false
@@ -432,7 +404,6 @@ size_flags_horizontal = 3
 theme = SubResource( 16 )
 text = "Yes"
 script = SubResource( 17 )
-_sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
 
 [node name="no" type="Button" parent="hbox_bttm/btns_main/quit/conf"]
 margin_left = 125.0
@@ -442,13 +413,41 @@ size_flags_horizontal = 3
 theme = SubResource( 23 )
 text = "No"
 script = SubResource( 24 )
-_sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
 
-[node name="cnt_opts" type="Container" parent="hbox_bttm"]
+[node name="cnt_load_game" type="Control" parent="hbox_bttm"]
 editor/display_folded = true
 visible = false
 margin_left = 266.0
-margin_right = 1248.0
+margin_right = 749.0
+margin_bottom = 304.0
+size_flags_horizontal = 3
+
+[node name="bg" type="ColorRect" parent="hbox_bttm/cnt_load_game"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.53072, 0.585938, 0.144196, 0.276235 )
+
+[node name="hbox" type="HBoxContainer" parent="hbox_bttm/cnt_load_game"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+
+[node name="btns_load" type="GridContainer" parent="hbox_bttm/cnt_load_game/hbox"]
+editor/display_folded = true
+margin_right = 144.0
+margin_bottom = 272.0
+
+[node name="thumb_load" parent="hbox_bttm/cnt_load_game/hbox/btns_load" instance=ExtResource( 7 )]
+
+[node name="cnt_opts" type="Control" parent="hbox_bttm"]
+editor/display_folded = true
+visible = false
+margin_left = 598.0
+margin_right = 914.0
 margin_bottom = 304.0
 size_flags_horizontal = 3
 
@@ -475,10 +474,9 @@ margin_right = 250.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
-theme = ExtResource( 7 )
+theme = ExtResource( 8 )
 text = "Fullscreen"
 script = SubResource( 25 )
-_sections_unfolded = [ "Rect" ]
 
 [node name="vfx" type="Button" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
 margin_top = 36.0
@@ -486,16 +484,13 @@ margin_right = 250.0
 margin_bottom = 68.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
-theme = ExtResource( 7 )
+theme = ExtResource( 8 )
 text = "vFX Shaders"
 script = SubResource( 26 )
-_sections_unfolded = [ "Theme" ]
 
-[node name="cnt_debug" type="Container" parent="hbox_bttm"]
-editor/display_folded = true
-visible = false
+[node name="cnt_debug" type="Control" parent="hbox_bttm"]
 margin_left = 266.0
-margin_right = 749.0
+margin_right = 1248.0
 margin_bottom = 304.0
 size_flags_horizontal = 3
 
@@ -504,50 +499,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.25, 0.0253906, 0.0253906, 0.276235 )
 
+[node name="btn_stage_test" type="Button" parent="hbox_bttm/cnt_debug"]
+anchor_right = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 250, 32 )
+size_flags_horizontal = 3
+theme = ExtResource( 8 )
+text = "Test Stage"
+script = SubResource( 28 )
+
 [node name="hbox" type="HBoxContainer" parent="hbox_bttm/cnt_debug"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
-margin_top = 16.0
+margin_top = 56.0
 margin_right = -16.0
 margin_bottom = -16.0
 
 [node name="btns_opt" type="GridContainer" parent="hbox_bttm/cnt_debug/hbox"]
 margin_right = 250.0
-margin_bottom = 272.0
+margin_bottom = 232.0
 
 [node name="debug_mode" type="Button" parent="hbox_bttm/cnt_debug/hbox/btns_opt"]
 margin_right = 250.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
-theme = ExtResource( 7 )
+theme = ExtResource( 8 )
 text = "Debug Mode"
 script = SubResource( 27 )
-_sections_unfolded = [ "Theme" ]
-
-[node name="cnt_load_game" type="Container" parent="hbox_bttm"]
-margin_left = 266.0
-margin_right = 1248.0
-margin_bottom = 304.0
-size_flags_horizontal = 3
-
-[node name="bg" type="ColorRect" parent="hbox_bttm/cnt_load_game"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.53072, 0.585938, 0.144196, 0.276235 )
-
-[node name="hbox" type="HBoxContainer" parent="hbox_bttm/cnt_load_game"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = -16.0
-
-[node name="btns_load" type="GridContainer" parent="hbox_bttm/cnt_load_game/hbox"]
-margin_right = 144.0
-margin_bottom = 272.0
-
-[node name="thumb_load" parent="hbox_bttm/cnt_load_game/hbox/btns_load" instance=ExtResource( 8 )]
 

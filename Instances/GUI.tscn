@@ -1,15 +1,13 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/menu_ingame.gd" type="Script" id=1]
 [ext_resource path="res://Shaders/quick_menu_overlay_shader.tres" type="Material" id=2]
 [ext_resource path="res://Sprites/vfx/vfx_fullscr_noise.jpg" type="Texture" id=3]
 [ext_resource path="res://Instances/ingame_menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Themes/labels_small.tres" type="Theme" id=5]
-[ext_resource path="res://Themes/fonts/minikstt.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Instances/headphones.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Instances/headphones.tscn" type="PackedScene" id=6]
 
 [sub_resource type="GDScript" id=1]
-
 script/source = "#debug mouse info head angle
 
 extends Label
@@ -21,7 +19,6 @@ func _process(delta):
 "
 
 [sub_resource type="GDScript" id=2]
-
 script/source = "#FPS
 
 extends Label
@@ -31,10 +28,8 @@ func _ready():
 
 func _process(delta):
 	text = str(Engine.get_frames_per_second())"
-_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="GDScript" id=3]
-
 script/source = "extends Label
 
 func _ready():
@@ -44,21 +39,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		text = str(utl.n_base().get_global_mouse_position().floor())"
 
-[sub_resource type="DynamicFont" id=4]
-
-size = 15
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 6 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="Theme" id=5]
-
-default_font = SubResource( 4 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=6]
-
+[sub_resource type="GDScript" id=4]
 script/source = "#tm_cell debig screen
 
 extends Label
@@ -93,8 +74,7 @@ func _input(event):
 			lb.text   = tm_name
 			self.text = lb_cell"
 
-[sub_resource type="GDScript" id=7]
-
+[sub_resource type="GDScript" id=5]
 script/source = "#debug_flags_pl_movement
 
 extends Label
@@ -131,23 +111,8 @@ func refresh():
 			14: self.text = \"CLIMB_ROPE\"
 			15: self.text = \"CLIMB_ROPE_U\"
 			16: self.text = \"CLIMB_ROPE_D\""
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=8]
-
-size = 15
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 6 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="Theme" id=9]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=10]
-
+[sub_resource type="GDScript" id=6]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -179,15 +144,8 @@ func refresh():
 		else:
 			self.text = \"false\"
 			modulate  = red"
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Theme" id=11]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=12]
-
+[sub_resource type="GDScript" id=7]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -238,15 +196,8 @@ func refresh():
 		else:
 			self.text = \"false\"
 			modulate  = red"
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Theme" id=13]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=14]
-
+[sub_resource type="GDScript" id=8]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -297,15 +248,8 @@ func refresh():
 		else:
 			self.text = \"false\"
 			modulate  = red"
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Theme" id=15]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=16]
-
+[sub_resource type="GDScript" id=9]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -330,15 +274,8 @@ func refresh():
 		else:
 			self.text = \"false\"
 			modulate  = red"
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Theme" id=17]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=18]
-
+[sub_resource type="GDScript" id=10]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -366,15 +303,8 @@ func refresh():
 			text = \"on top\" ; modulate = orange
 		else:
 			text = \"false\" ; modulate = red"
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Theme" id=19]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=20]
-
+[sub_resource type="GDScript" id=11]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -402,15 +332,8 @@ func refresh():
 			text = \"on top\" ; modulate = orange
 		else:
 			text = \"false\" ; modulate = red"
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Theme" id=21]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=22]
-
+[sub_resource type="GDScript" id=12]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -435,15 +358,8 @@ func refresh():
 		else:
 			self.text = \"false\"
 			modulate  = red"
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Theme" id=23]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=24]
-
+[sub_resource type="GDScript" id=13]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -494,15 +410,8 @@ func refresh():
 		else:
 			self.text = \"false\"
 			modulate  = red"
-_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Theme" id=25]
-
-default_font = SubResource( 8 )
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="GDScript" id=26]
-
+[sub_resource type="GDScript" id=14]
 script/source = "#debug_flags_pl_on_floor
 
 extends Label
@@ -553,929 +462,490 @@ func refresh():
 		else:
 			self.text = \"false\"
 			modulate  = red"
-_sections_unfolded = [ "Resource" ]
 
 [node name="GUI" type="CanvasLayer"]
-
 pause_mode = 2
 layer = 0
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 script = ExtResource( 1 )
-_sections_unfolded = [ "Pause" ]
 
-[node name="quick_menu" type="Container" parent="." index="0"]
-
+[node name="quick_menu" type="Control" parent="."]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="overlay" type="TextureRect" parent="quick_menu" index="0"]
-
+[node name="overlay" type="TextureRect" parent="quick_menu"]
 material = ExtResource( 2 )
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 texture = ExtResource( 3 )
 expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Material", "Mouse", "Visibility" ]
 
-[node name="menu" parent="." index="1" instance=ExtResource( 4 )]
-
-[node name="mouse_info" type="HBoxContainer" parent="." index="2"]
-
+[node name="menu" type="Control" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_right = -2.0
+
+[node name="mouse_info" type="HBoxContainer" parent="."]
+editor/display_folded = true
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 272.0
 margin_bottom = 48.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 8
-alignment = 0
-_sections_unfolded = [ "custom_constants" ]
 
-[node name="lbls" type="VBoxContainer" parent="mouse_info" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="lbls" type="VBoxContainer" parent="mouse_info"]
+editor/display_folded = true
 margin_right = 128.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 0
-alignment = 0
 
-[node name="lb1" type="Label" parent="mouse_info/lbls" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="lb1" type="Label" parent="mouse_info/lbls"]
 margin_right = 128.0
-margin_bottom = 16.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "angle"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="data" type="VBoxContainer" parent="mouse_info" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="data" type="VBoxContainer" parent="mouse_info"]
+editor/display_folded = true
 margin_left = 136.0
 margin_right = 264.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 0
-alignment = 0
 
-[node name="head_angle" type="Label" parent="mouse_info/data" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="head_angle" type="Label" parent="mouse_info/data"]
 margin_right = 128.0
-margin_bottom = 16.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "60"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 script = SubResource( 1 )
 
-[node name="show_off" type="Timer" parent="mouse_info" index="2"]
-
-process_mode = 1
+[node name="show_off" type="Timer" parent="mouse_info"]
 wait_time = 0.1
 one_shot = true
-autostart = false
 
-[node name="debug" type="Container" parent="." index="3"]
-
+[node name="debug" type="Control" parent="."]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="game_stat" type="HBoxContainer" parent="debug" index="0"]
-
+[node name="game_stat" type="HBoxContainer" parent="debug"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 272.0
-margin_bottom = 48.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+margin_right = 328.0
+margin_bottom = 68.0
 custom_constants/separation = 8
-alignment = 0
-_sections_unfolded = [ "custom_constants" ]
 
-[node name="lbls" type="VBoxContainer" parent="debug/game_stat" index="0"]
-
+[node name="lbls" type="VBoxContainer" parent="debug/game_stat"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 128.0
-margin_bottom = 48.0
+margin_right = 184.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+size_flags_horizontal = 3
 custom_constants/separation = 0
-alignment = 0
 
-[node name="fps" type="Label" parent="debug/game_stat/lbls" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 128.0
-margin_bottom = 16.0
+[node name="fps" type="Label" parent="debug/game_stat/lbls"]
+margin_right = 184.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "fps"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="fps2" type="Label" parent="debug/game_stat/lbls" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 16.0
-margin_right = 128.0
-margin_bottom = 32.0
+[node name="fps2" type="Label" parent="debug/game_stat/lbls"]
+margin_top = 20.0
+margin_right = 184.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "mouse position"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb_tm" type="Label" parent="debug/game_stat/lbls" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 32.0
-margin_right = 128.0
-margin_bottom = 48.0
+[node name="lb_tm" type="Label" parent="debug/game_stat/lbls"]
+margin_top = 40.0
+margin_right = 184.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "tm - solid"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="data" type="VBoxContainer" parent="debug/game_stat" index="1"]
-
+[node name="data" type="VBoxContainer" parent="debug/game_stat"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 136.0
-margin_right = 264.0
-margin_bottom = 48.0
+margin_left = 192.0
+margin_right = 320.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 0
-alignment = 0
 
-[node name="fps" type="Label" parent="debug/game_stat/data" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="fps" type="Label" parent="debug/game_stat/data"]
 margin_right = 128.0
-margin_bottom = 16.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "60"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 script = SubResource( 2 )
 
-[node name="mouse_pos" type="Label" parent="debug/game_stat/data" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 16.0
+[node name="mouse_pos" type="Label" parent="debug/game_stat/data"]
+margin_top = 20.0
 margin_right = 128.0
-margin_bottom = 32.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "(100,100)"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 script = SubResource( 3 )
 
-[node name="tm_cell" type="Label" parent="debug/game_stat/data" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 32.0
+[node name="tm_cell" type="Label" parent="debug/game_stat/data"]
+margin_top = 40.0
 margin_right = 128.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 5 )
+theme = ExtResource( 5 )
 text = "(100,100)"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 6 )
+script = SubResource( 4 )
 
-[node name="stat_bg" type="ColorRect" parent="debug" index="1"]
+[node name="player_var" type="VBoxContainer" parent="debug"]
+editor/display_folded = true
+margin_left = 84.0
+margin_top = 92.0
+margin_right = 280.0
+margin_bottom = 212.0
+custom_constants/separation = 0
 
+[node name="st1" type="HBoxContainer" parent="debug/player_var"]
+editor/display_folded = true
+margin_right = 196.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 60, 16 )
+custom_constants/separation = 8
+
+[node name="lb" type="Label" parent="debug/player_var/st1"]
+margin_top = 5.0
+margin_right = 106.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 60, 16 )
+size_flags_horizontal = 3
+theme = ExtResource( 5 )
+text = "accelleration"
+align = 2
+
+[node name="st" type="LineEdit" parent="debug/player_var/st1"]
+margin_left = 114.0
+margin_right = 196.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 60, 16 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme = ExtResource( 5 )
+text = "60"
+
+[node name="st2" type="HBoxContainer" parent="debug/player_var"]
+editor/display_folded = true
+margin_top = 30.0
+margin_right = 196.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 16 )
+custom_constants/separation = 8
+
+[node name="lb" type="Label" parent="debug/player_var/st2"]
+margin_top = 5.0
+margin_right = 106.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 60, 16 )
+size_flags_horizontal = 3
+theme = ExtResource( 5 )
+text = "jump velocity"
+align = 2
+
+[node name="st" type="LineEdit" parent="debug/player_var/st2"]
+margin_left = 114.0
+margin_right = 196.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 60, 16 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme = ExtResource( 5 )
+text = "60"
+
+[node name="st3" type="HBoxContainer" parent="debug/player_var"]
+editor/display_folded = true
+margin_top = 60.0
+margin_right = 196.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 60, 16 )
+custom_constants/separation = 8
+
+[node name="lb" type="Label" parent="debug/player_var/st3"]
+margin_top = 5.0
+margin_right = 106.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 60, 16 )
+size_flags_horizontal = 3
+theme = ExtResource( 5 )
+text = "climb speed"
+align = 2
+
+[node name="st" type="LineEdit" parent="debug/player_var/st3"]
+margin_left = 114.0
+margin_right = 196.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 60, 16 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme = ExtResource( 5 )
+text = "60"
+
+[node name="st4" type="HBoxContainer" parent="debug/player_var"]
+editor/display_folded = true
+margin_top = 90.0
+margin_right = 196.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 60, 16 )
+custom_constants/separation = 8
+
+[node name="lb" type="Label" parent="debug/player_var/st4"]
+margin_top = 5.0
+margin_right = 106.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 60, 16 )
+size_flags_horizontal = 3
+theme = ExtResource( 5 )
+text = "stop multiplier"
+align = 2
+
+[node name="st" type="LineEdit" parent="debug/player_var/st4"]
+margin_left = 114.0
+margin_right = 196.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 60, 16 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme = ExtResource( 5 )
+text = "60"
+
+[node name="stat_bg" type="ColorRect" parent="debug"]
 anchor_left = 1.0
-anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.0
 margin_left = -272.0
 margin_top = 8.0
 margin_right = -8.0
-margin_bottom = 200.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
+margin_bottom = 228.0
 mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 color = Color( 0, 0, 0, 0.386745 )
 
-[node name="pl_stat" type="HBoxContainer" parent="debug" index="2"]
-
+[node name="pl_stat" type="HBoxContainer" parent="debug"]
+editor/display_folded = true
 anchor_left = 1.0
-anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.0
 margin_left = -272.0
 margin_top = 8.0
 margin_right = -8.0
 margin_bottom = 48.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 8
-alignment = 0
-_sections_unfolded = [ "custom_constants" ]
 
-[node name="lbls" type="VBoxContainer" parent="debug/pl_stat" index="0"]
-
+[node name="lbls" type="VBoxContainer" parent="debug/pl_stat"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 128.0
-margin_bottom = 160.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 0
-alignment = 0
 
-[node name="lb" type="Label" parent="debug/pl_stat/lbls" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="lb" type="Label" parent="debug/pl_stat/lbls"]
 margin_right = 128.0
-margin_bottom = 16.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "animation movement"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb2" type="Label" parent="debug/pl_stat/lbls" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 16.0
+[node name="lb2" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 20.0
 margin_right = 128.0
-margin_bottom = 32.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "on floor"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb3" type="Label" parent="debug/pl_stat/lbls" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 32.0
+[node name="lb3" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 40.0
 margin_right = 128.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "on action!"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb4" type="Label" parent="debug/pl_stat/lbls" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 48.0
+[node name="lb4" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 60.0
 margin_right = 128.0
-margin_bottom = 64.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "can jump"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb5" type="Label" parent="debug/pl_stat/lbls" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 64.0
+[node name="lb5" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 80.0
 margin_right = 128.0
-margin_bottom = 80.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "armed"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb6" type="Label" parent="debug/pl_stat/lbls" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 80.0
+[node name="lb6" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 100.0
 margin_right = 128.0
-margin_bottom = 96.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "on ladder"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb7" type="Label" parent="debug/pl_stat/lbls" index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 96.0
+[node name="lb7" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 120.0
 margin_right = 128.0
-margin_bottom = 112.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "on rope"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb8" type="Label" parent="debug/pl_stat/lbls" index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 112.0
+[node name="lb8" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 140.0
 margin_right = 128.0
-margin_bottom = 128.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "on platform"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb9" type="Label" parent="debug/pl_stat/lbls" index="8"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 128.0
+[node name="lb9" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 160.0
 margin_right = 128.0
-margin_bottom = 144.0
+margin_bottom = 180.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "on floor"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="lb10" type="Label" parent="debug/pl_stat/lbls" index="9"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 144.0
+[node name="lb10" type="Label" parent="debug/pl_stat/lbls"]
+margin_top = 180.0
 margin_right = 128.0
-margin_bottom = 160.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "on floor"
 align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
 
-[node name="data" type="VBoxContainer" parent="debug/pl_stat" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="data" type="VBoxContainer" parent="debug/pl_stat"]
+editor/display_folded = true
 margin_left = 136.0
 margin_right = 264.0
-margin_bottom = 160.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 0
-alignment = 0
 
-[node name="pl_st1" type="Label" parent="debug/pl_stat/data" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="pl_st1" type="Label" parent="debug/pl_stat/data"]
 margin_right = 128.0
-margin_bottom = 16.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 theme = ExtResource( 5 )
 text = "idle"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+script = SubResource( 5 )
+
+[node name="pl_st2" type="Label" parent="debug/pl_stat/data"]
+margin_top = 20.0
+margin_right = 128.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 128, 16 )
+theme = ExtResource( 5 )
+text = "false"
+script = SubResource( 6 )
+
+[node name="pl_st3" type="Label" parent="debug/pl_stat/data"]
+margin_top = 40.0
+margin_right = 128.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 128, 16 )
+theme = ExtResource( 5 )
+text = "false"
 script = SubResource( 7 )
 
-[node name="pl_st2" type="Label" parent="debug/pl_stat/data" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 16.0
-margin_right = 128.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 9 )
-text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 10 )
-
-[node name="pl_st3" type="Label" parent="debug/pl_stat/data" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 32.0
-margin_right = 128.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 11 )
-text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 12 )
-
-[node name="pl_st4" type="Label" parent="debug/pl_stat/data" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 48.0
-margin_right = 128.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 13 )
-text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 14 )
-
-[node name="pl_st5" type="Label" parent="debug/pl_stat/data" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 64.0
+[node name="pl_st4" type="Label" parent="debug/pl_stat/data"]
+margin_top = 60.0
 margin_right = 128.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 15 )
+theme = ExtResource( 5 )
 text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 16 )
+script = SubResource( 8 )
 
-[node name="pl_st6" type="Label" parent="debug/pl_stat/data" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="pl_st5" type="Label" parent="debug/pl_stat/data"]
 margin_top = 80.0
 margin_right = 128.0
-margin_bottom = 96.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 17 )
+theme = ExtResource( 5 )
 text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 18 )
+script = SubResource( 9 )
 
-[node name="pl_st7" type="Label" parent="debug/pl_stat/data" index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 96.0
+[node name="pl_st6" type="Label" parent="debug/pl_stat/data"]
+margin_top = 100.0
 margin_right = 128.0
-margin_bottom = 112.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 19 )
+theme = ExtResource( 5 )
 text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 20 )
+script = SubResource( 10 )
 
-[node name="pl_st8" type="Label" parent="debug/pl_stat/data" index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 112.0
+[node name="pl_st7" type="Label" parent="debug/pl_stat/data"]
+margin_top = 120.0
 margin_right = 128.0
-margin_bottom = 128.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 21 )
+theme = ExtResource( 5 )
 text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 22 )
+script = SubResource( 11 )
 
-[node name="pl_st9" type="Label" parent="debug/pl_stat/data" index="8"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 128.0
-margin_right = 128.0
-margin_bottom = 144.0
-rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 23 )
-text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 24 )
-
-[node name="pl_st10" type="Label" parent="debug/pl_stat/data" index="9"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 144.0
+[node name="pl_st8" type="Label" parent="debug/pl_stat/data"]
+margin_top = 140.0
 margin_right = 128.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 128, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme = SubResource( 25 )
+theme = ExtResource( 5 )
 text = "false"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 26 )
+script = SubResource( 12 )
 
-[node name="headphones" parent="." index="4" instance=ExtResource( 7 )]
+[node name="pl_st9" type="Label" parent="debug/pl_stat/data"]
+margin_top = 160.0
+margin_right = 128.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 128, 16 )
+theme = ExtResource( 5 )
+text = "false"
+script = SubResource( 13 )
+
+[node name="pl_st10" type="Label" parent="debug/pl_stat/data"]
+margin_top = 180.0
+margin_right = 128.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 128, 16 )
+theme = ExtResource( 5 )
+text = "false"
+script = SubResource( 14 )
+
+[node name="headphones" parent="." instance=ExtResource( 6 )]
 
 [connection signal="timeout" from="mouse_info/show_off" to="." method="_on_mouse_info_show_timeout"]
-
-

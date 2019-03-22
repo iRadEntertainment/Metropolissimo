@@ -48,9 +48,9 @@ func stop_intro_music():
 func play_btn(val): #plays button sounds
 	var switches_sfx = [btn_interr3 , btn_interr4 , btn_interr5 , btn_interr6, btn_interr1 , btn_interr2]
 	match val:
-		0: $menu/btn.stream = switches_sfx[randi()%4]
+		0: $menu/btn.stream = switches_sfx[randi()%3+1]
 		1: $menu/btn.stream = switches_sfx[randi()%2+4]
-		2: $menu/btn.stream = null
+		2: $menu/btn.stream = switches_sfx[0]
 	$menu/btn.play()
 
 func _on_intro_music_finished(): start_menu_music()

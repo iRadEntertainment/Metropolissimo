@@ -1,0 +1,225 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Sprites/backgrouds/city-2o-2880x1800.jpg" type="Texture" id=1]
+[ext_resource path="res://Scripts/street_entrance.gd" type="Script" id=2]
+[ext_resource path="res://Stages/Stage1/street1_wall_l.jpg" type="Texture" id=3]
+[ext_resource path="res://Scripts/tm_startup.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/tileset/test_bg.tres" type="TileSet" id=5]
+[ext_resource path="res://Sprites/tileset/test_solid2.tres" type="TileSet" id=6]
+[ext_resource path="res://Sprites/tileset/test_solid.tres" type="TileSet" id=7]
+[ext_resource path="res://Sprites/tileset/test_climb2.tres" type="TileSet" id=8]
+[ext_resource path="res://Instances/tm_debug.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/cam_ctrl.gd" type="Script" id=10]
+[ext_resource path="res://Sprites/pixel_bianco.png" type="Texture" id=11]
+[ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=12]
+
+[sub_resource type="GDScript" id=1]
+script/source = "#stage_test
+
+extends Node2D
+
+func _ready():
+	g_mng.fl_ingame = true"
+
+[sub_resource type="GDScript" id=2]
+script/source = "#gen_pickups
+#tool
+extends Node2D #extends EditorScript
+
+onready var pickup = preload(\"res://Instances/bottle.tscn\")
+
+#export(bool) var updat = false setget updat
+
+var gridrect
+
+var offset_bottle = Vector2(16,-8)
+
+func _ready():
+	var tm       = n_mng.tm_solid
+	var tile_dim = tm.cell_size.x
+
+	gridrect = tm.get_used_rect()
+
+	for i in range(gridrect.position.x, gridrect.end.x):
+		for j in range(gridrect.position.y, gridrect.end.y):
+			if tm.get_cell(i,j) in [0,5,15]:
+				if tm.get_cell(i,j-1) in [-1,9,10,11,12,13,14]:
+					if randi()%5 < 2:
+						var bottle = pickup.instance()
+						bottle.global_position = Vector2(i,j) * tile_dim + offset_bottle
+						add_child(bottle)
+
+#func updat(val):
+#	if Engine.editor_hint:
+#		var pickup = load(\"res://Instances/bottle.tscn\")
+#		var tm = get_parent().get_parent().get_node(\"tm/solid\")
+#		var tile_dim = tm.cell_size.x
+#		gridrect = tm.get_used_rect()
+#
+#		for child in get_children():
+#			child.queue_free()
+#
+#		for i in range(gridrect.position.x, gridrect.end.x):
+#			for j in range(gridrect.position.y, gridrect.end.y):
+#				if tm.get_cell(i,j) in [0,5,15]:
+#					if tm.get_cell(i,j-1) in [-1,9,10,11,12,13,14]:
+#						if randi()%5 < 2:
+#							var bottle = pickup.instance()
+#							bottle.global_position = Vector2(i,j) * tile_dim + offset_bottle
+#							self.add_child(bottle)"
+
+[node name="stage_test" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="bg" type="ParallaxBackground" parent="."]
+scroll_limit_begin = Vector2( -1000, -1000 )
+scroll_limit_end = Vector2( 10000, 10000 )
+scroll_ignore_camera_zoom = true
+
+[node name="far" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2( 0.2, 0 )
+
+[node name="sprite" type="TextureRect" parent="bg/far"]
+visible = false
+margin_right = 2880.0
+margin_bottom = 1800.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg_streets" type="Node2D" parent="."]
+editor/display_folded = true
+visible = false
+
+[node name="street1" type="Node2D" parent="bg_streets"]
+editor/display_folded = true
+position = Vector2( 1920, 1120 )
+script = ExtResource( 2 )
+
+[node name="vsn" type="VisibilityNotifier2D" parent="bg_streets/street1"]
+
+[node name="back" type="Sprite" parent="bg_streets/street1"]
+
+[node name="left" type="Sprite" parent="bg_streets/street1"]
+position = Vector2( -220, 0 )
+texture = ExtResource( 3 )
+
+[node name="right" type="Sprite" parent="bg_streets/street1"]
+position = Vector2( 256, -192 )
+texture = ExtResource( 3 )
+
+[node name="tm" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="bg" type="TileMap" parent="tm"]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="solid" type="TileMap" parent="tm"]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 32, 32 )
+collision_mask = 4
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 133, 0, 0, 134, 0, 0, 135, 0, 0, 65536, 0, 0, 65669, 0, 0, 65670, 0, 0, 65671, 0, 0, 131072, 0, 0, 131205, 0, 0, 131206, 0, 0, 131207, 0, 0, 196608, 0, 0, 196741, 0, 0, 196742, 0, 0, 196743, 0, 0, 262144, 0, 0, 262277, 0, 0, 262278, 0, 0, 262279, 0, 0, 327680, 0, 0, 327813, 0, 0, 327814, 0, 0, 327815, 0, 0, 393216, 0, 0, 393349, 0, 0, 393350, 0, 0, 393351, 0, 0, 458752, 0, 0, 458885, 0, 0, 458886, 0, 0, 458887, 0, 0, 524288, 0, 0, 524422, 0, 0, 524423, 0, 0, 589824, 0, 0, 589958, 0, 0, 589959, 0, 0, 655360, 0, 0, 655494, 0, 0, 655495, 0, 0, 720896, 0, 0, 721030, 0, 0, 721031, 0, 0, 786432, 0, 0, 786566, 0, 0, 786567, 0, 0, 851968, 0, 0, 852101, 0, 0, 852102, 0, 0, 852103, 0, 0, 917504, 0, 0, 917637, 0, 0, 917638, 0, 0, 917639, 0, 0, 983040, 0, 0, 983173, 0, 0, 983174, 0, 0, 983175, 0, 0, 1048576, 0, 0, 1048709, 0, 0, 1048710, 0, 0, 1048711, 0, 0, 1114112, 0, 0, 1114245, 0, 0, 1114246, 0, 0, 1114247, 0, 0, 1179648, 0, 0, 1179781, 0, 0, 1179782, 0, 0, 1179783, 0, 0, 1245184, 0, 0, 1245317, 0, 0, 1245318, 0, 0, 1245319, 0, 0, 1310720, 0, 0, 1310853, 0, 0, 1310854, 0, 0, 1310855, 0, 0, 1376256, 536870917, 0, 1376298, 9, 0, 1376389, 0, 0, 1376390, 0, 0, 1376391, 0, 0, 1441792, 536870917, 0, 1441834, 10, 0, 1441925, 0, 0, 1441926, 0, 0, 1441927, 0, 0, 1507328, 536870917, 0, 1507370, 10, 0, 1507461, 0, 0, 1507462, 0, 0, 1507463, 0, 0, 1572864, 536870917, 0, 1572906, 10, 0, 1572997, 0, 0, 1572998, 0, 0, 1572999, 0, 0, 1638400, 536870917, 0, 1638442, 10, 0, 1638533, 0, 0, 1638534, 0, 0, 1638535, 0, 0, 1703936, 536870917, 0, 1703939, 6, 0, 1703940, 6, 0, 1703941, 9, 0, 1703942, 6, 0, 1703943, 6, 0, 1703944, 6, 0, 1703945, 6, 0, 1703946, 6, 0, 1703947, 7, 0, 1703948, 0, 0, 1703978, 10, 0, 1704069, 0, 0, 1704070, 0, 0, 1704071, 0, 0, 1769472, 0, 0, 1769477, 10, 0, 1769483, 8, 0, 1769510, 6, 0, 1769511, 6, 0, 1769512, 9, 0, 1769513, 6, 0, 1769514, 6, 0, 1769515, 6, 0, 1769516, 6, 0, 1769517, 6, 0, 1769518, 9, 0, 1769519, 6, 0, 1769520, 6, 0, 1769521, 6, 0, 1769522, 6, 0, 1769523, 6, 0, 1769524, 6, 0, 1769525, 6, 0, 1769606, 0, 0, 1769607, 0, 0, 1835008, 0, 0, 1835013, 10, 0, 1835019, 8, 0, 1835048, 10, 0, 1835054, 10, 0, 1835142, 0, 0, 1835143, 0, 0, 1900544, 0, 0, 1900549, 10, 0, 1900555, 8, 0, 1900584, 10, 0, 1900590, 10, 0, 1900678, 0, 0, 1900679, 0, 0, 1966080, 0, 0, 1966085, 10, 0, 1966091, 8, 0, 1966120, 10, 0, 1966126, 10, 0, 1966214, 0, 0, 1966215, 0, 0, 2031616, 0, 0, 2031619, 9, 0, 2031620, 6, 0, 2031621, 6, 0, 2031622, 6, 0, 2031623, 6, 0, 2031624, 7, 0, 2031625, 6, 0, 2031626, 6, 0, 2031627, 6, 0, 2031656, 10, 0, 2031662, 10, 0, 2031750, 0, 0, 2031751, 0, 0, 2097152, 0, 0, 2097155, 10, 0, 2097160, 8, 0, 2097192, 10, 0, 2097198, 10, 0, 2097286, 0, 0, 2097287, 0, 0, 2162688, 0, 0, 2162691, 10, 0, 2162696, 8, 0, 2162705, 5, 0, 2162706, 1, 0, 2162707, 1, 0, 2162708, 0, 0, 2162728, 10, 0, 2162734, 10, 0, 2162822, 0, 0, 2162823, 0, 0, 2228224, 0, 0, 2228227, 10, 0, 2228232, 8, 0, 2228241, 5, 0, 2228244, 0, 0, 2228264, 10, 0, 2228270, 10, 0, 2228358, 0, 0, 2228359, 0, 0, 2293760, 0, 0, 2293761, 0, 0, 2293762, 0, 0, 2293763, 0, 0, 2293764, 0, 0, 2293765, 0, 0, 2293766, 0, 0, 2293767, 0, 0, 2293768, 0, 0, 2293769, 0, 0, 2293770, 0, 0, 2293771, 0, 0, 2293772, 0, 0, 2293773, 0, 0, 2293777, 5, 0, 2293780, 0, 0, 2293800, 1, 0, 2293806, 10, 0, 2293811, 0, 0, 2293812, 0, 0, 2293813, 0, 0, 2293814, 0, 0, 2293815, 0, 0, 2293816, 0, 0, 2293817, 0, 0, 2293818, 0, 0, 2293819, 0, 0, 2293820, 0, 0, 2293821, 0, 0, 2293822, 0, 0, 2293823, 0, 0, 2293824, 0, 0, 2293825, 0, 0, 2293826, 0, 0, 2293827, 0, 0, 2293828, 0, 0, 2293829, 0, 0, 2293830, 0, 0, 2293841, 0, 0, 2293842, 0, 0, 2293843, 0, 0, 2293844, 0, 0, 2293845, 0, 0, 2293846, 0, 0, 2293847, 0, 0, 2293848, 0, 0, 2293849, 0, 0, 2293850, 0, 0, 2293851, 0, 0, 2293852, 0, 0, 2293853, 0, 0, 2293854, 0, 0, 2293855, 0, 0, 2293856, 0, 0, 2293857, 0, 0, 2293858, 0, 0, 2293859, 0, 0, 2293860, 0, 0, 2293861, 0, 0, 2293862, 0, 0, 2293863, 0, 0, 2293864, 0, 0, 2293865, 0, 0, 2293866, 0, 0, 2293867, 0, 0, 2293868, 0, 0, 2293869, 0, 0, 2293870, 0, 0, 2293871, 0, 0, 2293872, 0, 0, 2293873, 0, 0, 2293874, 0, 0, 2293893, 0, 0, 2293894, 0, 0, 2293895, 0, 0, 2359296, 0, 0, 2359297, 0, 0, 2359298, 0, 0, 2359299, 0, 0, 2359300, 0, 0, 2359301, 0, 0, 2359302, 0, 0, 2359303, 0, 0, 2359304, 0, 0, 2359305, 0, 0, 2359306, 0, 0, 2359307, 0, 0, 2359308, 0, 0, 2359309, 0, 0, 2359310, 0, 0, 2359311, 0, 0, 2359312, 0, 0, 2359313, 0, 0, 2359314, 0, 0, 2359315, 0, 0, 2359316, 0, 0, 2359317, 0, 0, 2359318, 0, 0, 2359319, 0, 0, 2359320, 0, 0, 2359321, 0, 0, 2359322, 0, 0, 2359323, 0, 0, 2359324, 0, 0, 2359325, 0, 0, 2359326, 0, 0, 2359327, 0, 0, 2359328, 0, 0, 2359329, 0, 0, 2359330, 0, 0, 2359331, 0, 0, 2359332, 0, 0, 2359333, 0, 0, 2359334, 0, 0, 2359335, 0, 0, 2359336, 0, 0, 2359337, 0, 0, 2359338, 0, 0, 2359339, 0, 0, 2359340, 0, 0, 2359341, 0, 0, 2359342, 0, 0, 2359343, 0, 0, 2359344, 0, 0, 2359345, 0, 0, 2359346, 0, 0, 2359347, 0, 0, 2359348, 0, 0, 2359349, 0, 0, 2359350, 0, 0, 2359351, 0, 0, 2359352, 0, 0, 2359353, 0, 0, 2359354, 0, 0, 2359355, 0, 0, 2359356, 0, 0, 2359357, 0, 0, 2359358, 0, 0, 2359359, 0, 0, 2359360, 0, 0, 2359361, 0, 0, 2359362, 0, 0, 2359363, 0, 0, 2359364, 0, 0, 2359365, 0, 0, 2359366, 0, 0, 2359367, 0, 0, 2359368, 0, 0, 2359369, 0, 0, 2359370, 0, 0, 2359371, 0, 0, 2359372, 0, 0, 2359373, 0, 0, 2359374, 0, 0, 2359375, 0, 0, 2359376, 0, 0, 2359377, 0, 0, 2359378, 0, 0, 2359379, 0, 0, 2359380, 0, 0, 2359381, 0, 0, 2359382, 0, 0, 2359383, 0, 0, 2359384, 0, 0, 2359385, 0, 0, 2359386, 0, 0, 2359387, 0, 0, 2359388, 0, 0, 2359389, 0, 0, 2359390, 0, 0, 2359391, 0, 0, 2359392, 0, 0, 2359393, 0, 0, 2359394, 0, 0, 2359395, 0, 0, 2359396, 0, 0, 2359397, 0, 0, 2359398, 0, 0, 2359399, 0, 0, 2359400, 0, 0, 2359401, 0, 0, 2359402, 0, 0, 2359403, 0, 0, 2359404, 0, 0, 2359405, 0, 0, 2359406, 0, 0, 2359407, 0, 0, 2359408, 0, 0, 2359409, 0, 0, 2359410, 0, 0, 2359411, 0, 0, 2359412, 0, 0, 2359413, 0, 0, 2359414, 0, 0, 2359415, 0, 0, 2359416, 0, 0, 2359417, 0, 0, 2359418, 0, 0, 2359419, 0, 0, 2359420, 0, 0, 2359421, 0, 0, 2359422, 0, 0, 2359423, 0, 0, 2359424, 0, 0, 2359425, 0, 0, 2359426, 0, 0, 2359427, 0, 0, 2359428, 0, 0, 2359429, 0, 0, 2359430, 0, 0, 2359431, 0, 0, 2424832, 0, 0, 2424833, 0, 0, 2424834, 0, 0, 2424835, 0, 0, 2424836, 0, 0, 2424837, 0, 0, 2424838, 0, 0, 2424839, 0, 0, 2424840, 0, 0, 2424841, 0, 0, 2424842, 0, 0, 2424843, 0, 0, 2424844, 0, 0, 2424845, 0, 0, 2424846, 0, 0, 2424847, 0, 0, 2424848, 0, 0, 2424849, 0, 0, 2424850, 0, 0, 2424851, 0, 0, 2424852, 0, 0, 2424853, 0, 0, 2424854, 0, 0, 2424855, 0, 0, 2424856, 0, 0, 2424857, 0, 0, 2424858, 0, 0, 2424859, 0, 0, 2424860, 0, 0, 2424861, 0, 0, 2424862, 0, 0, 2424863, 0, 0, 2424864, 0, 0, 2424865, 0, 0, 2424866, 0, 0, 2424867, 0, 0, 2424868, 0, 0, 2424869, 0, 0, 2424870, 0, 0, 2424871, 0, 0, 2424872, 0, 0, 2424873, 0, 0, 2424874, 0, 0, 2424875, 0, 0, 2424876, 0, 0, 2424877, 0, 0, 2424878, 0, 0, 2424879, 0, 0, 2424880, 0, 0, 2424881, 0, 0, 2424882, 0, 0, 2424883, 0, 0, 2424884, 0, 0, 2424885, 0, 0, 2424886, 0, 0, 2424887, 0, 0, 2424888, 0, 0, 2424889, 0, 0, 2424890, 0, 0, 2424891, 0, 0, 2424892, 0, 0, 2424893, 0, 0, 2424894, 0, 0, 2424895, 0, 0, 2424896, 0, 0, 2424897, 0, 0, 2424898, 0, 0, 2424899, 0, 0, 2424900, 0, 0, 2424901, 0, 0, 2424902, 0, 0, 2424903, 0, 0, 2424904, 0, 0, 2424905, 0, 0, 2424906, 0, 0, 2424907, 0, 0, 2424908, 0, 0, 2424909, 0, 0, 2424910, 0, 0, 2424911, 0, 0, 2424912, 0, 0, 2424913, 0, 0, 2424914, 0, 0, 2424915, 0, 0, 2424916, 0, 0, 2424917, 0, 0, 2424918, 0, 0, 2424919, 0, 0, 2424920, 0, 0, 2424921, 0, 0, 2424922, 0, 0, 2424923, 0, 0, 2424924, 0, 0, 2424925, 0, 0, 2424926, 0, 0, 2424927, 0, 0, 2424928, 0, 0, 2424929, 0, 0, 2424930, 0, 0, 2424931, 0, 0, 2424932, 0, 0, 2424933, 0, 0, 2424934, 0, 0, 2424935, 0, 0, 2424936, 0, 0, 2424937, 0, 0, 2424938, 0, 0, 2424939, 0, 0, 2424940, 0, 0, 2424941, 0, 0, 2424942, 0, 0, 2424943, 0, 0, 2424944, 0, 0, 2424945, 0, 0, 2424946, 0, 0, 2424947, 0, 0, 2424948, 0, 0, 2424949, 0, 0, 2424950, 0, 0, 2424951, 0, 0, 2424952, 0, 0, 2424953, 0, 0, 2424954, 0, 0, 2424955, 0, 0, 2424956, 0, 0, 2424957, 0, 0, 2424958, 0, 0, 2424959, 0, 0, 2424960, 0, 0, 2424961, 0, 0, 2424962, 0, 0, 2424963, 0, 0, 2424964, 0, 0, 2424965, 0, 0, 2424966, 0, 0, 2424967, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="platf" type="TileMap" parent="tm"]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 1024
+collision_mask = 30
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="climb" type="TileMap" parent="tm"]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 2
+collision_mask = 2
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tm_debug" parent="tm" instance=ExtResource( 9 )]
+z_index = 15
+
+[node name="spawn" type="Node2D" parent="."]
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="0" type="Position2D" parent="spawn"]
+position = Vector2( 72, 1120 )
+
+[node name="1" type="Position2D" parent="spawn"]
+position = Vector2( 128, 1120 )
+
+[node name="cnt" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="pickups" type="Node2D" parent="cnt"]
+script = SubResource( 2 )
+
+[node name="debris" type="Node2D" parent="cnt"]
+
+[node name="bullets" type="Node2D" parent="cnt"]
+
+[node name="cam_ctrl" type="Position2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 10 )
+
+[node name="cam" type="Camera2D" parent="cam_ctrl"]
+pause_mode = 2
+current = true
+limit_left = 0
+limit_top = 0
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+
+[node name="pos" type="TextureRect" parent="cam_ctrl"]
+visible = false
+margin_left = -2.0
+margin_top = -2.0
+margin_right = 2.0
+margin_bottom = 2.0
+texture = ExtResource( 11 )
+expand = true
+
+[node name="lights" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="vfx" type="Node2D" parent="."]
+z_index = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="cont_enemies" type="Node2D" parent="."]
+
+[node name="dummy" parent="cont_enemies" instance=ExtResource( 12 )]
+position = Vector2( 430, 1090 )
+
+[node name="tools" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[connection signal="screen_entered" from="bg_streets/street1/vsn" to="bg_streets/street1" method="_on_vsn_screen_entered"]
+[connection signal="screen_exited" from="bg_streets/street1/vsn" to="bg_streets/street1" method="_on_vsn_screen_exited"]

@@ -9,18 +9,35 @@ enum SubMenu {NONE , LOAD_GAME, OPTIONS , DEBUG}
 
 var fade_off = false
 const stage1_1_path = "res://Stages/Stage1/stage1.tscn"
+const stage_test    = "res://Stages/stage_test.tscn"
 
 onready var thumb_btn = preload("res://Instances/thumb_load.tscn")
 
+
+
+
 func _ready():
-	g_mng.connect("vfx_enabled",self,"vfx_toggle")
-	$hbox_bttm/btns_main/g_new.connect("new_game_click",self,"_btn_new_game")
+	connect_all_signals()
 	vfx_toggle(g_mng.fl_vfx_enabled)
 	audio_mng.start_menu_music()
 	check_for_savegames()
 
-func vfx_toggle(val):
-	$vfx.visible = val
+
+
+func connect_all_signals():
+	#game signals
+	g_mng.connect("vfx_enabled",self,"vfx_toggle")
+	
+	#menu buttons
+	$hbox_bttm/btns_main/g_new.connect  ("pressed",self,"_btn_new_game")
+	$hbox_bttm/btns_main/g_load.connect ("pressed",self,"_on_load_game_click")
+	$hbox_bttm/btns_main/options.connect("pressed",self,"_on_options_btn_option_click")
+	$hbox_bttm/btns_main/debug.connect  ("pressed",self,"_btn_debug_click")
+	
+	#sub menu buttons
+	$hbox_bttm/cnt_debug/btn_stage_test.connect ("pressed",self,"_on_test_stage_click")
+
+func vfx_toggle(val): $vfx.visible = val
 
 func _process(delta):
 	mouse_parallax_bg()
@@ -51,12 +68,20 @@ func show_sub_menu(val):
 		else:
 			sub_menus[i].visible = false
 
+#------------- MAIN buttons function -------------------
 func _on_load_game_click():          show_sub_menu(SubMenu.LOAD_GAME)
 func _on_options_btn_option_click(): show_sub_menu(SubMenu.OPTIONS)
 func _btn_debug_click():             show_sub_menu(SubMenu.DEBUG)
 func _btn_new_game():
 	fade_off = true
 	audio_mng.music_fade_out()
+
+#------------- SUB menu buttons function -------------------
+func _on_test_stage_click():
+	audio_mng.music_fade_out()
+	g_mng.load_new_game(stage_test)
+	queue_free()
+
 
 func check_for_savegames():
 	var savegames_count = utl.count_files(data_mng.save_dir, ".png")
