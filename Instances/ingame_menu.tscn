@@ -57,7 +57,7 @@ script/source = "#btn_quit
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func _pressed():
-	get_tree().quit()"
+	data_mng.quit_and_save()"
 
 [sub_resource type="GDScript" id=6]
 script/source = "#btn_fullscreen

@@ -9,14 +9,20 @@ var data_dir  = str("res://metropolissimo_data")
 var data_filename = "metropolissimo_data.cfg"
 var data_path = str(data_dir,"/",data_filename)
 
+var cfg_thumb_size = 128
+var cfg_fullscreen = true
+var cfg_vfx_enabled = true
+
 #---------- save_games
 var save_dir  = str(data_dir,"/savegame")
-var thumb_size = 128
+
 signal game_saved
 
 
 func _ready():
 	load_initial_settings()
+	load_settings()
+	parse_loaded_settings()
 
 func load_initial_settings():
 	print("DATA MANAGER: loading initial settings")
@@ -42,17 +48,20 @@ func create_default_config():
 		else:
 			prints("DATA MANAGER: Unable to create folder -> Error",err_dir)
 			return
-	
+	save_settings()
+
+func save_settings():
 	#--------- default values
 	var file_config = ConfigFile.new()
 	#--- general settings
-	file_config.set_value("settings","thumb_size",thumb_size)
-	file_config.set_value("settings","full_screen",true)
+	file_config.set_value("settings","cfg_thumb_size" ,cfg_thumb_size)
+	file_config.set_value("settings","cfg_fullscreen" ,cfg_fullscreen)
+	file_config.set_value("settings","cfg_vfx_enabled",cfg_vfx_enabled)
 	
 	#--- audio
-	file_config.set_value("audio","master_bus_vol",-6)
-	file_config.set_value("audio","music_bus_vol",-24)
-	file_config.set_value("audio","sound_bus_vol",-24)
+	file_config.set_value("audio","master_bus_vol",audio_mng.master_bus_vol)
+	file_config.set_value("audio","music_bus_vol" ,audio_mng.music_bus_vol)
+	file_config.set_value("audio","sound_bus_vol" ,audio_mng.sound_bus_vol)
 	
 	
 	#--------- finalizing
@@ -71,7 +80,23 @@ func load_settings():
 		return
 	
 	#--- load sections
-	thumb_size = file_config.get_value("settings","thumb_size",512)
+	cfg_thumb_size  = file_config.get_value("settings","cfg_thumb_size",512)
+	cfg_fullscreen  = file_config.get_value("settings","cfg_fullscreen",true)
+	cfg_vfx_enabled = file_config.get_value("settings","cfg_vfx_enabled",true)
+	
+	#--- load audio sections
+	audio_mng.master_bus_vol = file_config.get_value("audio","master_bus_vol")
+	audio_mng.music_bus_vol  = file_config.get_value("audio","music_bus_vol")
+	audio_mng.sound_bus_vol  = file_config.get_value("audio","sound_bus_vol")
+
+func parse_loaded_settings():
+	OS.window_fullscreen = cfg_fullscreen
+	g_mng.fl_vfx_enabled = cfg_vfx_enabled
+
+
+func quit_and_save():
+	save_settings()
+	get_tree().quit()
 	
 
 
@@ -132,7 +157,7 @@ func save_screenshot(save_thumb = false, save_num = 0):
 		var min_size = min(crop.get_size().x ,crop.get_size().y)
 		crop.crop(min_size, min_size)
 		crop.convert(5)
-		crop.resize(thumb_size,thumb_size,Image.INTERPOLATE_NEAREST)
+		crop.resize(cfg_thumb_size,cfg_thumb_size,Image.INTERPOLATE_NEAREST)
 		crop.resize_to_po2(true)
 		#crop.blit_rect(capture,Rect2(pos,size),Vector2(0,0)) # capture.blit_rect( Image src, Rect2 src_rect, Vector2 dest=0 )
 		crop.save_png(img_path)

@@ -154,7 +154,7 @@ script/source = "#btn_start_menu_quit_ok
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func _pressed():
-	get_tree().quit()"
+	data_mng.quit_and_save()"
 
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
@@ -320,6 +320,7 @@ autoplay = "main_art_lights"
 anims/main_art_lights = SubResource( 4 )
 
 [node name="hbox_bttm" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -330,7 +331,6 @@ margin_bottom = -16.0
 custom_constants/separation = 16
 
 [node name="btns_main" type="GridContainer" parent="hbox_bttm"]
-editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 304.0
 custom_constants/vseparation = 8
@@ -380,7 +380,6 @@ text = "Debug Tools"
 script = SubResource( 8 )
 
 [node name="quit" type="Button" parent="hbox_bttm/btns_main"]
-editor/display_folded = true
 margin_top = 248.0
 margin_right = 250.0
 margin_bottom = 302.0

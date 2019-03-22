@@ -23,11 +23,11 @@ config/icon="res://icon.png"
 
 [autoload]
 
+data_mng="*res://Scripts/data_mng.gd"
 utl="*res://Scripts/utl.gd"
 audio_mng="*res://Instances/audio_mng.tscn"
 n_mng="*res://Scripts/n_mng.gd"
 astar_grid_gen="*res://Scripts/astar_grid_gen.gd"
-data_mng="*res://Scripts/data_mng.gd"
 g_mng="*res://Scripts/g_mng.gd"
 
 [debug]
