@@ -32,10 +32,12 @@ var abs_vec2 : Vector2
 
 const rot_off = PI/2
 var angle : float = rot_off
-export var ang_min : float = -PI/8
-export var ang_max : float =  PI/8
-var ang_min_rot    : float =  ang_min
-var ang_max_rot    : float =  ang_max
+export var ang_min : float = -45
+export var ang_max : float =  45
+var ang_min_rot    : float = deg2rad(ang_min)
+var ang_max_rot    : float = deg2rad(ang_max)
+
+var shift_back : Vector2
 
 
 func _ready():
@@ -69,6 +71,10 @@ func follow(target_global , delta):
 		rotation = angle
 	#translate
 	global_position = (target_global - abs_vec2_rot)
+	
+	#move the configuration back to the fixed point
+	if get_index() == 0:
+		shift_back = position - init_pos
 
 
 
@@ -86,7 +92,6 @@ shape = SubResource( 1 )
 
 [node name="body_parts" type="Node2D" parent="."]
 editor/display_folded = true
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -220,6 +225,7 @@ __meta__ = {
 }
 
 [node name="up_leg_r" type="Sprite" parent="body_parts/hips/leg_r"]
+visible = false
 position = Vector2( 0, 9 )
 texture = ExtResource( 13 )
 normal_map = ExtResource( 14 )
@@ -229,6 +235,7 @@ __meta__ = {
 }
 
 [node name="foot_r" type="Sprite" parent="body_parts/hips/leg_r/up_leg_r"]
+visible = false
 position = Vector2( 0, 10 )
 scale = Vector2( 0.999999, 0.999999 )
 texture = ExtResource( 15 )
@@ -238,6 +245,7 @@ __meta__ = {
 }
 
 [node name="ctrl_foot_r" type="Position2D" parent="body_parts/hips/leg_r/up_leg_r/foot_r"]
+visible = false
 position = Vector2( 4, 3 )
 __meta__ = {
 "_edit_bone_": true,
@@ -281,7 +289,6 @@ __meta__ = {
 
 [node name="rmted_front" type="Node2D" parent="."]
 editor/display_folded = true
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -297,6 +304,7 @@ rotation = 1.5708
 remote_path = NodePath("../../../weapons/wp_pistol")
 
 [node name="leg_r_rmted" type="Sprite" parent="rmted_front"]
+visible = false
 position = Vector2( -4, -22 )
 texture = ExtResource( 16 )
 normal_map = ExtResource( 17 )
@@ -307,7 +315,6 @@ __meta__ = {
 
 [node name="rmted_front2" type="Node2D" parent="."]
 editor/display_folded = true
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -338,6 +345,8 @@ script = SubResource( 2 )
 __meta__ = {
 "_edit_ik_": true
 }
+ang_min = -60.0
+ang_max = 75.0
 
 [node name="up_leg_r" type="Sprite" parent="body"]
 position = Vector2( -4, -13 )

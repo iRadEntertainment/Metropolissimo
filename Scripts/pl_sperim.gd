@@ -117,7 +117,7 @@ func _input(event):
 	if event.is_action_released("reload"):
 		pass
 
-func _physics_process(d):
+func _process(d):
 	ik_legs(d)
 	move_and_collide(vec_mov*d)
 #	move_and_slide(vec_mov,Vector2(0,-1), 5,4,deg2rad(46))
@@ -125,11 +125,13 @@ func _physics_process(d):
 
 #===========vvv============= Inverse Kinematic ============vvv=============
 
+var fk_leg_r = []
 var ik_leg_r = []
 func setup_ik_bones():
 	#getting the leg parts in arrays
 	for part in $body.get_children():
-		ik_leg_r.append(part)
+		fk_leg_r.append(part)
+		ik_leg_r.push_front(part)
 
 
 func ik_legs(d): #PROCESSED
@@ -137,19 +139,17 @@ func ik_legs(d): #PROCESSED
 	var target = get_global_mouse_position()
 	
 	#follow to target
-	for i in range(ik_leg_r.size()-1):
-		if i < ik_leg_r.size()-2:
-			var next_segment_pos = ik_leg_r[i+1].global_position
-			ik_leg_r[i].follow(next_segment_pos , d)
-		else:
+	for i in range(1,ik_leg_r.size()):
+		if i == 1:
 			ik_leg_r[i].follow(target , d)
+		else:
+			var next_segment_pos = ik_leg_r[i-1].global_position
+			ik_leg_r[i].follow(next_segment_pos , d)
 	
 	#bring the configuration back to the fixed point
-#	for i in range(ik_leg_r.size()):
-#		if i == 0:
-#			ik_leg_r[i].position = ik_leg_r[i].init_pos
-#		else:
-#			ik_leg_r[i].position = ik_leg_r[i-1].position + ik_leg_r[i-1].abs_vec2
+	var shift_back = fk_leg_r[0].init_pos - fk_leg_r[0].position
+	for i in range(fk_leg_r.size()-1):
+		fk_leg_r[i].global_position += shift_back
 
 #===========^^^================ Inverse Kinematic ============^^^=============
 
