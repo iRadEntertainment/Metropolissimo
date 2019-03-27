@@ -9035,7 +9035,9 @@ data = {
 } ]
 }
 
-[node name="timers" type="Node2D" parent="." index="9"]
+[node name="anim_n" type="Node2D" parent="." index="9"]
+
+[node name="timers" type="Node2D" parent="." index="10"]
 editor/display_folded = true
 visible = false
 
@@ -9066,7 +9068,7 @@ autostart = true
 wait_time = 0.3
 one_shot = true
 
-[node name="draw_debug" type="Node2D" parent="." index="10"]
+[node name="draw_debug" type="Node2D" parent="." index="11"]
 visible = false
 script = SubResource( 47 )
 
@@ -9080,7 +9082,7 @@ text = "120,120"
 align = 1
 valign = 1
 
-[node name="sfx" type="Node2D" parent="." index="11"]
+[node name="sfx" type="Node2D" parent="." index="12"]
 
 [node name="jump" type="AudioStreamPlayer" parent="sfx" index="0"]
 stream = ExtResource( 24 )

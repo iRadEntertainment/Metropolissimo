@@ -22,7 +22,7 @@ signal game_saved
 func _ready():
 	load_initial_settings()
 	load_settings()
-	parse_loaded_settings()
+#	parse_loaded_settings()
 
 func load_initial_settings():
 	print("DATA MANAGER: loading initial settings")

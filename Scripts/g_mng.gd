@@ -7,7 +7,7 @@ extends Node
 #------ scenes var
 const loading_scene_path = "res://Instances/loading_screen.tscn"
 onready var gui_preload  = preload("res://Instances/GUI.tscn")
-onready var pl_preload   = preload("res://Instances/player.tscn")
+onready var pl_preload   = preload("res://Instances/pl_sperim.tscn") #preload("res://Instances/player.tscn")
 
 #------ option vars
 var fl_vfx_enabled = false setget _vfx_enabled
