@@ -26,64 +26,132 @@ height = 2.0
 [sub_resource type="GDScript" id=2]
 script/source = "extends Sprite
 
+var smooth_mov     = true
+var smoothness_vel = 10
 var init_pos : Vector2 = position
-var end   : Vector2
-var abs_vec2 : Vector2
+var bone_vec : Vector2
+var prev_seg = null
+var chain_base = false
+var chain_end  = false
 
-const rot_off = PI/2
-var angle : float = rot_off
-export var ang_min : float = -45
-export var ang_max : float =  45
-var ang_min_rot    : float = deg2rad(ang_min)
-var ang_max_rot    : float = deg2rad(ang_max)
+
+export var ang_off        : float = PI/2
+export var ang_max        : float = 0
+export var ang_min        : float = 170
+export var ang_base_chain : float = 90
+
+var angle    : float = ang_off
+var ang_prec : float
 
 var shift_back : Vector2
 
+signal mouse_click
+
+
+
 
 func _ready():
-#	part_magnitude = (pivot - end).length()
+	# segments
+	if get_index() == 0:
+		chain_base = true
+	elif get_index() == get_parent().get_child_count()-2:
+		chain_end  = true
+	if not chain_base:
+		prev_seg = get_node(\"..\").get_child(get_index()-1)
+	
+	# bone vector
 	var this_id = get_index()
-	end = get_node(\"..\").get_child(this_id+1).position
-	abs_vec2 = end - position
+	var end = get_node(\"..\").get_child(this_id+1).position
+	bone_vec = end - position
+	# angles min and max to radiants
+	ang_min = deg2rad(ang_min)
+	ang_max = deg2rad(ang_max)
+	
+	#init angle
+	angle = ang_off
 
-func follow(target_global , delta):
+
+
+func angle_calculation(target_global , delta):
+	#TO BE MADE IN INVERSE KINEMATIC
 	var target_to_local = target_global - global_position
+	var ang_temp = Vector2().angle_to_point(target_to_local) + ang_off
+	if ang_temp > PI: ang_temp -= 2*PI
 	
-	#angle calculation
-	var ang_temp = Vector2().angle_to_point(target_to_local)
+	var ang_delta = ang_temp - angle
 	
-	#WRONG: ang_min_rotated (and ang_max) should be resetted referring the parend angle/direction
-	###ang_min_rot = angle + ang_min - rot_off 
-	###ang_max_rot = angle + ang_max - rot_off
-	
-	if ang_temp < ang_min_rot - rot_off:
-		ang_temp = ang_min_rot - rot_off
-	elif ang_temp > ang_max_rot - rot_off:
-		ang_temp = ang_max_rot - rot_off
-	
-	angle = ang_temp + rot_off
-#	angle += ( ( ang_temp + rot_off ) - angle )*delta*10
+	# ang_delta constraints
 	
 	
+	
+	
+	if not smooth_mov:
+		angle += ang_delta
+	
+	else: #NOT WORKING
+		if abs(ang_delta) < 0.01: # floor angle
+			angle += ang_delta
+			ang_delta = 0
+		
+		angle = lerp(angle, (angle+ang_delta), max( delta * smoothness_vel , 1) )
+#		angle += sign(ang_delta) * delta * smoothness_vel
+#		if chain_base:
+#			print(ang_delta)
+	
+#	if not smooth_mov:
+#		angle = ang_temp + ang_off
+#	else:
+#		if angle != ang_temp + ang_off:
+#			angle += ( ( ang_temp + ang_off ) - angle ) * delta * smoothness_vel
+#			# floor angle
+#			if angle - (ang_temp + ang_off) < 0.1:
+#				angle = ang_temp + ang_off
+	
+	if angle > PI: angle -= 2*PI
+	
+	apply_transform(target_global)
+#	angles_constrain()
+
+
+func angles_constrain():
+	#TO BE MADE IN FORWARD KINEMATIC
+	if chain_base:
+		ang_prec = deg2rad(ang_base_chain)
+	else:
+		ang_prec = prev_seg.angle
+	
+	var ang_min_wrap = ang_prec - ang_min
+	var ang_max_wrap = ang_prec - ang_min
+	if ang_min_wrap > PI: ang_min_wrap -= 2*PI
+	if ang_max_wrap > PI: ang_max_wrap -= 2*PI
+	
+	if angle < ang_min_wrap:
+		angle = ang_min_wrap
+	elif angle > ang_max_wrap:
+		angle = ang_max_wrap
+
+
+func apply_transform(target_global):
+	#TO BE MADE IN INVERSE KINEMATIC
 	#rotate
-	var abs_vec2_rot = abs_vec2.rotated(angle)
+	var bone_vec_rot = bone_vec.rotated(angle)
 	if rotation != angle:
 		rotation = angle
-	#translate
-	global_position = (target_global - abs_vec2_rot)
 	
-	#move the configuration back to the fixed point
-	if get_index() == 0:
-		shift_back = position - init_pos
+	#translate to target
+	global_position = (target_global - bone_vec_rot)
+	if chain_end: #grab and move control end point
+		var ctrl_point = get_node(\"..\").get_child(get_parent().get_child_count()-1)
+		ctrl_point.global_position = target_global
 
 
 
 func _draw():
-	draw_line(Vector2(), abs_vec2 , Color.white , 1 , false)
+	draw_line(Vector2(), bone_vec , Color.white , 1 , false)
 	draw_circle(Vector2() , .5 , Color.wheat )
-	draw_circle(abs_vec2  , 1 , Color.red )"
+	draw_circle(bone_vec  , 1 , Color.red )"
 
-[node name="pl_sperim" type="KinematicBody2D"]
+[node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
 [node name="coll" type="CollisionShape2D" parent="."]
@@ -345,8 +413,6 @@ script = SubResource( 2 )
 __meta__ = {
 "_edit_ik_": true
 }
-ang_min = -60.0
-ang_max = 75.0
 
 [node name="up_leg_r" type="Sprite" parent="body"]
 position = Vector2( -4, -13 )

@@ -4,7 +4,6 @@
 
 extends CanvasLayer
 
-var fl_debug_mode = false
 var pan_velocity  =  50
 var col_red    = Color(0.8 , 0.1 , 0.2)
 var col_green  = Color(0.1 , 0.8 , 0.2)
@@ -18,15 +17,15 @@ func _ready():
 	connect_player_var_box()
 	$mouse_info.visible = false
 	$menu.visible  = false
-	$debug.visible = fl_debug_mode
+	$debug.visible = data_mng.cfg_debug_mode
 	mouse_info_offset = - $mouse_info.rect_size/2
 
 func _input(event):
 	if event is InputEventKey:
 		if event.scancode == KEY_F2 and event.is_pressed():
-			$debug.visible = !$debug.visible
-			fl_debug_mode = $debug.visible
-			n_mng.tools.draw_As_points_toggle()
+			data_mng.cfg_debug_mode = !data_mng.cfg_debug_mode
+			$debug.visible = data_mng.cfg_debug_mode
+			n_mng.tools.update()
 		
 		if event.scancode == KEY_ESCAPE and event.is_pressed():
 			get_tree().paused = !get_tree().paused
@@ -45,7 +44,7 @@ func _input(event):
 		if event.button_index == BUTTON_MIDDLE:     n_mng.cam.get_node("cam").zoom = Vector2 ( 1 , 1 )
 
 func _mouse_info():
-	if !fl_debug_mode: return
+	if !data_mng.cfg_debug_mode: return
 	fl_mouse_info = true
 	if not $mouse_info.visible: $mouse_info.visible = true
 	$mouse_info.rect_position = get_viewport().get_mouse_position() + mouse_info_offset

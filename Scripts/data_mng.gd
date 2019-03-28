@@ -18,11 +18,15 @@ var save_dir  = str(data_dir,"/savegame")
 
 signal game_saved
 
+#---------- Debug settings
+var cfg_debug_mode        = true
+var cfg_experimental_char = false
+
 
 func _ready():
 	load_initial_settings()
 	load_settings()
-#	parse_loaded_settings()
+	parse_loaded_settings()
 
 func load_initial_settings():
 	print("DATA MANAGER: loading initial settings")
@@ -63,6 +67,9 @@ func save_settings():
 	file_config.set_value("audio","music_bus_vol" ,audio_mng.music_bus_vol)
 	file_config.set_value("audio","sound_bus_vol" ,audio_mng.sound_bus_vol)
 	
+	#--- debug settings
+	file_config.set_value("settings","cfg_experimental_char" ,cfg_experimental_char)
+	file_config.set_value("settings","cfg_debug_mode" ,cfg_debug_mode)
 	
 	#--------- finalizing
 	var err_cfg = file_config.save(data_path)
@@ -83,6 +90,10 @@ func load_settings():
 	cfg_thumb_size  = file_config.get_value("settings","cfg_thumb_size",512)
 	cfg_fullscreen  = file_config.get_value("settings","cfg_fullscreen",true)
 	cfg_vfx_enabled = file_config.get_value("settings","cfg_vfx_enabled",true)
+	
+	#--- load debug sections
+	cfg_experimental_char = file_config.get_value("settings","cfg_experimental_char",true)
+	cfg_debug_mode        = file_config.get_value("settings","cfg_debug_mode",true)
 	
 	#--- load audio sections
 	audio_mng.master_bus_vol = file_config.get_value("audio","master_bus_vol")

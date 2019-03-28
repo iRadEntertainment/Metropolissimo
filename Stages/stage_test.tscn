@@ -1,49 +1,50 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Sprites/backgrouds/city-2o-2880x1800.jpg" type="Texture" id=1]
 [ext_resource path="res://Scripts/street_entrance.gd" type="Script" id=2]
 [ext_resource path="res://Stages/Stage1/street1_wall_l.jpg" type="Texture" id=3]
-[ext_resource path="res://Scripts/tm_startup.gd" type="Script" id=4]
-[ext_resource path="res://Sprites/tileset/test_bg.tres" type="TileSet" id=5]
-[ext_resource path="res://Sprites/tileset/test_solid2.tres" type="TileSet" id=6]
-[ext_resource path="res://Sprites/tileset/test_solid.tres" type="TileSet" id=7]
-[ext_resource path="res://Sprites/tileset/test_climb2.tres" type="TileSet" id=8]
-[ext_resource path="res://Instances/tm_debug.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/cnt.gd" type="Script" id=10]
-[ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scripts/cam_ctrl.gd" type="Script" id=12]
-[ext_resource path="res://Sprites/pixel_bianco.png" type="Texture" id=13]
-[ext_resource path="res://Scripts/scn_tools.gd" type="Script" id=14]
+[ext_resource path="res://Sprites/backgrouds/street pixel test.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/tm_startup.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/tileset/test_bg.tres" type="TileSet" id=6]
+[ext_resource path="res://Sprites/tileset/test_solid2.tres" type="TileSet" id=7]
+[ext_resource path="res://Sprites/tileset/test_solid.tres" type="TileSet" id=8]
+[ext_resource path="res://Sprites/tileset/test_climb2.tres" type="TileSet" id=9]
+[ext_resource path="res://Instances/tm_debug.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/cnt.gd" type="Script" id=11]
+[ext_resource path="res://Sprites/lights/light_ellipse.png" type="Texture" id=12]
+[ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/cam_ctrl.gd" type="Script" id=14]
+[ext_resource path="res://Sprites/pixel_bianco.png" type="Texture" id=15]
+[ext_resource path="res://Scripts/scn_tools.gd" type="Script" id=16]
 
 [node name="stage_test" type="Node2D"]
 
 [node name="bg" type="ParallaxBackground" parent="."]
 editor/display_folded = true
-scroll_limit_begin = Vector2( -1000, -1000 )
 scroll_limit_end = Vector2( 10000, 10000 )
-scroll_ignore_camera_zoom = true
 
 [node name="far" type="ParallaxLayer" parent="bg"]
 editor/display_folded = true
+visible = false
 motion_scale = Vector2( 0.2, 0 )
 
 [node name="sprite" type="TextureRect" parent="bg/far"]
-visible = false
-margin_right = 2880.0
-margin_bottom = 1800.0
+margin_top = -260.0
+margin_right = 1780.0
+margin_bottom = 800.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 7
-__meta__ = {
-"_edit_lock_": true
-}
+
+[node name="close" type="ParallaxLayer" parent="bg"]
+visible = false
 
 [node name="bg_streets" type="Node2D" parent="."]
 editor/display_folded = true
-visible = false
 
 [node name="street1" type="Node2D" parent="bg_streets"]
 editor/display_folded = true
+visible = false
 position = Vector2( 1920, 1120 )
 script = ExtResource( 2 )
 
@@ -59,12 +60,30 @@ texture = ExtResource( 3 )
 position = Vector2( 256, -192 )
 texture = ExtResource( 3 )
 
+[node name="building" type="TextureRect" parent="bg_streets"]
+margin_left = 32.0
+margin_top = 872.0
+margin_right = 446.0
+margin_bottom = 1120.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="building2" type="TextureRect" parent="bg_streets"]
+margin_left = 1632.0
+margin_top = 872.0
+margin_right = 2040.0
+margin_bottom = 1120.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 7
+
 [node name="tm" type="Node2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="bg" type="TileMap" parent="tm"]
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 0
 collision_mask = 0
@@ -74,7 +93,7 @@ __meta__ = {
 }
 
 [node name="solid" type="TileMap" parent="tm"]
-tile_set = ExtResource( 6 )
+tile_set = ExtResource( 7 )
 cell_size = Vector2( 32, 32 )
 collision_mask = 4
 format = 1
@@ -84,7 +103,7 @@ __meta__ = {
 }
 
 [node name="platf" type="TileMap" parent="tm"]
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 1024
 collision_mask = 30
@@ -94,7 +113,7 @@ __meta__ = {
 }
 
 [node name="climb" type="TileMap" parent="tm"]
-tile_set = ExtResource( 8 )
+tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 2
 collision_mask = 2
@@ -103,12 +122,23 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="tm_debug" parent="tm" instance=ExtResource( 9 )]
+[node name="tm_debug" parent="tm" instance=ExtResource( 10 )]
 z_index = 15
 
 [node name="cnt" type="Node2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 10 )
+script = ExtResource( 11 )
+
+[node name="props" type="Node2D" parent="cnt"]
+
+[node name="bg lights" type="Node2D" parent="cnt"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="lamp1" type="Light2D" parent="cnt/bg lights"]
+position = Vector2( 417.2, 1054 )
+texture = ExtResource( 12 )
 
 [node name="pickups" type="Node2D" parent="cnt"]
 
@@ -117,16 +147,10 @@ script = ExtResource( 10 )
 [node name="enemies" type="Node2D" parent="cnt"]
 editor/display_folded = true
 
-[node name="dummy" parent="cnt/enemies" instance=ExtResource( 11 )]
+[node name="dummy" parent="cnt/enemies" instance=ExtResource( 13 )]
 position = Vector2( 430, 1090 )
 
 [node name="bullets" type="Node2D" parent="cnt"]
-
-[node name="lights" type="Node2D" parent="cnt"]
-visible = false
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="vfx" type="Node2D" parent="cnt"]
 z_index = 10
@@ -135,6 +159,7 @@ __meta__ = {
 }
 
 [node name="spawn" type="Node2D" parent="cnt"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -147,7 +172,7 @@ position = Vector2( 128, 1120 )
 
 [node name="cam_ctrl" type="Position2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 12 )
+script = ExtResource( 14 )
 
 [node name="cam" type="Camera2D" parent="cam_ctrl"]
 pause_mode = 2
@@ -163,7 +188,7 @@ margin_left = -2.0
 margin_top = -2.0
 margin_right = 2.0
 margin_bottom = 2.0
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 expand = true
 
 [node name="tools" type="Control" parent="."]
@@ -171,7 +196,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 5000.0
 margin_bottom = 5000.0
-script = ExtResource( 14 )
+script = ExtResource( 16 )
 __meta__ = {
 "_edit_lock_": true
 }

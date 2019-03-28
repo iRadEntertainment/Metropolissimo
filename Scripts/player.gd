@@ -71,6 +71,11 @@ var speed_sprint    = 550
 var speed_stealth   = 80
 var speed_crouch    = 140
 
+#collision polygon
+
+var coll_standing : PoolVector2Array = [Vector2(0,0),Vector2(-8,-4),Vector2(-8,-44),Vector2(0,-56),Vector2(8,-44),Vector2(8,-4)]
+var coll_crouch   : PoolVector2Array = [Vector2(0,0),Vector2(-8,-4),Vector2(-8,-20),Vector2(0,-30),Vector2(8,-20),Vector2(8,-4)]
+
 #==================================================
 
 func _ready():
@@ -107,6 +112,9 @@ func _input(event):
 	if event.is_action_released("ui_left") or event.is_action_released("ui_right"):
 		if not (event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right")):
 			st_moving = false
+	
+	if event.is_action_pressed("crouch"):  $poly_coll.polygon = coll_crouch
+	if event.is_action_released("crouch"): $poly_coll.polygon = coll_standing
 	
 	if event.is_action_pressed("sprint"):   st_sprinting = true
 	if event.is_action_released("sprint"):  st_sprinting = false

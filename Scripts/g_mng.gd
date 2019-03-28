@@ -5,14 +5,15 @@
 extends Node
 
 #------ scenes var
-const loading_scene_path = "res://Instances/loading_screen.tscn"
-onready var gui_preload  = preload("res://Instances/GUI.tscn")
-onready var pl_preload   = preload("res://Instances/pl_sperim.tscn") #preload("res://Instances/player.tscn")
+const loading_scene_path  = "res://Instances/loading_screen.tscn"
+onready var gui_preload   = preload("res://Instances/GUI.tscn")
+onready var pl_preload    = preload("res://Instances/player.tscn")
+onready var pl_preload_xp = preload("res://Instances/pl_sperim.tscn")
 
 #------ option vars
 var fl_vfx_enabled = false setget _vfx_enabled
 signal vfx_enabled
-var fl_debug_mode
+var fl_debug_mode  = false
 
 #------ in game vars
 var fl_ingame      = false
@@ -82,8 +83,15 @@ func add_stage_instances(incoming_scene):
 	prints("G_MNG: next scene =",name)
 	if "stage" in name:
 		prints("G_MNG: adding",name,"instances")
+		
 		incoming_scene.add_child(gui_preload.instance())
-		incoming_scene.add_child(pl_preload.instance())
+		
+		var pl_instance
+		if data_mng.cfg_experimental_char:
+			pl_instance = pl_preload_xp.instance()
+		else:
+			pl_instance = pl_preload.instance()
+		incoming_scene.add_child(pl_instance)
 
 func game_setup_and_start():
 	n_mng.pl.global_position  = n_mng.spawn.get_node("1").global_position

@@ -9,21 +9,14 @@
 [ext_resource path="res://Sprites/tileset/test_solid.tres" type="TileSet" id=7]
 [ext_resource path="res://Sprites/tileset/test_climb2.tres" type="TileSet" id=8]
 [ext_resource path="res://Instances/tm_debug.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/cam_ctrl.gd" type="Script" id=10]
-[ext_resource path="res://Sprites/pixel_bianco.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/lights/light_ellipse.png" type="Texture" id=12]
-[ext_resource path="res://Shaders/floor_noise.shader" type="Shader" id=13]
-[ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scripts/cnt.gd" type="Script" id=10]
+[ext_resource path="res://Sprites/lights/light_ellipse.png" type="Texture" id=11]
+[ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Sprites/pixel_bianco.png" type="Texture" id=13]
+[ext_resource path="res://Shaders/floor_noise.shader" type="Shader" id=14]
+[ext_resource path="res://Scripts/cam_ctrl.gd" type="Script" id=15]
 
 [sub_resource type="GDScript" id=1]
-script/source = "#stage1-1
-
-extends Node2D
-
-func _ready():
-	g_mng.fl_ingame = true"
-
-[sub_resource type="GDScript" id=2]
 script/source = "#gen_pickups
 #tool
 extends Node2D #extends EditorScript
@@ -51,7 +44,7 @@ func _ready():
 						bottle.global_position = Vector2(i,j) * tile_dim + offset_bottle
 						add_child(bottle)"
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 4.0
 loop = true
 step = 0.05
@@ -80,7 +73,7 @@ tracks/1/keys = {
 "values": [ 4.03721, -3.86851, 4.03721, -3.86851 ]
 }
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -156,8 +149,8 @@ void fragment() {
 	COLOR.a = clamp(COLOR.r, .0, 1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/offset_Y = 0.2
 shader_param/brightness = 1.3
 shader_param/thrust = 2.1
@@ -167,8 +160,8 @@ shader_param/res = 1.75
 shader_param/base = 0.0
 shader_param/thickness = 2.6
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 3 )
 shader_param/offset_Y = 0.2
 shader_param/brightness = 1.3
 shader_param/thrust = 2.1
@@ -178,14 +171,13 @@ shader_param/res = 2.75
 shader_param/base = 0.75
 shader_param/thickness = 2.6
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = ExtResource( 13 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 14 )
 shader_param/x_count = 16
 shader_param/y_count = 8
 shader_param/displ = 0.03
 
 [node name="stage1-1" type="Node2D"]
-script = SubResource( 1 )
 
 [node name="bg" type="ParallaxBackground" parent="."]
 editor/display_folded = true
@@ -277,30 +269,100 @@ __meta__ = {
 [node name="tm_debug" parent="tm" instance=ExtResource( 9 )]
 z_index = 15
 
-[node name="spawn" type="Node2D" parent="."]
-editor/display_folded = true
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="0" type="Position2D" parent="spawn"]
-position = Vector2( 72, 1120 )
-
-[node name="1" type="Position2D" parent="spawn"]
-position = Vector2( 128, 1120 )
-
 [node name="cnt" type="Node2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 10 )
 
 [node name="pickups" type="Node2D" parent="cnt"]
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="debris" type="Node2D" parent="cnt"]
 
 [node name="bullets" type="Node2D" parent="cnt"]
 
+[node name="lights" type="Node2D" parent="cnt"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="lamp1" type="Light2D" parent="cnt/lights"]
+position = Vector2( 1080, 999.077 )
+scale = Vector2( 1, 0.948718 )
+texture = ExtResource( 11 )
+offset = Vector2( 0, 60 )
+energy = 2.0
+shadow_enabled = true
+
+[node name="lamp2" type="Light2D" parent="cnt/lights"]
+position = Vector2( 1448, 1000 )
+texture = ExtResource( 11 )
+offset = Vector2( 0, 60 )
+energy = 2.0
+shadow_enabled = true
+
+[node name="lamp3" type="Light2D" parent="cnt/lights"]
+position = Vector2( 189.863, 1005.86 )
+rotation = 0.0119621
+texture = ExtResource( 11 )
+offset = Vector2( 0, 60 )
+energy = 2.0
+shadow_enabled = true
+
+[node name="luci_anim" type="AnimationPlayer" parent="cnt/lights"]
+autoplay = "default"
+anims/default = SubResource( 2 )
+
+[node name="enemies" type="Node2D" parent="cnt"]
+editor/display_folded = true
+
+[node name="dummy" parent="cnt/enemies" instance=ExtResource( 12 )]
+position = Vector2( 1432, 1632 )
+
+[node name="vfx" type="Node2D" parent="cnt"]
+editor/display_folded = true
+z_index = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="fuoco" type="Sprite" parent="cnt/vfx"]
+material = SubResource( 4 )
+position = Vector2( 2768, 1008 )
+scale = Vector2( 80, 112 )
+texture = ExtResource( 13 )
+centered = false
+flip_v = true
+
+[node name="fuoco2" type="Sprite" parent="cnt/vfx"]
+material = SubResource( 5 )
+position = Vector2( 6512, 2264 )
+scale = Vector2( 144.001, 200 )
+texture = ExtResource( 13 )
+centered = false
+flip_v = true
+
+[node name="door" type="Sprite" parent="cnt/vfx"]
+material = SubResource( 6 )
+position = Vector2( 32, 992 )
+scale = Vector2( 136, 128 )
+texture = ExtResource( 13 )
+centered = false
+
+[node name="spawn" type="Node2D" parent="cnt"]
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="0" type="Position2D" parent="cnt/spawn"]
+position = Vector2( 72, 1120 )
+
+[node name="1" type="Position2D" parent="cnt/spawn"]
+position = Vector2( 128, 1120 )
+
 [node name="cam_ctrl" type="Position2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 10 )
+script = ExtResource( 15 )
 
 [node name="cam" type="Camera2D" parent="cam_ctrl"]
 pause_mode = 2
@@ -316,76 +378,8 @@ margin_left = -2.0
 margin_top = -2.0
 margin_right = 2.0
 margin_bottom = 2.0
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 expand = true
-
-[node name="lights" type="Node2D" parent="."]
-editor/display_folded = true
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="lamp1" type="Light2D" parent="lights"]
-position = Vector2( 1080, 1000 )
-texture = ExtResource( 12 )
-offset = Vector2( 0, 60 )
-energy = 2.0
-shadow_enabled = true
-
-[node name="lamp2" type="Light2D" parent="lights"]
-position = Vector2( 1448, 1000 )
-texture = ExtResource( 12 )
-offset = Vector2( 0, 60 )
-energy = 2.0
-shadow_enabled = true
-
-[node name="lamp3" type="Light2D" parent="lights"]
-position = Vector2( 189.863, 1005.86 )
-rotation = 0.0119621
-texture = ExtResource( 12 )
-offset = Vector2( 0, 60 )
-energy = 2.0
-shadow_enabled = true
-
-[node name="luci_anim" type="AnimationPlayer" parent="lights"]
-autoplay = "default"
-anims/default = SubResource( 3 )
-
-[node name="vfx" type="Node2D" parent="."]
-editor/display_folded = true
-z_index = 10
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="fuoco" type="Sprite" parent="vfx"]
-material = SubResource( 5 )
-position = Vector2( 2768, 1008 )
-scale = Vector2( 80, 112 )
-texture = ExtResource( 11 )
-centered = false
-flip_v = true
-
-[node name="fuoco2" type="Sprite" parent="vfx"]
-material = SubResource( 6 )
-position = Vector2( 6512, 2264 )
-scale = Vector2( 144.001, 200 )
-texture = ExtResource( 11 )
-centered = false
-flip_v = true
-
-[node name="door" type="Sprite" parent="vfx"]
-material = SubResource( 7 )
-position = Vector2( 32, 992 )
-scale = Vector2( 136, 128 )
-texture = ExtResource( 11 )
-centered = false
-
-[node name="cont_enemies" type="Node2D" parent="."]
-editor/display_folded = true
-
-[node name="dummy" parent="cont_enemies" instance=ExtResource( 14 )]
-position = Vector2( 1432, 1632 )
 
 [node name="tools" type="Control" parent="."]
 margin_right = 40.0

@@ -1,13 +1,14 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Scripts/main_menu.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/menu/menu_bg.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/backgrouds/city-2o-2880x1800.jpg" type="Texture" id=2]
 [ext_resource path="res://shaders/smoke.shader" type="Shader" id=3]
 [ext_resource path="res://Sprites/menu/intro_banner_princ.jpg" type="Texture" id=4]
 [ext_resource path="res://Themes/button.tres" type="Theme" id=5]
 [ext_resource path="res://Themes/fonts/Nickodemus-Extremus.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Instances/thumb_load.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Themes/button_small.tres" type="Theme" id=8]
+[ext_resource path="res://Themes/fonts/MILLENNIA.TTF" type="DynamicFontData" id=8]
+[ext_resource path="res://Themes/button_small.tres" type="Theme" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -229,23 +230,127 @@ func _pressed():
 	get_node(\"../..\").set(\"self_modulate\",Color(1,1,1,1))
 	get_node(\"../..\").focus_mode = 2"
 
-[sub_resource type="GDScript" id=25]
-script/source = "#btn_start_menu_options
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.809601, 0.846411, 0.933594, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0.109467, 0.132813, 0.113662, 0.88949 )
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.311462, 0.984375, 0.511233, 1 )
+corner_radius_top_left = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=32]
+bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.809601, 0.846411, 0.933594, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 7
+
+[sub_resource type="StyleBoxFlat" id=34]
+bg_color = Color( 0.159531, 0.332031, 0.170312, 0.790039 )
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.187473, 0.863281, 0.0472107, 1 )
+corner_radius_top_left = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="DynamicFont" id=35]
+size = 22
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=36]
+default_font = SubResource( 35 )
+Button/colors/font_color = Color( 0.6875, 0.787598, 1, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.941406, 0.356705, 0.356705, 1 )
+Button/colors/font_color_pressed = Color( 0.957031, 0.0747681, 0.0747681, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = SubResource( 30 )
+Button/styles/focus = SubResource( 31 )
+Button/styles/hover = SubResource( 32 )
+Button/styles/normal = SubResource( 33 )
+Button/styles/pressed = SubResource( 34 )
+CheckBox/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+CheckBox/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckBox/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
+CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckBox/constants/check_vadjust = 10
+CheckBox/constants/hseparation = 10
+CheckBox/fonts/font = null
+CheckBox/icons/checked = null
+CheckBox/icons/radio_checked = null
+CheckBox/icons/radio_unchecked = null
+CheckBox/icons/unchecked = null
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = null
+CheckBox/styles/normal = null
+CheckBox/styles/pressed = null
+
+[sub_resource type="GDScript" id=37]
+script/source = "#btn_save_cfg
 
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func _pressed():
-	audio_mng.play_btn(0)
-	OS.window_fullscreen = !OS.window_fullscreen"
+	data_mng.save_settings()"
+
+[sub_resource type="GDScript" id=25]
+script/source = "#btn_mmenu_fullscreen
+
+extends \"res://Scripts/button_menu_generic.gd\"
+
+func setup_button():
+	$CheckBox.pressed = data_mng.cfg_fullscreen
+
+func _pressed():
+	data_mng.cfg_fullscreen = !data_mng.cfg_fullscreen
+	$CheckBox.pressed = data_mng.cfg_fullscreen
+	OS.window_fullscreen = data_mng.cfg_fullscreen"
 
 [sub_resource type="GDScript" id=26]
 script/source = "#btn_start_menu_vfx
 
 extends \"res://Scripts/button_menu_generic.gd\"
 
+func setup_button():
+	$CheckBox.pressed = g_mng.fl_vfx_enabled
+
 func _pressed():
-	audio_mng.play_btn(0)
-	g_mng.fl_vfx_enabled = !g_mng.fl_vfx_enabled"
+	g_mng.fl_vfx_enabled = !g_mng.fl_vfx_enabled
+	$CheckBox.pressed = g_mng.fl_vfx_enabled"
 
 [sub_resource type="GDScript" id=27]
 script/source = "#btn_stage_test
@@ -257,8 +362,24 @@ script/source = "#btn_debug_mode
 
 extends \"res://Scripts/button_menu_generic.gd\"
 
+func setup_button():
+	$CheckBox.pressed = g_mng.fl_debug_mode
+
 func _pressed():
-	g_mng.fl_debug_mode = !g_mng.fl_debug_mode"
+	g_mng.fl_debug_mode = !g_mng.fl_debug_mode
+	$CheckBox.pressed = g_mng.fl_debug_mode"
+
+[sub_resource type="GDScript" id=29]
+script/source = "#btn_experimental_char
+
+extends \"res://Scripts/button_menu_generic.gd\"
+
+func setup_button():
+	$CheckBox.pressed = data_mng.cfg_experimental_char
+
+func _pressed():
+	data_mng.cfg_experimental_char = !data_mng.cfg_experimental_char
+	$CheckBox.pressed = data_mng.cfg_experimental_char"
 
 [node name="main_menu" type="Control"]
 anchor_right = 1.0
@@ -290,6 +411,7 @@ __meta__ = {
 }
 
 [node name="vfx" type="Control" parent="."]
+editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -320,7 +442,6 @@ autoplay = "main_art_lights"
 anims/main_art_lights = SubResource( 4 )
 
 [node name="hbox_bttm" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -331,6 +452,7 @@ margin_bottom = -16.0
 custom_constants/separation = 16
 
 [node name="btns_main" type="GridContainer" parent="hbox_bttm"]
+editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 304.0
 custom_constants/vseparation = 8
@@ -443,10 +565,9 @@ margin_bottom = 272.0
 [node name="thumb_load" parent="hbox_bttm/cnt_load_game/hbox/btns_load" instance=ExtResource( 7 )]
 
 [node name="cnt_opts" type="Control" parent="hbox_bttm"]
-editor/display_folded = true
 visible = false
-margin_left = 598.0
-margin_right = 914.0
+margin_left = 266.0
+margin_right = 1248.0
 margin_bottom = 304.0
 size_flags_horizontal = 3
 
@@ -455,8 +576,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0192261, 0.311906, 0.546875, 0.276235 )
 
+[node name="btn_save_cfg2" type="Button" parent="hbox_bttm/cnt_opts"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -205.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 3
+theme = SubResource( 36 )
+text = "Save settings"
+script = SubResource( 37 )
+
 [node name="hbox" type="HBoxContainer" parent="hbox_bttm/cnt_opts"]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -465,6 +598,7 @@ margin_right = -16.0
 margin_bottom = -16.0
 
 [node name="btns_opt" type="GridContainer" parent="hbox_bttm/cnt_opts/hbox"]
+editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 272.0
 
@@ -473,9 +607,18 @@ margin_right = 250.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
-theme = ExtResource( 8 )
+theme = ExtResource( 9 )
 text = "Fullscreen"
 script = SubResource( 25 )
+
+[node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_opts/hbox/btns_opt/fullscreen"]
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = 23.0
+mouse_filter = 2
+disabled = true
+flat = true
+align = 1
 
 [node name="vfx" type="Button" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
 margin_top = 36.0
@@ -483,9 +626,18 @@ margin_right = 250.0
 margin_bottom = 68.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
-theme = ExtResource( 8 )
+theme = ExtResource( 9 )
 text = "vFX Shaders"
 script = SubResource( 26 )
+
+[node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_opts/hbox/btns_opt/vfx"]
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = 23.0
+mouse_filter = 2
+disabled = true
+flat = true
+align = 1
 
 [node name="cnt_debug" type="Control" parent="hbox_bttm"]
 margin_left = 266.0
@@ -502,13 +654,26 @@ color = Color( 0.25, 0.0253906, 0.0253906, 0.276235 )
 anchor_right = 1.0
 margin_left = 16.0
 margin_top = 16.0
-margin_right = -16.0
-margin_bottom = 25.0
+margin_right = -174.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
-theme = ExtResource( 8 )
+theme = ExtResource( 9 )
 text = "Test Stage"
 script = SubResource( 27 )
+
+[node name="btn_save_cfg" type="Button" parent="hbox_bttm/cnt_debug"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -163.0
+margin_top = 16.0
+margin_right = -8.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 3
+theme = SubResource( 36 )
+text = "Save settings"
+script = SubResource( 37 )
 
 [node name="hbox" type="HBoxContainer" parent="hbox_bttm/cnt_debug"]
 anchor_right = 1.0
@@ -527,7 +692,36 @@ margin_right = 250.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
-theme = ExtResource( 8 )
+theme = ExtResource( 9 )
 text = "Debug Mode"
 script = SubResource( 28 )
+
+[node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_debug/hbox/btns_opt/debug_mode"]
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = 23.0
+mouse_filter = 2
+disabled = true
+flat = true
+align = 1
+
+[node name="pl_sper" type="Button" parent="hbox_bttm/cnt_debug/hbox/btns_opt"]
+editor/display_folded = true
+margin_top = 36.0
+margin_right = 250.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 250, 32 )
+size_flags_horizontal = 3
+theme = ExtResource( 9 )
+text = "Experimetal Char"
+script = SubResource( 29 )
+
+[node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_debug/hbox/btns_opt/pl_sper"]
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = 23.0
+mouse_filter = 2
+disabled = true
+flat = true
+align = 1
 

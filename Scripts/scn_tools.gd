@@ -9,7 +9,7 @@ func draw_As_points_toggle():
 	update()
 
 func _draw():
-	
-	if fl_draw_as_points:
-		for pos in astar_grid_gen.points_pos:
-			draw_circle( pos , 1.5 , Color(1 , 0 , 0))
+	if data_mng.cfg_debug_mode:
+		if fl_draw_as_points:
+			for pos in astar_grid_gen.points_pos:
+				draw_circle( pos , 1.5 , Color(1 , 0 , 0))

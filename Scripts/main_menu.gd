@@ -74,6 +74,7 @@ func _on_options_btn_option_click(): show_sub_menu(SubMenu.OPTIONS)
 func _btn_debug_click():             show_sub_menu(SubMenu.DEBUG)
 func _btn_new_game():
 	fade_off = true
+	#in process, if fade is off start the sequence for the first level launch
 	audio_mng.music_fade_out()
 
 #------------- SUB menu buttons function -------------------

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/menu_ingame.gd" type="Script" id=1]
 [ext_resource path="res://Shaders/quick_menu_overlay_shader.tres" type="Material" id=2]
@@ -50,7 +50,7 @@ func _ready():
 	set_process_input(true)
 
 func _input(event):
-	if n_mng.gui.fl_debug_mode:
+	if data_mng.cfg_debug_mode:
 		if event is InputEventMouseMotion:
 			var m_pos   = utl.n_base().get_global_mouse_position().floor()
 			var t_pos   = Vector2( int(m_pos.x/32) , int(m_pos.y/32) )
@@ -463,6 +463,17 @@ func refresh():
 			self.text = \"false\"
 			modulate  = red"
 
+[sub_resource type="GDScript" id=15]
+script/source = "extends CheckBox
+
+func _ready():
+	pressed = get_tree().debug_collisions_hint
+	print(get_tree().debug_collisions_hint)
+
+func _toggled(button_pressed):
+	get_tree().debug_collisions_hint = button_pressed
+	"
+
 [node name="GUI" type="CanvasLayer"]
 pause_mode = 2
 layer = 0
@@ -534,6 +545,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="game_stat" type="HBoxContainer" parent="debug"]
+editor/display_folded = true
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 328.0
@@ -575,6 +587,7 @@ text = "tm - solid"
 align = 2
 
 [node name="data" type="VBoxContainer" parent="debug/game_stat"]
+editor/display_folded = true
 margin_left = 192.0
 margin_right = 320.0
 margin_bottom = 60.0
@@ -938,6 +951,25 @@ rect_min_size = Vector2( 128, 16 )
 theme = ExtResource( 5 )
 text = "false"
 script = SubResource( 14 )
+
+[node name="tgg_coll_hint" type="CheckBox" parent="debug"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -12.0
+margin_right = 12.0
+margin_bottom = 24.0
+align = 1
+script = SubResource( 15 )
+
+[node name="Label" type="Label" parent="debug/tgg_coll_hint"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 79.0
+margin_bottom = -4.0
+theme = ExtResource( 5 )
+text = "show collision"
+valign = 1
 
 [node name="headphones" parent="." instance=ExtResource( 6 )]
 
