@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/backgrouds/city-2o-2880x1800.jpg" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Instances/thumb_load.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Themes/fonts/MILLENNIA.TTF" type="DynamicFontData" id=8]
 [ext_resource path="res://Themes/button_small.tres" type="Theme" id=9]
+[ext_resource path="res://Themes/sliders.tres" type="Theme" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -230,7 +231,7 @@ func _pressed():
 	get_node(\"../..\").set(\"self_modulate\",Color(1,1,1,1))
 	get_node(\"../..\").focus_mode = 2"
 
-[sub_resource type="StyleBoxFlat" id=30]
+[sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
 border_width_left = 1
 border_width_top = 1
@@ -242,7 +243,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=31]
+[sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.109467, 0.132813, 0.113662, 0.88949 )
 border_width_left = 1
 border_width_top = 1
@@ -251,7 +252,7 @@ border_color = Color( 0.311462, 0.984375, 0.511233, 1 )
 corner_radius_top_left = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=32]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
 border_width_left = 1
 border_width_top = 1
@@ -263,7 +264,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=33]
+[sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
 border_width_left = 1
 border_width_top = 1
@@ -276,7 +277,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 7
 
-[sub_resource type="StyleBoxFlat" id=34]
+[sub_resource type="StyleBoxFlat" id=29]
 bg_color = Color( 0.159531, 0.332031, 0.170312, 0.790039 )
 border_width_left = 1
 border_width_top = 1
@@ -285,23 +286,23 @@ border_color = Color( 0.187473, 0.863281, 0.0472107, 1 )
 corner_radius_top_left = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="DynamicFont" id=35]
+[sub_resource type="DynamicFont" id=30]
 size = 22
 font_data = ExtResource( 8 )
 
-[sub_resource type="Theme" id=36]
-default_font = SubResource( 35 )
+[sub_resource type="Theme" id=31]
+default_font = SubResource( 30 )
 Button/colors/font_color = Color( 0.6875, 0.787598, 1, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.941406, 0.356705, 0.356705, 1 )
 Button/colors/font_color_pressed = Color( 0.957031, 0.0747681, 0.0747681, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
-Button/styles/disabled = SubResource( 30 )
-Button/styles/focus = SubResource( 31 )
-Button/styles/hover = SubResource( 32 )
-Button/styles/normal = SubResource( 33 )
-Button/styles/pressed = SubResource( 34 )
+Button/styles/disabled = SubResource( 25 )
+Button/styles/focus = SubResource( 26 )
+Button/styles/hover = SubResource( 27 )
+Button/styles/normal = SubResource( 28 )
+Button/styles/pressed = SubResource( 29 )
 CheckBox/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 CheckBox/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 CheckBox/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
@@ -319,7 +320,7 @@ CheckBox/styles/hover = null
 CheckBox/styles/normal = null
 CheckBox/styles/pressed = null
 
-[sub_resource type="GDScript" id=37]
+[sub_resource type="GDScript" id=32]
 script/source = "#btn_save_cfg
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -327,7 +328,7 @@ extends \"res://Scripts/button_menu_generic.gd\"
 func _pressed():
 	data_mng.save_settings()"
 
-[sub_resource type="GDScript" id=25]
+[sub_resource type="GDScript" id=33]
 script/source = "#btn_mmenu_fullscreen
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -340,7 +341,7 @@ func _pressed():
 	$CheckBox.pressed = data_mng.cfg_fullscreen
 	OS.window_fullscreen = data_mng.cfg_fullscreen"
 
-[sub_resource type="GDScript" id=26]
+[sub_resource type="GDScript" id=34]
 script/source = "#btn_start_menu_vfx
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -352,12 +353,104 @@ func _pressed():
 	g_mng.fl_vfx_enabled = !g_mng.fl_vfx_enabled
 	$CheckBox.pressed = g_mng.fl_vfx_enabled"
 
-[sub_resource type="GDScript" id=27]
+[sub_resource type="StyleBoxFlat" id=47]
+
+[sub_resource type="StyleBoxFlat" id=48]
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 8.0
+content_margin_bottom = 16.0
+bg_color = Color( 0.176471, 0.176471, 0.176471, 0.792157 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id=49]
+Panel/styles/panel = SubResource( 47 )
+Panel/styles/panelf = SubResource( 47 )
+Panel/styles/panelnc = SubResource( 47 )
+PanelContainer/styles/panel = SubResource( 48 )
+
+[sub_resource type="GDScript" id=38]
+script/source = "extends HSlider
+
+func _ready():
+	connect(\"value_changed\",self,\"_scrolled\")
+	value = audio_mng.master_bus_vol
+
+func _scrolled(val):
+	audio_mng.master_bus_vol = val"
+
+[sub_resource type="GDScript" id=39]
+script/source = "extends ProgressBar
+
+func _process(delta):
+	value = AudioServer.get_bus_peak_volume_left_db(0,0)"
+
+[sub_resource type="GDScript" id=40]
+script/source = "extends ProgressBar
+
+func _process(delta):
+	value = AudioServer.get_bus_peak_volume_right_db(0,0)"
+
+[sub_resource type="GDScript" id=41]
+script/source = "extends HSlider
+
+func _ready():
+	connect(\"value_changed\",self,\"_scrolled\")
+	value = audio_mng.music_bus_vol
+
+func _scrolled(val):
+	audio_mng.music_bus_vol = val"
+
+[sub_resource type="GDScript" id=42]
+script/source = "extends ProgressBar
+
+func _process(delta):
+	value = AudioServer.get_bus_peak_volume_left_db(1,0)"
+
+[sub_resource type="GDScript" id=43]
+script/source = "extends ProgressBar
+
+func _process(delta):
+	value = AudioServer.get_bus_peak_volume_right_db(1,0)"
+
+[sub_resource type="GDScript" id=44]
+script/source = "extends HSlider
+
+func _ready():
+	connect(\"value_changed\",self,\"_scrolled\")
+	value = audio_mng.sound_bus_vol
+
+func _scrolled(val):
+	audio_mng.sound_bus_vol = val"
+
+[sub_resource type="GDScript" id=45]
+script/source = "extends ProgressBar
+
+func _process(delta):
+	value = AudioServer.get_bus_peak_volume_left_db(2,0)"
+
+[sub_resource type="GDScript" id=46]
+script/source = "extends ProgressBar
+
+func _process(delta):
+	value = AudioServer.get_bus_peak_volume_right_db(2,0)"
+
+[sub_resource type="GDScript" id=35]
 script/source = "#btn_stage_test
 
 extends \"res://Scripts/button_menu_generic.gd\""
 
-[sub_resource type="GDScript" id=28]
+[sub_resource type="GDScript" id=36]
 script/source = "#btn_debug_mode
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -369,7 +462,7 @@ func _pressed():
 	g_mng.fl_debug_mode = !g_mng.fl_debug_mode
 	$CheckBox.pressed = g_mng.fl_debug_mode"
 
-[sub_resource type="GDScript" id=29]
+[sub_resource type="GDScript" id=37]
 script/source = "#btn_experimental_char
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -565,7 +658,6 @@ margin_bottom = 272.0
 [node name="thumb_load" parent="hbox_bttm/cnt_load_game/hbox/btns_load" instance=ExtResource( 7 )]
 
 [node name="cnt_opts" type="Control" parent="hbox_bttm"]
-visible = false
 margin_left = 266.0
 margin_right = 1248.0
 margin_bottom = 304.0
@@ -585,22 +677,24 @@ margin_right = -16.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 3
-theme = SubResource( 36 )
+theme = SubResource( 31 )
 text = "Save settings"
-script = SubResource( 37 )
+script = SubResource( 32 )
 
 [node name="hbox" type="HBoxContainer" parent="hbox_bttm/cnt_opts"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
-margin_top = 16.0
+margin_top = 56.0
 margin_right = -16.0
 margin_bottom = -16.0
+mouse_filter = 2
+custom_constants/separation = 16
 
 [node name="btns_opt" type="GridContainer" parent="hbox_bttm/cnt_opts/hbox"]
 editor/display_folded = true
 margin_right = 250.0
-margin_bottom = 272.0
+margin_bottom = 232.0
 
 [node name="fullscreen" type="Button" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
 margin_right = 250.0
@@ -609,7 +703,7 @@ rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
 text = "Fullscreen"
-script = SubResource( 25 )
+script = SubResource( 33 )
 
 [node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_opts/hbox/btns_opt/fullscreen"]
 anchor_bottom = 1.0
@@ -628,7 +722,7 @@ rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
 text = "vFX Shaders"
-script = SubResource( 26 )
+script = SubResource( 34 )
 
 [node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_opts/hbox/btns_opt/vfx"]
 anchor_bottom = 1.0
@@ -639,7 +733,180 @@ disabled = true
 flat = true
 align = 1
 
+[node name="panel" type="PanelContainer" parent="hbox_bttm/cnt_opts/hbox"]
+margin_left = 266.0
+margin_right = 950.0
+margin_bottom = 146.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = SubResource( 49 )
+
+[node name="audio" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 668.0
+margin_bottom = 130.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="vol_master" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel/audio"]
+editor/display_folded = true
+margin_right = 652.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+custom_constants/separation = 4
+
+[node name="lb" type="Label" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master"]
+margin_right = 652.0
+margin_bottom = 23.0
+theme = ExtResource( 9 )
+text = "Master"
+
+[node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master"]
+margin_top = 27.0
+margin_right = 652.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_vertical = 1
+theme = ExtResource( 10 )
+min_value = -42.0
+max_value = 0.0
+step = 2.0
+allow_greater = true
+allow_lesser = true
+script = SubResource( 38 )
+
+[node name="left" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master"]
+margin_top = 47.0
+margin_right = 652.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 0, 4 )
+theme = ExtResource( 10 )
+min_value = -72.0
+max_value = 12.0
+percent_visible = false
+script = SubResource( 39 )
+
+[node name="right" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master"]
+margin_top = 55.0
+margin_right = 652.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 0, 4 )
+theme = ExtResource( 10 )
+min_value = -72.0
+max_value = 12.0
+value = 12.0
+percent_visible = false
+script = SubResource( 40 )
+
+[node name="audio_ch" type="HBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel/audio"]
+margin_top = 63.0
+margin_right = 652.0
+margin_bottom = 122.0
+custom_constants/separation = 16
+
+[node name="vol_music" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch"]
+margin_right = 318.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+custom_constants/separation = 4
+
+[node name="lb" type="Label" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music"]
+margin_right = 318.0
+margin_bottom = 23.0
+theme = ExtResource( 9 )
+text = "Music"
+
+[node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music"]
+margin_top = 27.0
+margin_right = 318.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_vertical = 1
+theme = ExtResource( 10 )
+min_value = -42.0
+max_value = 0.0
+step = 2.0
+allow_greater = true
+allow_lesser = true
+script = SubResource( 41 )
+
+[node name="left" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music"]
+margin_top = 47.0
+margin_right = 318.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 0, 4 )
+theme = ExtResource( 10 )
+min_value = -72.0
+max_value = 12.0
+percent_visible = false
+script = SubResource( 42 )
+
+[node name="right" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music"]
+margin_top = 55.0
+margin_right = 318.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 0, 4 )
+theme = ExtResource( 10 )
+min_value = -72.0
+max_value = 12.0
+value = 12.0
+percent_visible = false
+script = SubResource( 43 )
+
+[node name="vol_sound" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch"]
+margin_left = 334.0
+margin_right = 652.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+custom_constants/separation = 4
+
+[node name="lb" type="Label" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound"]
+margin_right = 318.0
+margin_bottom = 23.0
+theme = ExtResource( 9 )
+text = "Sound"
+
+[node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound"]
+margin_top = 27.0
+margin_right = 318.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_vertical = 1
+theme = ExtResource( 10 )
+min_value = -42.0
+max_value = 0.0
+step = 2.0
+allow_greater = true
+allow_lesser = true
+script = SubResource( 44 )
+
+[node name="left" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound"]
+margin_top = 47.0
+margin_right = 318.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 0, 4 )
+theme = ExtResource( 10 )
+min_value = -72.0
+max_value = 12.0
+percent_visible = false
+script = SubResource( 45 )
+
+[node name="right" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound"]
+margin_top = 55.0
+margin_right = 318.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 0, 4 )
+theme = ExtResource( 10 )
+min_value = -72.0
+max_value = 12.0
+value = 12.0
+percent_visible = false
+script = SubResource( 46 )
+
 [node name="cnt_debug" type="Control" parent="hbox_bttm"]
+editor/display_folded = true
+visible = false
 margin_left = 266.0
 margin_right = 1248.0
 margin_bottom = 304.0
@@ -660,7 +927,7 @@ rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
 text = "Test Stage"
-script = SubResource( 27 )
+script = SubResource( 35 )
 
 [node name="btn_save_cfg" type="Button" parent="hbox_bttm/cnt_debug"]
 anchor_left = 1.0
@@ -671,9 +938,9 @@ margin_right = -8.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 3
-theme = SubResource( 36 )
+theme = SubResource( 31 )
 text = "Save settings"
-script = SubResource( 37 )
+script = SubResource( 32 )
 
 [node name="hbox" type="HBoxContainer" parent="hbox_bttm/cnt_debug"]
 anchor_right = 1.0
@@ -694,7 +961,7 @@ rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
 text = "Debug Mode"
-script = SubResource( 28 )
+script = SubResource( 36 )
 
 [node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_debug/hbox/btns_opt/debug_mode"]
 anchor_bottom = 1.0
@@ -714,7 +981,7 @@ rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
 text = "Experimetal Char"
-script = SubResource( 29 )
+script = SubResource( 37 )
 
 [node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_debug/hbox/btns_opt/pl_sper"]
 anchor_bottom = 1.0
