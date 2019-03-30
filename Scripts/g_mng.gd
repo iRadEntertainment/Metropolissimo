@@ -14,7 +14,6 @@ onready var pl_preload_xp    = preload("res://Instances/pl_sperim.tscn")
 #------ option vars
 var fl_vfx_enabled = false setget _vfx_enabled
 signal vfx_enabled
-var fl_debug_mode  = false
 
 #------ in game vars
 var fl_ingame      = false

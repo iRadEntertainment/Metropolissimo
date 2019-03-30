@@ -3,16 +3,16 @@
 [ext_resource path="res://Themes/panel.tres" type="Theme" id=1]
 [ext_resource path="res://Themes/button_small.tres" type="Theme" id=2]
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=1]
 script/source = "extends PanelContainer
 
-var t = 0
-
-func _process(delta):
-	t += delta
-	set_rotation(sin(t)*0.02)
-	if t > 2*PI:
-		t = 0"
+#var t = 0
+#
+#func _process(delta):
+#	t += delta
+#	set_rotation(sin(t)*0.02)
+#	if t > 2*PI:
+#		t = 0"
 
 [node name="instructions" type="PanelContainer"]
 show_behind_parent = true
@@ -22,7 +22,7 @@ margin_right = 790.0
 margin_bottom = 1010.0
 rect_pivot_offset = Vector2( 170, 0 )
 theme = ExtResource( 1 )
-script = SubResource( 7 )
+script = SubResource( 1 )
 
 [node name="vbox" type="VBoxContainer" parent="."]
 margin_left = 16.0

@@ -551,11 +551,11 @@ script/source = "#btn_debug_mode
 extends \"res://Scripts/button_menu_generic.gd\"
 
 func setup_button():
-	$CheckBox.pressed = g_mng.fl_debug_mode
+	$CheckBox.pressed = data_mng.cfg_debug_mode
 
 func _pressed():
-	g_mng.fl_debug_mode = !g_mng.fl_debug_mode
-	$CheckBox.pressed = g_mng.fl_debug_mode"
+	data_mng.cfg_debug_mode = !data_mng.cfg_debug_mode
+	$CheckBox.pressed = data_mng.cfg_debug_mode"
 
 [sub_resource type="GDScript" id=41]
 script/source = "#btn_experimental_char
