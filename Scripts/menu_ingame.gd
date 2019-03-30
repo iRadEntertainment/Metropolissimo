@@ -54,11 +54,14 @@ func _on_mouse_info_show_timeout():
 	fl_mouse_info = false
 	$mouse_info.visible = false
 
+#---------------- vvv quick menu vvv -----------------------
+
 var show_quick_menu = false
 func quick_menu(val):
 	show_quick_menu = val
 	$quick_menu.visible = true
 	set_process(true)
+
 
 func _process(delta):
 	var alpha = inverse_lerp(1 , g_mng.slow_time_factor , Engine.time_scale)
@@ -72,6 +75,8 @@ func _process(delta):
 		if alpha <= g_mng.slow_time_factor:
 			$quick_menu.visible = false
 			set_process(false)
+
+#-------------- ^^^ quick menu ^^^ --------------------------
 
 
 #========== player Var

@@ -29,7 +29,6 @@ func count_files(path, extention):
 			file_name = dir.get_next()
 	else:
 		print("UTL: Count_files -> An error occurred when trying to access the path.")
-		print(dir.open(path))
 	return count
 
 #-------------- Time format from Xrayez

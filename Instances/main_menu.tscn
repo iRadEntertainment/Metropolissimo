@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/backgrouds/city-2o-2880x1800.jpg" type="Texture" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://Instances/thumb_load.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Themes/fonts/MILLENNIA.TTF" type="DynamicFontData" id=8]
 [ext_resource path="res://Themes/button_small.tres" type="Theme" id=9]
-[ext_resource path="res://Themes/sliders.tres" type="Theme" id=10]
+[ext_resource path="res://Themes/panel.tres" type="Theme" id=10]
+[ext_resource path="res://Themes/sliders.tres" type="Theme" id=11]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -328,6 +329,53 @@ extends \"res://Scripts/button_menu_generic.gd\"
 func _pressed():
 	data_mng.save_settings()"
 
+[sub_resource type="GDScript" id=50]
+script/source = "#btn_mmenu_fullscreen
+
+extends \"res://Scripts/button_menu_generic.gd\"
+
+func setup_button():
+	$CheckBox.pressed = data_mng.cfg_fixed_size
+
+func _pressed():
+	data_mng.cfg_fixed_size = !data_mng.cfg_fixed_size
+	$CheckBox.pressed       = data_mng.cfg_fixed_size
+	OS.window_resizable     = !data_mng.cfg_fixed_size
+	OS.window_borderless    =  data_mng.cfg_fixed_size
+	
+	if data_mng.cfg_fixed_size:
+		get_tree().set_screen_stretch( SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_KEEP, data_mng.cfg_window_size)
+	else:
+		get_tree().set_screen_stretch( SceneTree.STRETCH_MODE_DISABLED, SceneTree.STRETCH_ASPECT_IGNORE, Vector2(50,50))#OS.window_size)
+		"
+
+[sub_resource type="GDScript" id=51]
+script/source = "extends OptionButton
+
+
+func _ready():
+	populate()
+	var actual_res_id = data_mng.available_res.find(data_mng.cfg_window_size)
+	select(actual_res_id)
+	connect(\"item_selected\",self,\"_selected\")
+
+
+func populate():
+	var i = 0
+	for res in data_mng.available_res:
+		
+		var lb = str( res.x ) + \" x \" + str( res.y )
+		
+		if res.length() <= OS.get_screen_size().length():
+			add_item(lb , i)
+			
+		i += 1
+
+func _selected(id):
+	OS.window_size = data_mng.available_res[id]
+	data_mng.cfg_window_size = data_mng.available_res[id]
+	select(id)"
+
 [sub_resource type="GDScript" id=33]
 script/source = "#btn_mmenu_fullscreen
 
@@ -339,7 +387,10 @@ func setup_button():
 func _pressed():
 	data_mng.cfg_fullscreen = !data_mng.cfg_fullscreen
 	$CheckBox.pressed = data_mng.cfg_fullscreen
-	OS.window_fullscreen = data_mng.cfg_fullscreen"
+	OS.window_fullscreen = data_mng.cfg_fullscreen
+	
+	if !data_mng.cfg_fullscreen:
+		OS.window_size = data_mng.cfg_window_size"
 
 [sub_resource type="GDScript" id=34]
 script/source = "#btn_start_menu_vfx
@@ -352,32 +403,6 @@ func setup_button():
 func _pressed():
 	g_mng.fl_vfx_enabled = !g_mng.fl_vfx_enabled
 	$CheckBox.pressed = g_mng.fl_vfx_enabled"
-
-[sub_resource type="StyleBoxFlat" id=47]
-
-[sub_resource type="StyleBoxFlat" id=48]
-content_margin_left = 16.0
-content_margin_right = 16.0
-content_margin_top = 8.0
-content_margin_bottom = 16.0
-bg_color = Color( 0.176471, 0.176471, 0.176471, 0.792157 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
-[sub_resource type="Theme" id=49]
-Panel/styles/panel = SubResource( 47 )
-Panel/styles/panelf = SubResource( 47 )
-Panel/styles/panelnc = SubResource( 47 )
-PanelContainer/styles/panel = SubResource( 48 )
 
 [sub_resource type="GDScript" id=38]
 script/source = "extends HSlider
@@ -473,6 +498,62 @@ func setup_button():
 func _pressed():
 	data_mng.cfg_experimental_char = !data_mng.cfg_experimental_char
 	$CheckBox.pressed = data_mng.cfg_experimental_char"
+
+[sub_resource type="GDScript" id=52]
+script/source = "extends Tree
+
+
+func _ready():
+	var root  = create_item()
+	
+	hide_root = true
+	columns   = 1
+	
+	
+	var dir = Directory.new()
+	dir.open(\"res://Stages/\")
+	dir.list_dir_begin(true)
+	
+	var dir_file_name = dir.get_next()
+	while (dir_file_name != \"\"):
+		if dir.current_is_dir():
+			
+			var d = create_item(root)
+			d.set_text       (0 , dir_file_name)
+			d.set_selectable (0 , false)
+			d.set_tooltip    (0 , \"\")
+			
+			var sub_dir = Directory.new()
+			sub_dir.open(\"res://Stages/\"+dir_file_name)
+			sub_dir.list_dir_begin(true)
+			
+			var sub_file = sub_dir.get_next()
+			while sub_file != \"\":
+				if \".tscn\" in sub_file:
+					var st = create_item(d)
+					st.set_text      (0 , sub_file.replace(\".tscn\", \"\"))
+					st.set_text_align(0 , TreeItem.ALIGN_CENTER)
+					st.set_metadata  (0 , \"res://Stages/%s/%s\"%[dir_file_name,sub_file])
+					st.set_tooltip   (0 , \"/Stages/%s/%s\"%[dir_file_name,sub_file])
+					
+					
+				sub_file = sub_dir.get_next()
+			sub_dir.list_dir_end()
+			
+			
+		else:
+			var st = create_item(root)
+			st.set_text( 0 , dir_file_name.replace(\".tscn\", \"\") )
+			st.set_metadata(0 , \"res://Stages/%s\"%[dir_file_name])
+		
+		dir_file_name = dir.get_next()
+	dir.list_dir_end()
+
+func _on_tree_item_activated():
+	var path = get_selected().get_metadata(0)
+	audio_mng.music_fade_out()
+	g_mng.load_stage_from_main_menu(path)
+"
 
 [node name="main_menu" type="Control"]
 anchor_right = 1.0
@@ -632,7 +713,7 @@ script = SubResource( 24 )
 editor/display_folded = true
 visible = false
 margin_left = 266.0
-margin_right = 749.0
+margin_right = 1248.0
 margin_bottom = 304.0
 size_flags_horizontal = 3
 
@@ -658,6 +739,7 @@ margin_bottom = 272.0
 [node name="thumb_load" parent="hbox_bttm/cnt_load_game/hbox/btns_load" instance=ExtResource( 7 )]
 
 [node name="cnt_opts" type="Control" parent="hbox_bttm"]
+visible = false
 margin_left = 266.0
 margin_right = 1248.0
 margin_bottom = 304.0
@@ -696,9 +778,41 @@ editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 232.0
 
-[node name="fullscreen" type="Button" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
+[node name="fixed_size" type="Button" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
+editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 32.0
+rect_min_size = Vector2( 250, 32 )
+size_flags_horizontal = 3
+theme = ExtResource( 9 )
+text = "Fixed size"
+script = SubResource( 50 )
+
+[node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_opts/hbox/btns_opt/fixed_size"]
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = 23.0
+mouse_filter = 2
+disabled = true
+flat = true
+align = 1
+
+[node name="op_res" type="OptionButton" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
+margin_top = 36.0
+margin_right = 250.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 32 )
+theme = ExtResource( 9 )
+text = "Elemento 0"
+align = 1
+selected = 0
+script = SubResource( 51 )
+
+[node name="fullscreen" type="Button" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
+editor/display_folded = true
+margin_top = 72.0
+margin_right = 250.0
+margin_bottom = 104.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
@@ -715,9 +829,10 @@ flat = true
 align = 1
 
 [node name="vfx" type="Button" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
-margin_top = 36.0
+editor/display_folded = true
+margin_top = 108.0
 margin_right = 250.0
-margin_bottom = 68.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
@@ -739,9 +854,10 @@ margin_right = 950.0
 margin_bottom = 146.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme = SubResource( 49 )
+theme = ExtResource( 10 )
 
 [node name="audio" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel"]
+editor/display_folded = true
 margin_left = 16.0
 margin_top = 8.0
 margin_right = 668.0
@@ -750,7 +866,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="vol_master" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel/audio"]
-editor/display_folded = true
 margin_right = 652.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
@@ -768,7 +883,7 @@ margin_right = 652.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 0, 16 )
 size_flags_vertical = 1
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -42.0
 max_value = 0.0
 step = 2.0
@@ -781,7 +896,7 @@ margin_top = 47.0
 margin_right = 652.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 0, 4 )
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -72.0
 max_value = 12.0
 percent_visible = false
@@ -792,7 +907,7 @@ margin_top = 55.0
 margin_right = 652.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 4 )
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -72.0
 max_value = 12.0
 value = 12.0
@@ -823,7 +938,7 @@ margin_right = 318.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 0, 16 )
 size_flags_vertical = 1
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -42.0
 max_value = 0.0
 step = 2.0
@@ -836,7 +951,7 @@ margin_top = 47.0
 margin_right = 318.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 0, 4 )
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -72.0
 max_value = 12.0
 percent_visible = false
@@ -847,7 +962,7 @@ margin_top = 55.0
 margin_right = 318.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 4 )
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -72.0
 max_value = 12.0
 value = 12.0
@@ -873,7 +988,7 @@ margin_right = 318.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 0, 16 )
 size_flags_vertical = 1
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -42.0
 max_value = 0.0
 step = 2.0
@@ -886,7 +1001,7 @@ margin_top = 47.0
 margin_right = 318.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 0, 4 )
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -72.0
 max_value = 12.0
 percent_visible = false
@@ -897,7 +1012,7 @@ margin_top = 55.0
 margin_right = 318.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 4 )
-theme = ExtResource( 10 )
+theme = ExtResource( 11 )
 min_value = -72.0
 max_value = 12.0
 value = 12.0
@@ -905,8 +1020,6 @@ percent_visible = false
 script = SubResource( 46 )
 
 [node name="cnt_debug" type="Control" parent="hbox_bttm"]
-editor/display_folded = true
-visible = false
 margin_left = 266.0
 margin_right = 1248.0
 margin_bottom = 304.0
@@ -921,7 +1034,7 @@ color = Color( 0.25, 0.0253906, 0.0253906, 0.276235 )
 anchor_right = 1.0
 margin_left = 16.0
 margin_top = 16.0
-margin_right = -174.0
+margin_right = -184.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
@@ -932,9 +1045,9 @@ script = SubResource( 35 )
 [node name="btn_save_cfg" type="Button" parent="hbox_bttm/cnt_debug"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -163.0
+margin_left = -171.0
 margin_top = 16.0
-margin_right = -8.0
+margin_right = -16.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 3
@@ -951,6 +1064,7 @@ margin_right = -16.0
 margin_bottom = -16.0
 
 [node name="btns_opt" type="GridContainer" parent="hbox_bttm/cnt_debug/hbox"]
+editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 232.0
 
@@ -992,3 +1106,12 @@ disabled = true
 flat = true
 align = 1
 
+[node name="tree" type="Tree" parent="hbox_bttm/cnt_debug/hbox"]
+margin_left = 254.0
+margin_right = 434.0
+margin_bottom = 232.0
+rect_min_size = Vector2( 180, 0 )
+theme = ExtResource( 10 )
+script = SubResource( 52 )
+
+[connection signal="item_activated" from="hbox_bttm/cnt_debug/hbox/tree" to="hbox_bttm/cnt_debug/hbox/tree" method="_on_tree_item_activated"]

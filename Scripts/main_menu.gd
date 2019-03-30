@@ -41,13 +41,14 @@ func vfx_toggle(val): $vfx.visible = val
 
 func _process(delta):
 	mouse_parallax_bg()
+	
+	# on NEW GAME pressed: load(tscn path)
 	if fade_off:
 		var alpha = modulate.a
 		modulate.a -= delta*2
 		if modulate.a < 0.1:
 			fade_off = false
-			g_mng.load_new_game(stage1_1_path)
-			queue_free()
+			g_mng.load_stage_from_main_menu(stage1_1_path)
 
 func mouse_parallax_bg():
 	var mouse_offs = Vector2()
@@ -80,8 +81,7 @@ func _btn_new_game():
 #------------- SUB menu buttons function -------------------
 func _on_test_stage_click():
 	audio_mng.music_fade_out()
-	g_mng.load_new_game(stage_test)
-	queue_free()
+	g_mng.load_stage_from_main_menu(stage_test)
 
 
 func check_for_savegames():

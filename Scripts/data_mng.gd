@@ -9,9 +9,19 @@ var data_dir  = str("res://metropolissimo_data")
 var data_filename = "metropolissimo_data.cfg"
 var data_path = str(data_dir,"/",data_filename)
 
-var cfg_thumb_size = 128
-var cfg_fullscreen = true
+var cfg_thumb_size  = 128
+var cfg_fixed_size  = false
+var cfg_window_size = Vector2(1024,768)
+var cfg_fullscreen  = true
 var cfg_vfx_enabled = true
+
+var available_res = [	Vector2(640,360), Vector2(800,600), Vector2(1024,768),
+						Vector2(1280,720), Vector2(1280,800), Vector2(1280,1024),
+						Vector2(1360,768), Vector2(1366,768), Vector2(1440,900),
+						Vector2(1536,864), Vector2(1600,900), Vector2(1680,1050),
+						Vector2(1920,1080), Vector2(1920,1200), Vector2(2048,1152),
+						Vector2(2560,1080), Vector2(2560,1440), Vector2(3440,1440),
+						Vector2(3840,2160)]
 
 #---------- save_games
 var save_dir  = str(data_dir,"/savegame")
@@ -59,6 +69,8 @@ func save_settings():
 	var file_config = ConfigFile.new()
 	#--- general settings
 	file_config.set_value("settings","cfg_thumb_size" ,cfg_thumb_size)
+	file_config.set_value("settings","cfg_fixed_size" ,cfg_fixed_size)
+	file_config.set_value("settings","cfg_window_size" ,cfg_window_size)
 	file_config.set_value("settings","cfg_fullscreen" ,cfg_fullscreen)
 	file_config.set_value("settings","cfg_vfx_enabled",cfg_vfx_enabled)
 	
@@ -88,6 +100,8 @@ func load_settings():
 	
 	#--- load sections
 	cfg_thumb_size  = file_config.get_value("settings","cfg_thumb_size",512)
+	cfg_fixed_size  = file_config.get_value("settings","cfg_fixed_size",false)
+	cfg_window_size = file_config.get_value("settings","cfg_window_size",Vector2(1024,768))
 	cfg_fullscreen  = file_config.get_value("settings","cfg_fullscreen",true)
 	cfg_vfx_enabled = file_config.get_value("settings","cfg_vfx_enabled",true)
 	
@@ -101,6 +115,10 @@ func load_settings():
 	audio_mng.sound_bus_vol  = file_config.get_value("audio","sound_bus_vol")
 
 func parse_loaded_settings():
+	OS.window_resizable  = !cfg_fixed_size
+	OS.window_borderless = cfg_fixed_size
+	OS.window_size       = cfg_window_size
+	OS.window_position   = Vector2()
 	OS.window_fullscreen = cfg_fullscreen
 	g_mng.fl_vfx_enabled = cfg_vfx_enabled
 

@@ -49,6 +49,8 @@ func _vfx_enabled(val):
 
 #============= loading scenes management
 func load_new_game(path):
+	
+	
 	#--- add loading_screen.tscn
 	var loading_screen = load(loading_scene_path).instance()
 	get_node("/root").add_child(loading_screen)
@@ -59,6 +61,10 @@ func load_new_game(path):
 	
 	#--- load the next scene and wait for the signal
 	loading_screen.load_next_scene(path)
+
+func load_stage_from_main_menu(path):
+	utl.n_base().queue_free()
+	load_new_game(path)
 
 func scene_loaded(incoming_scene):
 	add_stage_instances(incoming_scene)
@@ -85,12 +91,16 @@ func add_stage_instances(incoming_scene):
 		prints("G_MNG: adding",name,"instances")
 		
 		incoming_scene.add_child(gui_preload.instance())
-		
+		print("G_MNG: - GUI")
 		var pl_instance
 		if data_mng.cfg_experimental_char:
 			pl_instance = pl_preload_xp.instance()
+			print("G_MNG: - Player experimental")
+		
 		else:
 			pl_instance = pl_preload.instance()
+			print("G_MNG: - Player")
+			
 		incoming_scene.add_child(pl_instance)
 
 func game_setup_and_start():

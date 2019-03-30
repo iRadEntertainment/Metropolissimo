@@ -953,6 +953,7 @@ text = "false"
 script = SubResource( 14 )
 
 [node name="tgg_coll_hint" type="CheckBox" parent="debug"]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -12.0
