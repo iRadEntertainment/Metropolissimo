@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=8 format=2]
 
-[ext_resource path="res://Themes/fonts/MILLENNIA.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Themes/fonts/Atiba.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.195313, 0.185394, 0.185394, 0.707176 )
@@ -58,7 +58,6 @@ corner_radius_top_left = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="DynamicFont" id=6]
-size = 22
 font_data = ExtResource( 1 )
 
 [resource]

@@ -16,7 +16,7 @@ expand_margin_bottom = 8.0
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.181274, 0.684552, 0.859375, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 1, 1, 0.254902 )
 border_width_top = 2
 border_width_bottom = 2
@@ -24,10 +24,10 @@ border_color = Color( 0.00392157, 0.00392157, 0.156863, 0.807843 )
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.101961, 0.682353, 0.105882, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.763046, 0.872384, 0.925781, 0.303843 )
 border_width_left = 1
 border_width_right = 1
@@ -54,15 +54,15 @@ HSlider/styles/slider = SubResource( 1 )
 ProgressBar/colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
 ProgressBar/fonts/font = null
-ProgressBar/styles/bg = SubResource( 4 )
-ProgressBar/styles/fg = SubResource( 5 )
+ProgressBar/styles/bg = SubResource( 3 )
+ProgressBar/styles/fg = SubResource( 4 )
 VSlider/icons/grabber = null
 VSlider/icons/grabber_disabled = null
 VSlider/icons/grabber_highlight = null
 VSlider/icons/tick = null
-VSlider/styles/focus = SubResource( 3 )
+VSlider/styles/focus = SubResource( 5 )
 VSlider/styles/grabber_area = SubResource( 2 )
-VSlider/styles/grabber_disabled = SubResource( 3 )
-VSlider/styles/grabber_highlight = SubResource( 3 )
-VSlider/styles/slider = SubResource( 3 )
+VSlider/styles/grabber_disabled = SubResource( 5 )
+VSlider/styles/grabber_highlight = SubResource( 5 )
+VSlider/styles/slider = SubResource( 5 )
 

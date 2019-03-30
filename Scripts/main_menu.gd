@@ -37,7 +37,7 @@ func connect_all_signals():
 	#sub menu buttons
 	$hbox_bttm/cnt_debug/btn_stage_test.connect ("pressed",self,"_on_test_stage_click")
 
-func vfx_toggle(val): $vfx.visible = val
+func vfx_toggle(val): $bg_tex/vfx.visible = val
 
 func _process(delta):
 	mouse_parallax_bg()

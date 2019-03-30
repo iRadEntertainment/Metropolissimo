@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/crow.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/npc/crow_sheet.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "flapp"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 23 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "plane"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 6, 14, 6 ]
+}
+
+[node name="crow" type="KinematicBody2D" groups=[
+"crows",
+]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="coll" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 3
+hframes = 8
+frame = 6
+
+[node name="anm" type="AnimationPlayer" parent="."]
+autoplay = "flapp"
+anims/flapp = SubResource( 2 )
+anims/plane = SubResource( 3 )
+
+[node name="detect" type="Area2D" parent="."]
+
+[node name="coll" type="CollisionPolygon2D" parent="detect"]
+polygon = PoolVector2Array( 4.9346, -4.2711, 96.8, -44.8378, 96.8, 62.9108, 4.71996, 2.59735 )
+
