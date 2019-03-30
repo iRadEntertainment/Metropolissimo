@@ -6,17 +6,28 @@ onready var impact_tscn = preload("res://Instances/impact_pistol.tscn")
 onready var ray_tscn    = preload("res://Instances/trail_electric.tscn")
 onready var shell_tscn  = preload("res://Instances/empty_shell_pistol.tscn")
 
-var damage     = 1
-var max_passes = 3 # max number of traversable objects if in group "passable"
+var damage        = 1
+var max_passes    = 1 # max number of traversable objects if in group "passable"
+var burst_bullets = 4 # number of shots fired during a burst shot
+
+var object_to_shoot    = null
+var objects_to_exclude = []
 
 func _ready():
 	$nozzle/muzzle.hide()
+	$sound_decay.connect ("timeout",self,"_stop_sound")
+	$burst.connect       ("timeout",self,"burst_count_down")
+
 
 func fire(obj_aimed , arr_obj_excluded):
+	
+	object_to_shoot    = obj_aimed
+	objects_to_exclude = arr_obj_excluded
+	
 	var ray    = $nozzle/ray
-	var p1 = $nozzle.global_position
-	var p2
-	var ray_res
+	var p1     = $nozzle.global_position
+	var p2      # collision point
+	var ray_res # resulting vector p1 -> p2
 	
 	for node in arr_obj_excluded:
 		ray.add_exception(node)
@@ -30,7 +41,7 @@ func fire(obj_aimed , arr_obj_excluded):
 			ray_res = p2-p1
 			
 			var obj_temp = ray.get_collider()
-			prints("WP_ASSAULT_RIFLE: obj hit =",obj_temp)
+#			prints("WP_ASSAULT_RIFLE: obj hit =",obj_temp)
 			if obj_temp == null: return
 			#-----impact
 			var impact_inst = impact_tscn.instance()
@@ -80,10 +91,20 @@ func fire(obj_aimed , arr_obj_excluded):
 #	$recoil.start()
 	
 	#------sfx
+	$sfx/fire.stop()
 	$sfx/fire.play()
+	$sound_decay.start() # connected to time to func _stop_sound()
+	
+	#------ burst shot
+	$burst.stop()
+	$burst.start()
 
-func reload():
-	$sfx/reload.play()
-
-func sfx_holster(val):
-	$sfx/holster.play()
+func _stop_sound():      $sfx/fire.stop()
+func reload():           $sfx/reload.play()
+func sfx_holster(val):   $sfx/holster.play()
+func burst_count_down():
+	burst_bullets -= 1
+	if burst_bullets == 0:
+		burst_bullets = 4
+	else:
+		fire(object_to_shoot, objects_to_exclude)

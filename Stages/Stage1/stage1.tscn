@@ -14,7 +14,7 @@
 [ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Sprites/pixel_bianco.png" type="Texture" id=13]
 [ext_resource path="res://Shaders/floor_noise.shader" type="Shader" id=14]
-[ext_resource path="res://Scripts/cam_ctrl.gd" type="Script" id=15]
+[ext_resource path="res://Instances/instructions.tscn" type="PackedScene" id=15]
 
 [sub_resource type="GDScript" id=1]
 script/source = "#gen_pickups
@@ -270,7 +270,6 @@ __meta__ = {
 z_index = 15
 
 [node name="cnt" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 10 )
 
 [node name="pickups" type="Node2D" parent="cnt"]
@@ -281,6 +280,7 @@ script = SubResource( 1 )
 [node name="bullets" type="Node2D" parent="cnt"]
 
 [node name="lights" type="Node2D" parent="cnt"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -360,26 +360,7 @@ position = Vector2( 72, 1120 )
 [node name="1" type="Position2D" parent="cnt/spawn"]
 position = Vector2( 128, 1120 )
 
-[node name="cam_ctrl" type="Position2D" parent="."]
-editor/display_folded = true
-script = ExtResource( 15 )
-
-[node name="cam" type="Camera2D" parent="cam_ctrl"]
-pause_mode = 2
-current = true
-limit_left = 0
-limit_top = 0
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
-
-[node name="pos" type="TextureRect" parent="cam_ctrl"]
-visible = false
-margin_left = -2.0
-margin_top = -2.0
-margin_right = 2.0
-margin_bottom = 2.0
-texture = ExtResource( 13 )
-expand = true
+[node name="instructions" parent="cnt" instance=ExtResource( 15 )]
 
 [node name="tools" type="Control" parent="."]
 margin_right = 40.0

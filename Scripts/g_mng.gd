@@ -5,10 +5,11 @@
 extends Node
 
 #------ scenes var
-const loading_scene_path  = "res://Instances/loading_screen.tscn"
-onready var gui_preload   = preload("res://Instances/GUI.tscn")
-onready var pl_preload    = preload("res://Instances/player.tscn")
-onready var pl_preload_xp = preload("res://Instances/pl_sperim.tscn")
+const loading_scene_path     = "res://Instances/loading_screen.tscn"
+onready var gui_preload      = preload("res://Instances/GUI.tscn")
+onready var cam_ctrl_preload = preload("res://Instances/cam_ctrl.tscn")
+onready var pl_preload       = preload("res://Instances/player.tscn")
+onready var pl_preload_xp    = preload("res://Instances/pl_sperim.tscn")
 
 #------ option vars
 var fl_vfx_enabled = false setget _vfx_enabled
@@ -92,6 +93,9 @@ func add_stage_instances(incoming_scene):
 		
 		incoming_scene.add_child(gui_preload.instance())
 		print("G_MNG: - GUI")
+		incoming_scene.add_child(cam_ctrl_preload.instance())
+		print("G_MNG: - CAM CONTROL")
+		
 		var pl_instance
 		if data_mng.cfg_experimental_char:
 			pl_instance = pl_preload_xp.instance()

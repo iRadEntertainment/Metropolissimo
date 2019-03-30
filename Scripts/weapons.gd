@@ -80,15 +80,13 @@ func holster(val):
 
 func fire(obj_aimed , arr_obj_excluded):
 	if wp_num == WpNum.UNARMED: return
-	if wp_num == WpNum.RIFLE:
-		var t = 0
-		while n_mng.pl.st_fire_trig:
-			print(n_mng.pl.st_fire_trig)
-			if t > rifle_cooldown:
-				t += 0.01
-				wp_node_armed.fire(obj_aimed , arr_obj_excluded)
-			#TODO: if player is dead: break
+
 	if wp_node_armed.has_method("fire"):
+#		if wp_num == WpNum.RIFLE:
+#			for i in range (4):
+#				wp_node_armed.fire(obj_aimed , arr_obj_excluded)
+#				OS.delay_usec(0.5)
+#		else:
 		wp_node_armed.fire(obj_aimed , arr_obj_excluded)
 
 func reload():

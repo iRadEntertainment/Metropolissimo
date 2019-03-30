@@ -8385,7 +8385,6 @@ __meta__ = {
 }
 
 [node name="weapons" type="Node2D" parent="." index="4"]
-editor/display_folded = true
 position = Vector2( 48, -32 )
 script = ExtResource( 20 )
 
@@ -8427,6 +8426,7 @@ position = Vector2( 1.48082, 1.00421 )
 rotation = 1.5708
 
 [node name="triggers" type="Node2D" parent="." index="6"]
+editor/display_folded = true
 visible = false
 
 [node name="env_detect_top" type="Area2D" parent="triggers" index="0"]
@@ -8533,7 +8533,7 @@ anims/walk_norm = SubResource( 46 )
 master_player = NodePath("../body")
 data = {
 "active": false,
-"connections": [ "blend_aim", "out", 0, "anim", "tr_stealth", 0, "anim 16", "tr_stealth", 1, "anim 17", "tr_stealth", 2, "anim 18", "tr_stealth", 3, "tr_main", "get_wp", 0, "anim 6", "get_wp", 1, "get_wp", "blend_aim", 0, "aim_seek", "blend_aim", 1, "anim 19", "tr_crouch_walk", 0, "anim 20", "tr_crouch_walk", 1, "anim 21", "tr_crouch_walk", 2, "anim 22", "tr_crouch_walk", 3, "anim 10", "tr_run", 0, "anim 11", "tr_run", 1, "anim 12", "tr_run", 2, "anim 13", "tr_run", 3, "idle0", "tr_main", 0, "anim 4", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "anim 2", "jump_up", 0, "anim 14", "jump_up", 1, "anim 15", "jump_up", 2, "anim 5", "tr_walk", 0, "anim 7", "tr_walk", 1, "anim 8", "tr_walk", 2, "anim 9", "tr_walk", 3, "anim 3", "aim_seek", 0 ],
+"connections": [ "blend_aim", "out", 0, "anim 3", "aim_seek", 0, "anim 5", "tr_walk", 0, "anim 7", "tr_walk", 1, "anim 8", "tr_walk", 2, "anim 9", "tr_walk", 3, "anim 10", "tr_run", 0, "anim 11", "tr_run", 1, "anim 12", "tr_run", 2, "anim 13", "tr_run", 3, "anim 2", "jump_up", 0, "anim 14", "jump_up", 1, "anim 15", "jump_up", 2, "idle0", "tr_main", 0, "anim 4", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "anim 19", "tr_crouch_walk", 0, "anim 20", "tr_crouch_walk", 1, "anim 21", "tr_crouch_walk", 2, "anim 22", "tr_crouch_walk", 3, "tr_main", "get_wp", 0, "anim 6", "get_wp", 1, "get_wp", "blend_aim", 0, "aim_seek", "blend_aim", 1, "anim", "tr_stealth", 0, "anim 16", "tr_stealth", 1, "anim 17", "tr_stealth", 2, "anim 18", "tr_stealth", 3 ],
 "master": NodePath("../body"),
 "nodes": [ {
 "filter": [  ],
@@ -8547,74 +8547,71 @@ data = {
 "type": "output"
 }, {
 "filter": [  ],
-"from": "fr_jump0",
-"id": "anim 2",
-"position": Vector2( 678, 377 ),
-"type": "animation"
-}, {
-"filter": [  ],
 "from": "fr_walk01",
-"id": "anim 7",
-"position": Vector2( 194, 235 ),
+"id": "anim 9",
+"position": Vector2( 212, 295 ),
 "type": "animation"
 }, {
+"id": "aim_seek",
+"position": Vector2( 1056, 5 ),
+"type": "timeseek"
+}, {
 "filter": [  ],
-"from": "fr_run1",
-"id": "anim 12",
-"position": Vector2( 373, 489 ),
+"from": "fr_run0",
+"id": "anim 10",
+"position": Vector2( 353, 430 ),
+"type": "animation"
+}, {
+"filter": [ NodePath("..") ],
+"from": "tr_get_pistol",
+"id": "anim 6",
+"position": Vector2( 953, 386 ),
 "type": "animation"
 }, {
 "filter": [  ],
 "from": "fr_crouch_walk01",
-"id": "anim 18",
-"position": Vector2( 32, 521 ),
+"id": "anim 16",
+"position": Vector2( 18, 458 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "aim_pistol",
-"id": "anim 3",
-"position": Vector2( 928, 5 ),
+"from": "fr_jump3",
+"id": "anim 15",
+"position": Vector2( 693, 433 ),
 "type": "animation"
 }, {
-"id": "tr_stealth",
-"position": Vector2( 194, 416 ),
-"transitions": [ {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-} ],
-"type": "transition",
-"xfade": 0.26
-}, {
-"autorestart": false,
-"autorestart_delay": 1.0,
-"autorestart_random_delay": 0.807843,
-"fade_in": 0.0,
-"fade_out": 0.0,
-"filter": [ NodePath("../body_parts/hips:position"), NodePath("../body_parts/hips:rotation_degrees") ],
-"id": "get_wp",
-"mix": false,
-"position": Vector2( 1096, 256 ),
-"type": "oneshot"
-}, {
-"blend": 0.0,
 "filter": [  ],
-"id": "blend_aim",
-"position": Vector2( 1256, 95 ),
-"type": "blend2"
-}, {
-"filter": [  ],
-"from": "fr_jump1",
-"id": "anim 14",
-"position": Vector2( 685, 405 ),
+"from": "fr_crouch_walk01",
+"id": "anim 20",
+"position": Vector2( 360, 649 ),
 "type": "animation"
 }, {
-"id": "tr_crouch_walk",
-"position": Vector2( 516, 624 ),
+"filter": [  ],
+"from": "fr_run01",
+"id": "anim 11",
+"position": Vector2( 361, 461 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk1",
+"id": "anim 21",
+"position": Vector2( 370, 679 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_run01",
+"id": "anim 13",
+"position": Vector2( 382, 519 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk01",
+"id": "anim 22",
+"position": Vector2( 377, 711 ),
+"type": "animation"
+}, {
+"id": "tr_walk",
+"position": Vector2( 339, 203 ),
 "transitions": [ {
 "auto_advance": true
 }, {
@@ -8626,42 +8623,6 @@ data = {
 } ],
 "type": "transition",
 "xfade": 0.13
-}, {
-"filter": [  ],
-"from": "fr_walk1",
-"id": "anim 8",
-"position": Vector2( 204, 265 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk1",
-"id": "anim 17",
-"position": Vector2( 26, 490 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk0",
-"id": "anim 19",
-"position": Vector2( 350, 621 ),
-"type": "animation"
-}, {
-"filter": [ NodePath("../body_parts/hips:position"), NodePath("../body_parts/hips:rotation_degrees") ],
-"from": "idle_crouch",
-"id": "anim 4",
-"position": Vector2( 73, 111 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_walk0",
-"id": "anim 5",
-"position": Vector2( 186, 204 ),
-"type": "animation"
-}, {
-"filter": [ NodePath("../body_parts/hips/body:rotation_degrees") ],
-"from": "idle0",
-"id": "idle0",
-"position": Vector2( 73, 9 ),
-"type": "animation"
 }, {
 "id": "tr_run",
 "position": Vector2( 515, 452 ),
@@ -8676,6 +8637,18 @@ data = {
 } ],
 "type": "transition",
 "xfade": 0.13
+}, {
+"id": "jump_up",
+"position": Vector2( 805, 368 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": false
+} ],
+"type": "transition",
+"xfade": 0.3
 }, {
 "id": "tr_main",
 "position": Vector2( 780, 39 ),
@@ -8697,26 +8670,26 @@ data = {
 "type": "transition",
 "xfade": 0.13
 }, {
-"id": "jump_up",
-"position": Vector2( 805, 368 ),
-"transitions": [ {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": false
-} ],
-"type": "transition",
-"xfade": 0.3
-}, {
 "filter": [  ],
-"from": "fr_run01",
-"id": "anim 13",
-"position": Vector2( 382, 519 ),
+"from": "fr_crouch_walk0",
+"id": "anim 19",
+"position": Vector2( 350, 621 ),
 "type": "animation"
 }, {
-"id": "tr_walk",
-"position": Vector2( 339, 203 ),
+"filter": [  ],
+"from": "fr_walk0",
+"id": "anim 5",
+"position": Vector2( 186, 204 ),
+"type": "animation"
+}, {
+"filter": [ NodePath("../body_parts/hips:position"), NodePath("../body_parts/hips:rotation_degrees") ],
+"from": "idle_crouch",
+"id": "anim 4",
+"position": Vector2( 73, 111 ),
+"type": "animation"
+}, {
+"id": "tr_crouch_walk",
+"position": Vector2( 516, 624 ),
 "transitions": [ {
 "auto_advance": true
 }, {
@@ -8730,114 +8703,48 @@ data = {
 "xfade": 0.13
 }, {
 "filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 22",
-"position": Vector2( 377, 711 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 20",
-"position": Vector2( 360, 649 ),
-"type": "animation"
-}, {
-"filter": [  ],
 "from": "fr_crouch_walk1",
-"id": "anim 21",
-"position": Vector2( 370, 679 ),
+"id": "anim 17",
+"position": Vector2( 26, 490 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_run01",
-"id": "anim 11",
-"position": Vector2( 361, 461 ),
+"from": "fr_walk1",
+"id": "anim 8",
+"position": Vector2( 204, 265 ),
 "type": "animation"
 }, {
-"filter": [ NodePath("..") ],
-"from": "tr_get_pistol",
-"id": "anim 6",
-"position": Vector2( 953, 386 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_jump3",
-"id": "anim 15",
-"position": Vector2( 693, 433 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk01",
-"id": "anim 16",
-"position": Vector2( 18, 458 ),
-"type": "animation"
+"autorestart": false,
+"autorestart_delay": 1.0,
+"autorestart_random_delay": 0.807843,
+"fade_in": 0.0,
+"fade_out": 0.0,
+"filter": [ NodePath("../body_parts/hips:position"), NodePath("../body_parts/hips:rotation_degrees") ],
+"id": "get_wp",
+"mix": false,
+"position": Vector2( 1096, 256 ),
+"type": "oneshot"
 }, {
 "filter": [  ],
-"from": "fr_walk01",
-"id": "anim 9",
-"position": Vector2( 212, 295 ),
+"from": "fr_jump1",
+"id": "anim 14",
+"position": Vector2( 685, 405 ),
 "type": "animation"
 }, {
+"blend": 0.0,
 "filter": [  ],
-"from": "fr_run0",
-"id": "anim 10",
-"position": Vector2( 353, 430 ),
-"type": "animation"
-}, {
-"id": "aim_seek",
-"position": Vector2( 1056, 5 ),
-"type": "timeseek"
-} ]
-}
-
-[node name="tree_legs" type="AnimationTreePlayer" parent="anim" index="4"]
-master_player = NodePath("../legs")
-data = {
-"active": false,
-"connections": [ "tr_main", "out", 0, "anim 11", "tr_stealth", 0, "anim 12", "tr_stealth", 1, "anim 13", "tr_stealth", 2, "anim 14", "tr_stealth", 3, "anim 16", "tr_crouch_walk", 0, "anim 15", "tr_crouch_walk", 1, "anim 17", "tr_crouch_walk", 2, "anim 18", "tr_crouch_walk", 3, "idle0", "anxiety", 0, "random_idle", "anxiety", 1, "anim 2", "tr_run", 0, "anim 5", "tr_run", 1, "anim 3", "tr_run", 2, "anim 8", "tr_run", 3, "anxiety", "tr_main", 0, "crouch", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "anim 4", "jump_up", 0, "fr_jump1", "jump_up", 1, "anim 10", "jump_up", 2, "anim 6", "tr_walk", 0, "anim", "tr_walk", 1, "anim 7", "tr_walk", 2, "anim 9", "tr_walk", 3 ],
-"master": NodePath("../legs"),
-"nodes": [ {
-"filter": [  ],
-"from": "fr_walk11",
-"id": "anim",
-"position": Vector2( 266, 244 ),
-"type": "animation"
-}, {
-"id": "out",
-"position": Vector2( 1380, 185 ),
-"type": "output"
-}, {
-"filter": [  ],
-"from": "fr_run0",
-"id": "anim 2",
-"position": Vector2( 594, 357 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_walk0",
-"id": "anim 7",
-"position": Vector2( 275, 272 ),
-"type": "animation"
+"id": "blend_aim",
+"position": Vector2( 1256, 95 ),
+"type": "blend2"
 }, {
 "filter": [  ],
 "from": "fr_crouch_walk01",
-"id": "anim 12",
-"position": Vector2( 250, 429 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_crouch_walk11",
 "id": "anim 18",
-"position": Vector2( 612, 628 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_run1",
-"id": "anim 3",
-"position": Vector2( 612, 412 ),
+"position": Vector2( 32, 521 ),
 "type": "animation"
 }, {
 "id": "tr_stealth",
-"position": Vector2( 439, 396 ),
+"position": Vector2( 194, 416 ),
 "transitions": [ {
 "auto_advance": true
 }, {
@@ -8851,30 +8758,53 @@ data = {
 "xfade": 0.26
 }, {
 "filter": [  ],
-"from": "fr_crouch_walk11",
-"id": "anim 14",
-"position": Vector2( 265, 487 ),
+"from": "aim_pistol",
+"id": "anim 3",
+"position": Vector2( 928, 5 ),
 "type": "animation"
-}, {
-"id": "tr_crouch_walk",
-"position": Vector2( 749, 540 ),
-"transitions": [ {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-} ],
-"type": "transition",
-"xfade": 0.13
 }, {
 "filter": [  ],
-"from": "fr_run11",
-"id": "anim 8",
-"position": Vector2( 620, 440 ),
+"from": "fr_jump0",
+"id": "anim 2",
+"position": Vector2( 678, 377 ),
 "type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_run1",
+"id": "anim 12",
+"position": Vector2( 373, 489 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_walk01",
+"id": "anim 7",
+"position": Vector2( 194, 235 ),
+"type": "animation"
+}, {
+"filter": [ NodePath("../body_parts/hips/body:rotation_degrees") ],
+"from": "idle0",
+"id": "idle0",
+"position": Vector2( 73, 9 ),
+"type": "animation"
+} ]
+}
+
+[node name="tree_legs" type="AnimationTreePlayer" parent="anim" index="4"]
+master_player = NodePath("../legs")
+data = {
+"active": false,
+"connections": [ "tr_main", "out", 0, "idle0", "anxiety", 0, "random_idle", "anxiety", 1, "anim 6", "tr_walk", 0, "anim", "tr_walk", 1, "anim 7", "tr_walk", 2, "anim 9", "tr_walk", 3, "anim 2", "tr_run", 0, "anim 5", "tr_run", 1, "anim 3", "tr_run", 2, "anim 8", "tr_run", 3, "anim 4", "jump_up", 0, "fr_jump1", "jump_up", 1, "anim 10", "jump_up", 2, "anxiety", "tr_main", 0, "crouch", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "anim 16", "tr_crouch_walk", 0, "anim 15", "tr_crouch_walk", 1, "anim 17", "tr_crouch_walk", 2, "anim 18", "tr_crouch_walk", 3, "anim 11", "tr_stealth", 0, "anim 12", "tr_stealth", 1, "anim 13", "tr_stealth", 2, "anim 14", "tr_stealth", 3 ],
+"master": NodePath("../legs"),
+"nodes": [ {
+"filter": [  ],
+"from": "fr_walk11",
+"id": "anim",
+"position": Vector2( 266, 244 ),
+"type": "animation"
+}, {
+"id": "out",
+"position": Vector2( 1380, 185 ),
+"type": "output"
 }, {
 "filter": [  ],
 "from": "fr_idle_crouch",
@@ -8883,21 +8813,9 @@ data = {
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_crouch_walk1",
-"id": "anim 17",
-"position": Vector2( 600, 599 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_jump1",
-"id": "fr_jump1",
-"position": Vector2( 906, 473 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "fr_jump0",
-"id": "anim 4",
-"position": Vector2( 916, 365 ),
+"from": "idle_relax1",
+"id": "random_idle",
+"position": Vector2( 10, 112 ),
 "type": "animation"
 }, {
 "autorestart": false,
@@ -8912,67 +8830,39 @@ data = {
 "type": "oneshot"
 }, {
 "filter": [  ],
-"from": "fr_run01",
-"id": "anim 5",
-"position": Vector2( 603, 384 ),
+"from": "fr_walk01",
+"id": "anim 9",
+"position": Vector2( 284, 299 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "idle0",
-"id": "idle0",
-"position": Vector2( 15, 5 ),
+"from": "fr_jump3",
+"id": "anim 10",
+"position": Vector2( 919, 586 ),
 "type": "animation"
 }, {
-"id": "tr_run",
-"position": Vector2( 755, 357 ),
-"transitions": [ {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-}, {
-"auto_advance": true
-} ],
-"type": "transition",
-"xfade": 0.13
-}, {
-"id": "tr_main",
-"position": Vector2( 991, 37 ),
-"transitions": [ {
-"auto_advance": false
-}, {
-"auto_advance": false
-}, {
-"auto_advance": false
-}, {
-"auto_advance": false
-}, {
-"auto_advance": false
-}, {
-"auto_advance": false
-}, {
-"auto_advance": false
-} ],
-"type": "transition",
-"xfade": 0.3
-}, {
-"id": "jump_up",
-"position": Vector2( 1077, 360 ),
-"transitions": [ {
-"auto_advance": true
-}, {
-"auto_advance": false
-}, {
-"auto_advance": false
-} ],
-"type": "transition",
-"xfade": 0.09
+"filter": [  ],
+"from": "fr_walk1",
+"id": "anim 6",
+"position": Vector2( 253, 213 ),
+"type": "animation"
 }, {
 "filter": [  ],
-"from": "idle_relax1",
-"id": "random_idle",
-"position": Vector2( 10, 112 ),
+"from": "fr_crouch_walk0",
+"id": "anim 16",
+"position": Vector2( 579, 542 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk01",
+"id": "anim 15",
+"position": Vector2( 589, 571 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk0",
+"id": "anim 11",
+"position": Vector2( 241, 401 ),
 "type": "animation"
 }, {
 "filter": [  ],
@@ -8995,40 +8885,150 @@ data = {
 "type": "transition",
 "xfade": 0.13
 }, {
+"id": "tr_run",
+"position": Vector2( 755, 357 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+} ],
+"type": "transition",
+"xfade": 0.13
+}, {
+"id": "jump_up",
+"position": Vector2( 1077, 360 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": false
+}, {
+"auto_advance": false
+} ],
+"type": "transition",
+"xfade": 0.09
+}, {
+"id": "tr_main",
+"position": Vector2( 991, 37 ),
+"transitions": [ {
+"auto_advance": false
+}, {
+"auto_advance": false
+}, {
+"auto_advance": false
+}, {
+"auto_advance": false
+}, {
+"auto_advance": false
+}, {
+"auto_advance": false
+}, {
+"auto_advance": false
+} ],
+"type": "transition",
+"xfade": 0.3
+}, {
 "filter": [  ],
-"from": "fr_crouch_walk0",
-"id": "anim 11",
-"position": Vector2( 241, 401 ),
+"from": "fr_run01",
+"id": "anim 5",
+"position": Vector2( 603, 384 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_walk1",
-"id": "anim 6",
-"position": Vector2( 253, 213 ),
+"from": "fr_jump0",
+"id": "anim 4",
+"position": Vector2( 916, 365 ),
+"type": "animation"
+}, {
+"id": "tr_crouch_walk",
+"position": Vector2( 749, 540 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+} ],
+"type": "transition",
+"xfade": 0.13
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk1",
+"id": "anim 17",
+"position": Vector2( 600, 599 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_run11",
+"id": "anim 8",
+"position": Vector2( 620, 440 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk11",
+"id": "anim 14",
+"position": Vector2( 265, 487 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_crouch_walk11",
+"id": "anim 18",
+"position": Vector2( 612, 628 ),
+"type": "animation"
+}, {
+"id": "tr_stealth",
+"position": Vector2( 439, 396 ),
+"transitions": [ {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+}, {
+"auto_advance": true
+} ],
+"type": "transition",
+"xfade": 0.26
+}, {
+"filter": [  ],
+"from": "fr_run1",
+"id": "anim 3",
+"position": Vector2( 612, 412 ),
+"type": "animation"
+}, {
+"filter": [  ],
+"from": "fr_run0",
+"id": "anim 2",
+"position": Vector2( 594, 357 ),
 "type": "animation"
 }, {
 "filter": [  ],
 "from": "fr_crouch_walk01",
-"id": "anim 15",
-"position": Vector2( 589, 571 ),
+"id": "anim 12",
+"position": Vector2( 250, 429 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_crouch_walk0",
-"id": "anim 16",
-"position": Vector2( 579, 542 ),
+"from": "fr_walk0",
+"id": "anim 7",
+"position": Vector2( 275, 272 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_walk01",
-"id": "anim 9",
-"position": Vector2( 284, 299 ),
+"from": "idle0",
+"id": "idle0",
+"position": Vector2( 15, 5 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_jump3",
-"id": "anim 10",
-"position": Vector2( 919, 586 ),
+"from": "fr_jump1",
+"id": "fr_jump1",
+"position": Vector2( 906, 473 ),
 "type": "animation"
 } ]
 }
