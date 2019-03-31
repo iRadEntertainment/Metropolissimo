@@ -26,59 +26,60 @@ height = 2.0
 [sub_resource type="GDScript" id=2]
 script/source = "extends Sprite
 
-var smooth_mov     = true
+export var smooth_mov     = true
 var smoothness_vel = 10
 var init_pos : Vector2 = position
+var end      : Vector2
 var bone_vec : Vector2
 var prev_seg = null
 var chain_base = false
 var chain_end  = false
 
 
-export var ang_off        : float = PI/2
 export var ang_max        : float = 0
 export var ang_min        : float = 170
 export var ang_base_chain : float = 90
 
-var angle    : float = ang_off
+var angle    : float
+var ang_off  : float
 var ang_prec : float
 
 var shift_back : Vector2
 
-signal mouse_click
-
-
-
 
 func _ready():
-	# segments
-	if get_index() == 0:
-		chain_base = true
-	elif get_index() == get_parent().get_child_count()-2:
-		chain_end  = true
-	if not chain_base:
-		prev_seg = get_node(\"..\").get_child(get_index()-1)
-	
+	add_to_group(\"ik_pieces\")
+
 	# bone vector
-	var this_id = get_index()
-	var end = get_node(\"..\").get_child(this_id+1).position
-	bone_vec = end - position
+	for child in get_children():
+		if child.is_in_group(\"ik_pieces\"):
+			end = child.global_position
+			break
+	bone_vec = end - global_position
 	# angles min and max to radiants
 	ang_min = deg2rad(ang_min)
 	ang_max = deg2rad(ang_max)
-	
+
 	#init angle
+	ang_off = acos(bone_vec.normalized().dot(Vector2(1,0)))
 	angle = ang_off
 
 
 
 func angle_calculation(target_global , delta):
 	#TO BE MADE IN INVERSE KINEMATIC
-	var target_to_local = target_global - global_position
-	var ang_temp = Vector2().angle_to_point(target_to_local) + ang_off
-	if ang_temp > PI: ang_temp -= 2*PI
+#	var target_to_local = target_global - global_position
+#	var ang_temp = Vector2().angle_to_point(target_to_local) + ang_off
+#	var ang_temp = global_position.angle_to_point(target_global) + ang_off
+	var ang_temp = (bone_vec).angle_to(target_global - global_position)
+	while ang_temp > PI: ang_temp -= 2*PI
+	
+#	angle = ang_temp
+#	apply_transform(target_global)
+#	return
 	
 	var ang_delta = ang_temp - angle
+	while ang_delta > PI: ang_delta -= 2*PI
 	
 	# ang_delta constraints
 	
@@ -87,17 +88,19 @@ func angle_calculation(target_global , delta):
 	
 	if not smooth_mov:
 		angle += ang_delta
-	
+#		angle = ang_temp
+
 	else: #NOT WORKING
-		if abs(ang_delta) < 0.01: # floor angle
-			angle += ang_delta
-			ang_delta = 0
+		pass
+#		if abs(ang_delta) < 0.01: # floor angle
+#			angle += ang_delta
+#			ang_delta = 0
 		
-		angle = lerp(angle, (angle+ang_delta), max( delta * smoothness_vel , 1) )
+		angle = lerp(angle, (angle+ang_delta), min( delta * smoothness_vel , 1) )
 #		angle += sign(ang_delta) * delta * smoothness_vel
 #		if chain_base:
 #			print(ang_delta)
-	
+
 #	if not smooth_mov:
 #		angle = ang_temp + ang_off
 #	else:
@@ -106,11 +109,11 @@ func angle_calculation(target_global , delta):
 #			# floor angle
 #			if angle - (ang_temp + ang_off) < 0.1:
 #				angle = ang_temp + ang_off
-	
-	if angle > PI: angle -= 2*PI
-	
+
+	while angle > PI: angle -= 2*PI
+
+	angles_constrain()
 	apply_transform(target_global)
-#	angles_constrain()
 
 
 func angles_constrain():
@@ -119,12 +122,12 @@ func angles_constrain():
 		ang_prec = deg2rad(ang_base_chain)
 	else:
 		ang_prec = prev_seg.angle
-	
+
 	var ang_min_wrap = ang_prec - ang_min
-	var ang_max_wrap = ang_prec - ang_min
+	var ang_max_wrap = ang_prec + ang_max
 	if ang_min_wrap > PI: ang_min_wrap -= 2*PI
 	if ang_max_wrap > PI: ang_max_wrap -= 2*PI
-	
+
 	if angle < ang_min_wrap:
 		angle = ang_min_wrap
 	elif angle > ang_max_wrap:
@@ -135,21 +138,31 @@ func apply_transform(target_global):
 	#TO BE MADE IN INVERSE KINEMATIC
 	#rotate
 	var bone_vec_rot = bone_vec.rotated(angle)
-	if rotation != angle:
-		rotation = angle
-	
+	if global_rotation != angle:
+		global_rotation = angle
+
 	#translate to target
 	global_position = (target_global - bone_vec_rot)
 	if chain_end: #grab and move control end point
-		var ctrl_point = get_node(\"..\").get_child(get_parent().get_child_count()-1)
+		var ctrl_point = get_children()[0]
 		ctrl_point.global_position = target_global
 
 
 
 func _draw():
-	draw_line(Vector2(), bone_vec , Color.white , 1 , false)
-	draw_circle(Vector2() , .5 , Color.wheat )
-	draw_circle(bone_vec  , 1 , Color.red )"
+	draw_line(Vector2(), bone_vec , Color.white , 1.2 , false)
+	draw_circle(Vector2() , 2.0  , Color.wheat )
+	draw_circle(bone_vec  , 0.8 , Color.red )
+	draw_polygon([Vector2(0,0), Vector2(10,0).rotated(ang_off) , Vector2(10,0)],[Color(0.8,0.8,0.5,0.9)])
+	
+	if chain_end:
+		var ctrl_pos = get_children()[0].global_position
+		draw_circle(ctrl_pos , 4.0  , Color.crimson )
+
+
+
+
+"
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Skeleton2D

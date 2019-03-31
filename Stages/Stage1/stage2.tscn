@@ -15,7 +15,7 @@
 [ext_resource path="res://Sprites/pixel_bianco.png" type="Texture" id=13]
 [ext_resource path="res://Shaders/floor_noise.shader" type="Shader" id=14]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 script/source = "#gen_pickups
 #tool
 extends Node2D #extends EditorScript
@@ -62,7 +62,7 @@ func _ready():
 #							bottle.global_position = Vector2(i,j) * tile_dim + offset_bottle
 #							self.add_child(bottle)"
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 4.0
 loop = true
 step = 0.05
@@ -91,7 +91,7 @@ tracks/1/keys = {
 "values": [ 4.03721, -3.86851, 4.03721, -3.86851 ]
 }
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -167,8 +167,8 @@ void fragment() {
 	COLOR.a = clamp(COLOR.r, .0, 1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/offset_Y = 0.2
 shader_param/brightness = 1.4
 shader_param/thrust = 2.6
@@ -178,8 +178,8 @@ shader_param/res = 1.75
 shader_param/base = 0.75
 shader_param/thickness = 7.8
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 3 )
 shader_param/offset_Y = 0.2
 shader_param/brightness = 1.4
 shader_param/thrust = 2.2
@@ -189,8 +189,8 @@ shader_param/res = 1.75
 shader_param/base = 0.75
 shader_param/thickness = 7.8
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 3 )
 shader_param/offset_Y = 0.2
 shader_param/brightness = 1.4
 shader_param/thrust = 2.6
@@ -200,8 +200,8 @@ shader_param/res = 1.75
 shader_param/base = 0.75
 shader_param/thickness = 7.8
 
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 3 )
 shader_param/offset_Y = 0.2
 shader_param/brightness = 1.3
 shader_param/thrust = 2.1
@@ -211,25 +211,26 @@ shader_param/res = 2.75
 shader_param/base = 0.75
 shader_param/thickness = 2.6
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 14 )
 shader_param/x_count = 16
 shader_param/y_count = 8
 shader_param/displ = 0.03
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 14 )
 shader_param/x_count = 73
 shader_param/y_count = 8
 shader_param/displ = 0.03
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 14 )
 shader_param/x_count = 8
 shader_param/y_count = 16
 shader_param/displ = 0.03
 
 [node name="stage1-2" type="Node2D"]
+editor/display_folded = true
 
 [node name="bg" type="ParallaxBackground" parent="."]
 editor/display_folded = true
@@ -324,7 +325,7 @@ editor/display_folded = true
 script = ExtResource( 10 )
 
 [node name="pickups" type="Node2D" parent="cnt"]
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="debris" type="Node2D" parent="cnt"]
 
@@ -368,7 +369,7 @@ shadow_enabled = true
 
 [node name="luci_anim" type="AnimationPlayer" parent="cnt/lights"]
 autoplay = "default"
-anims/default = SubResource( 3 )
+anims/default = SubResource( 2 )
 
 [node name="spawn" type="Node2D" parent="cnt"]
 editor/display_folded = true
@@ -390,7 +391,7 @@ __meta__ = {
 }
 
 [node name="fuoco" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 0, 1632 )
 scale = Vector2( 192, 224 )
 texture = ExtResource( 13 )
@@ -398,7 +399,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco11" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 1312, 1632 )
 scale = Vector2( 192, 224 )
 texture = ExtResource( 13 )
@@ -406,7 +407,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco8" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 1024, 1632 )
 scale = Vector2( 192, 224 )
 texture = ExtResource( 13 )
@@ -414,7 +415,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco3" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 6 )
+material = SubResource( 5 )
 position = Vector2( 128, 1696 )
 scale = Vector2( 128, 160 )
 texture = ExtResource( 13 )
@@ -422,7 +423,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco13" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 6 )
+material = SubResource( 5 )
 position = Vector2( 1440, 1696 )
 scale = Vector2( 128, 160 )
 texture = ExtResource( 13 )
@@ -430,7 +431,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco10" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 6 )
+material = SubResource( 5 )
 position = Vector2( 1152, 1696 )
 scale = Vector2( 128, 160 )
 texture = ExtResource( 13 )
@@ -438,7 +439,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco4" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 224, 1632 )
 scale = Vector2( 96, 224 )
 texture = ExtResource( 13 )
@@ -446,7 +447,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco12" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 1536, 1632 )
 scale = Vector2( 96, 224 )
 texture = ExtResource( 13 )
@@ -454,7 +455,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco9" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 1248, 1632 )
 scale = Vector2( 96, 224 )
 texture = ExtResource( 13 )
@@ -462,7 +463,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco5" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 576, 1728 )
 scale = Vector2( 96, 128 )
 texture = ExtResource( 13 )
@@ -470,7 +471,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco14" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 1888, 1728 )
 scale = Vector2( 96, 128 )
 texture = ExtResource( 13 )
@@ -478,7 +479,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco6" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 672, 1632 )
 scale = Vector2( 96, 224 )
 texture = ExtResource( 13 )
@@ -486,7 +487,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco15" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 1984, 1632 )
 scale = Vector2( 96, 224 )
 texture = ExtResource( 13 )
@@ -494,7 +495,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco7" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 7 )
+material = SubResource( 6 )
 position = Vector2( 736, 1664 )
 scale = Vector2( 96, 192 )
 texture = ExtResource( 13 )
@@ -502,7 +503,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco16" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 7 )
+material = SubResource( 6 )
 position = Vector2( 2048, 1664 )
 scale = Vector2( 96, 192 )
 texture = ExtResource( 13 )
@@ -510,7 +511,7 @@ centered = false
 flip_v = true
 
 [node name="fuoco2" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 8 )
+material = SubResource( 7 )
 position = Vector2( 6512, 2264 )
 scale = Vector2( 144.001, 200 )
 texture = ExtResource( 13 )
@@ -518,120 +519,116 @@ centered = false
 flip_v = true
 
 [node name="door" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 32, 992 )
 scale = Vector2( 136, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door11" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 320, 1728 )
 scale = Vector2( 64, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door13" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 800, 1728 )
 scale = Vector2( 64, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door15" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 1632, 1728 )
 scale = Vector2( 64, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door12" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 512, 1728 )
 scale = Vector2( 64, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door14" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 992, 1728 )
 scale = Vector2( 64, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door16" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 1824, 1728 )
 scale = Vector2( 64, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door2" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 10 )
+material = SubResource( 9 )
 position = Vector2( -1.52588e-005, 384 )
 scale = Vector2( 1632, 160 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door9" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 11 )
+material = SubResource( 10 )
 position = Vector2( 1440, 1152 )
 scale = Vector2( 224, 448 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door10" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 11 )
+material = SubResource( 10 )
 position = Vector2( 1696, 576 )
 scale = Vector2( 384, 544 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door3" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 448, 992 )
 scale = Vector2( 96, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door4" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 576, 992 )
 scale = Vector2( 96, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door5" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 832, 992 )
 scale = Vector2( 96, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door6" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 960, 992 )
 scale = Vector2( 96, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door7" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 1152, 992 )
 scale = Vector2( 96, 128 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="door8" type="Sprite" parent="cnt/vfx"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 position = Vector2( 1312, 992 )
 scale = Vector2( 96, 128 )
 texture = ExtResource( 13 )
 centered = false
-
-[node name="tools" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
 
 [connection signal="screen_entered" from="bg_streets/street1/vsn" to="bg_streets/street1" method="_on_vsn_screen_entered"]
 [connection signal="screen_exited" from="bg_streets/street1/vsn" to="bg_streets/street1" method="_on_vsn_screen_exited"]

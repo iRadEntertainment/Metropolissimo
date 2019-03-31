@@ -10,6 +10,7 @@ onready var gui_preload      = preload("res://Instances/GUI.tscn")
 onready var cam_ctrl_preload = preload("res://Instances/cam_ctrl.tscn")
 onready var pl_preload       = preload("res://Instances/player.tscn")
 onready var pl_preload_xp    = preload("res://Instances/pl_sperim.tscn")
+onready var tools_preload    = preload("res://Instances/tools.tscn")
 
 #------ option vars
 var fl_vfx_enabled = false setget _vfx_enabled
@@ -105,6 +106,9 @@ func add_stage_instances(incoming_scene):
 			print("G_MNG: - Player")
 			
 		incoming_scene.add_child(pl_instance)
+		
+		incoming_scene.add_child(tools_preload.instance())
+		print("G_MNG: - TOOLS")
 
 func game_setup_and_start():
 	n_mng.pl.global_position  = n_mng.spawn.get_node("1").global_position

@@ -13,7 +13,7 @@
 [ext_resource path="res://Scripts/cnt.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/lights/light_ellipse.png" type="Texture" id=12]
 [ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scripts/scn_tools.gd" type="Script" id=14]
+[ext_resource path="res://Instances/mech_spider.tscn" type="PackedScene" id=14]
 
 [node name="stage_test" type="Node2D"]
 
@@ -124,12 +124,12 @@ __meta__ = {
 z_index = 15
 
 [node name="cnt" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 11 )
 
 [node name="props" type="Node2D" parent="cnt"]
 
 [node name="bg lights" type="Node2D" parent="cnt"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -143,10 +143,12 @@ texture = ExtResource( 12 )
 [node name="debris" type="Node2D" parent="cnt"]
 
 [node name="enemies" type="Node2D" parent="cnt"]
-editor/display_folded = true
 
 [node name="dummy" parent="cnt/enemies" instance=ExtResource( 13 )]
 position = Vector2( 430, 1090 )
+
+[node name="mech_spider" parent="cnt/enemies" instance=ExtResource( 14 )]
+position = Vector2( 816, 1151.72 )
 
 [node name="bullets" type="Node2D" parent="cnt"]
 
@@ -167,16 +169,6 @@ position = Vector2( 72, 1120 )
 
 [node name="1" type="Position2D" parent="cnt/spawn"]
 position = Vector2( 128, 1120 )
-
-[node name="tools" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 5000.0
-margin_bottom = 5000.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [connection signal="screen_entered" from="bg_streets/street1/vsn" to="bg_streets/street1" method="_on_vsn_screen_entered"]
 [connection signal="screen_exited" from="bg_streets/street1/vsn" to="bg_streets/street1" method="_on_vsn_screen_exited"]
