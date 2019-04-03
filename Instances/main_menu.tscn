@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/backgrouds/city-2o-2880x1800.jpg" type="Texture" id=2]
@@ -416,6 +416,19 @@ func _pressed():
 	$CheckBox.pressed        = g_mng.fl_vfx_enabled
 	"
 
+[sub_resource type="StyleBoxEmpty" id=57]
+
+[sub_resource type="GDScript" id=54]
+script/source = "extends CheckBox
+
+
+func _ready():
+	pressed = !AudioServer.is_bus_mute(0)
+
+func _toggled(val):
+	AudioServer.set_bus_mute(0,!val)
+	audio_mng.master_mute = !val"
+
 [sub_resource type="GDScript" id=41]
 script/source = "extends HSlider
 
@@ -438,6 +451,17 @@ script/source = "extends ProgressBar
 func _process(delta):
 	value = AudioServer.get_bus_peak_volume_right_db(0,0)"
 
+[sub_resource type="GDScript" id=55]
+script/source = "extends CheckBox
+
+
+func _ready():
+	pressed = !AudioServer.is_bus_mute(1)
+
+func _toggled(val):
+	AudioServer.set_bus_mute(1,!val)
+	audio_mng.music_mute = !val"
+
 [sub_resource type="GDScript" id=44]
 script/source = "extends HSlider
 
@@ -459,6 +483,17 @@ script/source = "extends ProgressBar
 
 func _process(delta):
 	value = AudioServer.get_bus_peak_volume_right_db(1,0)"
+
+[sub_resource type="GDScript" id=56]
+script/source = "extends CheckBox
+
+
+func _ready():
+	pressed = !AudioServer.is_bus_mute(2)
+
+func _toggled(val):
+	AudioServer.set_bus_mute(2,!val)
+	audio_mng.sound_mute = !val"
 
 [sub_resource type="GDScript" id=47]
 script/source = "extends HSlider
@@ -584,7 +619,6 @@ __meta__ = {
 }
 
 [node name="bg_tex" type="TextureRect" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -40.0
@@ -773,10 +807,9 @@ margin_bottom = 272.0
 [node name="thumb_load" parent="hbox_bttm/cnt_load_game/hbox/btns_load" instance=ExtResource( 8 )]
 
 [node name="cnt_opts" type="Control" parent="hbox_bttm"]
-visible = false
 margin_left = 266.0
 margin_right = 1248.0
-margin_bottom = 304.0
+margin_bottom = 300.0
 size_flags_horizontal = 3
 
 [node name="bg" type="ColorRect" parent="hbox_bttm/cnt_opts"]
@@ -798,7 +831,6 @@ text = "Save settings"
 script = SubResource( 36 )
 
 [node name="hbox" type="HBoxContainer" parent="hbox_bttm/cnt_opts"]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -810,7 +842,7 @@ custom_constants/separation = 16
 
 [node name="btns_opt" type="GridContainer" parent="hbox_bttm/cnt_opts/hbox"]
 margin_right = 250.0
-margin_bottom = 232.0
+margin_bottom = 228.0
 
 [node name="fixed_size" type="Button" parent="hbox_bttm/cnt_opts/hbox/btns_opt"]
 editor/display_folded = true
@@ -882,7 +914,6 @@ flat = true
 align = 1
 
 [node name="panel" type="PanelContainer" parent="hbox_bttm/cnt_opts/hbox"]
-editor/display_folded = true
 margin_left = 266.0
 margin_right = 950.0
 margin_bottom = 140.0
@@ -899,6 +930,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="vol_master" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel/audio"]
+editor/display_folded = true
 margin_right = 652.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
@@ -908,7 +940,19 @@ custom_constants/separation = 4
 margin_right = 652.0
 margin_bottom = 20.0
 theme = ExtResource( 9 )
-text = "Master"
+text = "     Master"
+
+[node name="tgg" type="CheckBox" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master/lb"]
+anchor_bottom = 1.0
+margin_right = 18.0
+theme = ExtResource( 9 )
+custom_styles/hover = SubResource( 57 )
+custom_styles/pressed = SubResource( 57 )
+custom_styles/focus = SubResource( 57 )
+custom_styles/disabled = SubResource( 57 )
+custom_styles/hover_pressed = SubResource( 57 )
+custom_styles/normal = SubResource( 57 )
+script = SubResource( 54 )
 
 [node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master"]
 margin_top = 24.0
@@ -964,7 +1008,20 @@ custom_constants/separation = 4
 margin_right = 318.0
 margin_bottom = 20.0
 theme = ExtResource( 9 )
-text = "Music"
+text = "     Music"
+
+[node name="tgg" type="CheckBox" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music/lb"]
+anchor_bottom = 1.0
+margin_right = 18.0
+margin_bottom = 2.0
+theme = ExtResource( 9 )
+custom_styles/hover = SubResource( 57 )
+custom_styles/pressed = SubResource( 57 )
+custom_styles/focus = SubResource( 57 )
+custom_styles/disabled = SubResource( 57 )
+custom_styles/hover_pressed = SubResource( 57 )
+custom_styles/normal = SubResource( 57 )
+script = SubResource( 55 )
 
 [node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music"]
 margin_top = 24.0
@@ -1015,7 +1072,19 @@ custom_constants/separation = 4
 margin_right = 318.0
 margin_bottom = 20.0
 theme = ExtResource( 9 )
-text = "Sound"
+text = "     Sound"
+
+[node name="tgg" type="CheckBox" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound/lb"]
+anchor_bottom = 1.0
+margin_right = 18.0
+theme = ExtResource( 9 )
+custom_styles/hover = SubResource( 57 )
+custom_styles/pressed = SubResource( 57 )
+custom_styles/focus = SubResource( 57 )
+custom_styles/disabled = SubResource( 57 )
+custom_styles/hover_pressed = SubResource( 57 )
+custom_styles/normal = SubResource( 57 )
+script = SubResource( 56 )
 
 [node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound"]
 margin_top = 24.0
@@ -1057,6 +1126,7 @@ script = SubResource( 49 )
 
 [node name="cnt_debug" type="Control" parent="hbox_bttm"]
 editor/display_folded = true
+visible = false
 margin_left = 266.0
 margin_right = 1248.0
 margin_bottom = 300.0

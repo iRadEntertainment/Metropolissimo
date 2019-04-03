@@ -70,7 +70,7 @@ func save_settings():
 	#--- general settings
 	file_config.set_value("settings","cfg_thumb_size" ,cfg_thumb_size)
 	file_config.set_value("settings","cfg_fixed_size" ,cfg_fixed_size)
-	file_config.set_value("settings","cfg_window_size" ,cfg_window_size)
+	file_config.set_value("settings","cfg_window_size",cfg_window_size)
 	file_config.set_value("settings","cfg_fullscreen" ,cfg_fullscreen)
 	file_config.set_value("settings","cfg_vfx_enabled",cfg_vfx_enabled)
 	
@@ -78,6 +78,10 @@ func save_settings():
 	file_config.set_value("audio","master_bus_vol",audio_mng.master_bus_vol)
 	file_config.set_value("audio","music_bus_vol" ,audio_mng.music_bus_vol)
 	file_config.set_value("audio","sound_bus_vol" ,audio_mng.sound_bus_vol)
+	
+	file_config.set_value("audio","master_mute" ,audio_mng.master_mute)
+	file_config.set_value("audio","music_mute"  ,audio_mng.music_mute)
+	file_config.set_value("audio","sound_mute"  ,audio_mng.sound_mute)
 	
 	#--- debug settings
 	file_config.set_value("settings","cfg_experimental_char" ,cfg_experimental_char)
@@ -113,6 +117,11 @@ func load_settings():
 	audio_mng.master_bus_vol = file_config.get_value("audio","master_bus_vol")
 	audio_mng.music_bus_vol  = file_config.get_value("audio","music_bus_vol")
 	audio_mng.sound_bus_vol  = file_config.get_value("audio","sound_bus_vol")
+	
+	audio_mng.master_mute  = file_config.get_value("audio","master_mute", false)
+	audio_mng.music_mute   = file_config.get_value("audio","music_mute" , false)
+	audio_mng.sound_mute   = file_config.get_value("audio","sound_mute" , false)
+
 
 func parse_loaded_settings():
 	OS.window_resizable  = !cfg_fixed_size

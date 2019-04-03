@@ -13,11 +13,6 @@ func _ready():
 
 func setup_noise():
 	noise = self.material.get_shader_param("noise_text").noise
-#	noise.seed = 124
-#	noise.lacunarity
-#	noise.period
-#	noise.persistence = 0.5
-#	noise = get("material/shader_param/noise_text/noise")
 
 func create_flock():
 	noise.seed = randi()%500

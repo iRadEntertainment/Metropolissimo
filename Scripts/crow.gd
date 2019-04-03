@@ -34,7 +34,7 @@ func _process(dt):
 	
 	# movement
 	des_dir_norm.y += noise.get_noise_2dv(Vector2(global_position.x , global_position.y)) *dt*0.01*scale.x
-	des_dir_norm.x += noise.get_noise_2dv(Vector2(global_position.x , global_position.y)) *dt*0.1*scale.x
+	des_dir_norm.x += (noise.get_noise_2dv(Vector2(global_position.x , global_position.y))+0.5) *dt*0.1*scale.x
 	
 	move_and_collide(des_dir_norm * SPEED * dt)
 	
