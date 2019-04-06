@@ -38,11 +38,20 @@ var master_bus_vol = -6   setget _set_master_bus
 var music_bus_vol  = -24  setget _set_music_bus
 var sound_bus_vol  = -24  setget _set_sound_bus
 
+var master_mute = false
+var music_mute  = false
+var sound_mute  = false
 
 
 func _ready():
 #	AudioServer.set_bus_volume_db( 1, -24 )
-	pass
+	init_setup()
+
+
+func init_setup():
+	AudioServer.set_bus_mute(0, master_mute)
+	AudioServer.set_bus_mute(1, music_mute)
+	AudioServer.set_bus_mute(2, sound_mute)
 
 #============= MENU
 func audio_init():
