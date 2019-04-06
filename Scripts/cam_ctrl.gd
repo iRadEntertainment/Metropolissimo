@@ -64,3 +64,5 @@ func _process(delta):
 	elif abs($cam.zoom.x - zoom_target) > 0:
 		$cam.zoom.x = zoom_target
 		$cam.zoom.y = zoom_target
+	
+	

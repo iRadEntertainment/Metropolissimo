@@ -22,6 +22,8 @@ var pik6 = "res://Audio/music/PiK_06_Journey_on_Foot_in_the_Hyperuranium.ogg"
 var pik7 = "res://Audio/music/PiK_07_Pistifalia.ogg"
 var pik8 = "res://Audio/music/PiK_08_Esparianto.ogg"
 
+var pik_cumbia_loop = "res://Audio/music/cumbia-loop.ogg"
+
 #----------- headphones
 signal track_changed
 var now_playing
@@ -52,8 +54,8 @@ func start_menu_music():
 	audio_init()
 	
 	$menu/intro_music.stop()
-	randomize()
-	$menu/intro_music.stream = load([pik1,pik2,pik3,pik4,pik5,pik6,pik7,pik8][randi()%8])
+#	randomize()
+	$menu/intro_music.stream = load(pik_cumbia_loop) #load([pik1,pik2,pik3,pik4,pik5,pik6,pik7,pik8][randi()%8])
 	$menu/intro_music.volume_db = -12
 	$menu/intro_music.play()
 
@@ -79,16 +81,17 @@ func set_ingame_music(val, fl_play = true):
 		now_playing = 0
 	else:
 		now_playing = val
-		$music.stream = load([pik1,pik2,pik3,pik4,pik5,pik6,pik7,pik8][val-1])
+		$music.stream = load([pik_cumbia_loop,pik1,pik2,pik3,pik4,pik5,pik6,pik7,pik8][val-1])
 		match val:
-			1: song_name = "1-PiK - Aaaaa"
-			2: song_name = "2-PiK - Soundscapes vol.7"
-			3: song_name = "3-PiK - Messa for the grandfather"
-			4: song_name = "4-PiK - Spin8"
-			5: song_name = "5-PiK - Fleek Rin"
-			6: song_name = "6-PiK - Journey on Foot in the Iperuranium"
-			7: song_name = "7-PiK - Pistifalia"
-			8: song_name = "8-PiK - Esparianto"
+			1: song_name = "Cumbia Loop"
+			2: song_name = "1-PiK - Aaaaa"
+			3: song_name = "2-PiK - Soundscapes vol.7"
+			4: song_name = "3-PiK - Messa for the grandfather"
+			5: song_name = "4-PiK - Spin8"
+			6: song_name = "5-PiK - Fleek Rin"
+			7: song_name = "6-PiK - Journey on Foot in the Iperuranium"
+			8: song_name = "7-PiK - Pistifalia"
+			9: song_name = "8-PiK - Esparianto"
 	
 	track_length = $music.stream.get_length()
 	prints("AUDIO_MNG: strem resource name =",song_name,"- Lenght:",track_length)

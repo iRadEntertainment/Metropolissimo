@@ -215,6 +215,14 @@ func _physics_process(d):
 	else:
 		$body_parts.scale.x =  1 ; $rays.scale.x =  1
 	
+	#----------- moving platform/objects --------------
+	if $rays/floor_c.is_colliding():
+		var obj_vec_mov = $rays/floor_c.get_collider().get("vec_mov")
+		if obj_vec_mov:
+#			print(obj_vec_mov)
+			move_and_collide(obj_vec_mov)
+	
+	
 	#----------- move and slide --------------
 #	if st_moving and not st_jumping and $rays/floor_c.is_colliding():
 #		vec_mov = vec_mov.slide($rays/floor_c.get_collision_normal())

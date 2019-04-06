@@ -125,61 +125,32 @@ func _process(d):
 
 #===========vvv============= Inverse Kinematic ============vvv=============
 
+
+var ik_script_leg_r
+var ik_script_leg_l
 var fk_leg_r = []
-var ik_leg_r = []
-var contact = false
-var contact_tresh = 1
+var fk_leg_l = []
 func setup_ik_bones():
+	ik_script_leg_r = load("res://Scripts/ik.gd").new()
+	ik_script_leg_l = load("res://Scripts/ik.gd").new()
 	#getting the leg parts in arrays
 	for part in $body.get_children():
 		fk_leg_r.append(part)
-		ik_leg_r.push_front(part)
+	
+	ik_script_leg_r.set_nodes(fk_leg_r)
+#	ik_script_leg_l.set_nodes(fk_leg_l)
+
 
 
 func ik_legs(d): #PROCESSED
 	#target
 	var target = get_global_mouse_position()
 #	var target = Vector2(112,1120)
-	
-	#--- follow to target
-	#angle calculation
-	for i in range(1,ik_leg_r.size()):
-		if i == 1:
-			ik_leg_r[i].angle_calculation(target , d)
-		else:
-			var next_segment_pos = ik_leg_r[i-1].global_position
-			ik_leg_r[i].angle_calculation(next_segment_pos , d)
-	
-#	#rotate and translate to target
-#	for i in range(1,ik_leg_r.size()):
-#		if i == 1:
-#			ik_leg_r[i].apply_transform(target)
-#		else:
-#			var next_segment_pos = ik_leg_r[i-1].global_position
-#			ik_leg_r[i].apply_transform(next_segment_pos)
-	
-#	#angle constrains
-#	for i in range(fk_leg_r.size()-1):
-#		fk_leg_r[i].angles_constrain()
+	ik_script_leg_r.reach_target(target)
 	
 	
-	#--- bring the configuration back to the fixed point
-	var shift_back = fk_leg_r[0].init_pos - fk_leg_r[0].position
-	for i in range(fk_leg_r.size()):
-		var temp = fk_leg_r[i].global_position + shift_back
-		fk_leg_r[i].global_position = temp
 	
-	
-	#--- check for target contact
-	var end = ik_leg_r[0].global_position
-	if not contact:
-		if (end - target).length() < contact_tresh:
-			contact = true
-#			print("contact: true")
-	else:
-		if (end - target).length() > contact_tresh:
-			contact = false
-#			print("contact: false")
+
 
 #===========^^^================ Inverse Kinematic ============^^^=============
 

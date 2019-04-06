@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/pl_sperim.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/player/personaggio__0005_corpo.png" type="Texture" id=2]
@@ -22,156 +22,6 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
 height = 2.0
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends Sprite
-
-export var smooth_mov     = true
-var smoothness_vel = 10
-var init_pos : Vector2 = position
-var end      : Vector2
-var bone_vec : Vector2
-var prev_seg = null
-var chain_base = false
-var chain_end  = false
-
-
-export var ang_max        : float = 0
-export var ang_min        : float = 170
-export var ang_base_chain : float = 90
-
-var angle    : float
-var ang_off  : float
-var ang_prec : float
-
-var shift_back : Vector2
-
-
-func _ready():
-	add_to_group(\"ik_pieces\")
-
-	# bone vector
-	for child in get_children():
-		if child.is_in_group(\"ik_pieces\"):
-			end = child.global_position
-			break
-	bone_vec = end - global_position
-	# angles min and max to radiants
-	ang_min = deg2rad(ang_min)
-	ang_max = deg2rad(ang_max)
-
-	#init angle
-	ang_off = acos(bone_vec.normalized().dot(Vector2(1,0)))
-	angle = ang_off
-
-
-
-func angle_calculation(target_global , delta):
-	#TO BE MADE IN INVERSE KINEMATIC
-#	var target_to_local = target_global - global_position
-#	var ang_temp = Vector2().angle_to_point(target_to_local) + ang_off
-#	var ang_temp = global_position.angle_to_point(target_global) + ang_off
-	var ang_temp = (bone_vec).angle_to(target_global - global_position)
-	while ang_temp > PI: ang_temp -= 2*PI
-	
-#	angle = ang_temp
-#	apply_transform(target_global)
-#	return
-	
-	var ang_delta = ang_temp - angle
-	while ang_delta > PI: ang_delta -= 2*PI
-	
-	# ang_delta constraints
-	
-	
-	
-	
-	if not smooth_mov:
-		angle += ang_delta
-#		angle = ang_temp
-
-	else: #NOT WORKING
-		pass
-#		if abs(ang_delta) < 0.01: # floor angle
-#			angle += ang_delta
-#			ang_delta = 0
-		
-		angle = lerp(angle, (angle+ang_delta), min( delta * smoothness_vel , 1) )
-#		angle += sign(ang_delta) * delta * smoothness_vel
-#		if chain_base:
-#			print(ang_delta)
-
-#	if not smooth_mov:
-#		angle = ang_temp + ang_off
-#	else:
-#		if angle != ang_temp + ang_off:
-#			angle += ( ( ang_temp + ang_off ) - angle ) * delta * smoothness_vel
-#			# floor angle
-#			if angle - (ang_temp + ang_off) < 0.1:
-#				angle = ang_temp + ang_off
-
-	while angle > PI: angle -= 2*PI
-
-	angles_constrain()
-	apply_transform(target_global)
-
-
-func angles_constrain():
-	#TO BE MADE IN FORWARD KINEMATIC
-	if chain_base:
-		ang_prec = deg2rad(ang_base_chain)
-	else:
-		ang_prec = prev_seg.angle
-
-	var ang_min_wrap = ang_prec - ang_min
-	var ang_max_wrap = ang_prec + ang_max
-	if ang_min_wrap > PI: ang_min_wrap -= 2*PI
-	if ang_max_wrap > PI: ang_max_wrap -= 2*PI
-
-	if angle < ang_min_wrap:
-		angle = ang_min_wrap
-	elif angle > ang_max_wrap:
-		angle = ang_max_wrap
-
-
-func apply_transform(target_global):
-	#TO BE MADE IN INVERSE KINEMATIC
-	#rotate
-	var bone_vec_rot = bone_vec.rotated(angle)
-	if global_rotation != angle:
-		global_rotation = angle
-
-	#translate to target
-	global_position = (target_global - bone_vec_rot)
-	if chain_end: #grab and move control end point
-		var ctrl_point = get_children()[0]
-		ctrl_point.global_position = target_global
-
-
-
-func _draw():
-	draw_line(Vector2(), bone_vec , Color.white , 1.2 , false)
-	draw_circle(Vector2() , 2.0  , Color.wheat )
-	draw_circle(bone_vec  , 0.8 , Color.red )
-	draw_polygon([Vector2(0,0), Vector2(10,0).rotated(ang_off) , Vector2(10,0)],[Color(0.8,0.8,0.5,0.9)])
-	
-	if chain_end:
-		var ctrl_pos = get_children()[0].global_position
-		draw_circle(ctrl_pos , 4.0  , Color.crimson )
-
-
-
-
-"
-
-[sub_resource type="GDScript" id=3]
-script/source = "extends Skeleton2D
-
-
-func _ready():
-	get_bone(1)
-	pass
-"
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -431,7 +281,6 @@ position = Vector2( -4, -22 )
 texture = ExtResource( 16 )
 normal_map = ExtResource( 17 )
 offset = Vector2( 0, 4 )
-script = SubResource( 2 )
 __meta__ = {
 "_edit_ik_": true
 }
@@ -441,7 +290,6 @@ position = Vector2( -4, -13 )
 texture = ExtResource( 13 )
 normal_map = ExtResource( 14 )
 offset = Vector2( 0, 4 )
-script = SubResource( 2 )
 __meta__ = {
 "_edit_bone_": true
 }
@@ -451,7 +299,6 @@ position = Vector2( -4, -3 )
 scale = Vector2( 0.999999, 0.999999 )
 texture = ExtResource( 15 )
 offset = Vector2( 1, 1 )
-script = SubResource( 2 )
 __meta__ = {
 "_edit_bone_": true
 }
@@ -463,31 +310,4 @@ __meta__ = {
 "_edit_bone_": true,
 "_edit_lock_": true
 }
-
-[node name="Skeleton2D" type="Skeleton2D" parent="."]
-position = Vector2( 52, -20 )
-script = SubResource( 3 )
-__meta__ = {
-"_edit_bone_": true
-}
-
-[node name="Bone2D" type="Bone2D" parent="Skeleton2D"]
-position = Vector2( -4, 8 )
-rest = Transform2D( 1, 0, 0, 1, -4, 8 )
-__meta__ = {
-"_edit_ik_": true
-}
-
-[node name="Bone2D2" type="Bone2D" parent="Skeleton2D/Bone2D"]
-position = Vector2( 8, -3 )
-rest = Transform2D( 1, 0, 0, 1, 8, -3 )
-
-[node name="Bone2D3" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2D2"]
-position = Vector2( 12.8835, -4.505 )
-rotation = 0.610183
-rest = Transform2D( 0.819543, 0.573018, -0.573018, 0.819543, 12.8835, -4.505 )
-default_length = 15.0
-
-[node name="Position2D" type="Position2D" parent="Skeleton2D/Bone2D/Bone2D2/Bone2D3"]
-position = Vector2( -4, 8 )
 

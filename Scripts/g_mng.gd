@@ -88,27 +88,27 @@ func scene_loaded(incoming_scene):
 func add_stage_instances(incoming_scene):
 	var name = incoming_scene.get_name()
 	prints("G_MNG: next scene =",name)
-	if "stage" in name:
-		prints("G_MNG: adding",name,"instances")
+#	if "stage" in name: # WHY????
+	prints("G_MNG: adding",name,"instances")
+	
+	incoming_scene.add_child(gui_preload.instance())
+	print("G_MNG: - GUI")
+	incoming_scene.add_child(cam_ctrl_preload.instance())
+	print("G_MNG: - CAM CONTROL")
+	
+	var pl_instance
+	if data_mng.cfg_experimental_char:
+		pl_instance = pl_preload_xp.instance()
+		print("G_MNG: - Player experimental")
+	
+	else:
+		pl_instance = pl_preload.instance()
+		print("G_MNG: - Player")
 		
-		incoming_scene.add_child(gui_preload.instance())
-		print("G_MNG: - GUI")
-		incoming_scene.add_child(cam_ctrl_preload.instance())
-		print("G_MNG: - CAM CONTROL")
-		
-		var pl_instance
-		if data_mng.cfg_experimental_char:
-			pl_instance = pl_preload_xp.instance()
-			print("G_MNG: - Player experimental")
-		
-		else:
-			pl_instance = pl_preload.instance()
-			print("G_MNG: - Player")
-			
-		incoming_scene.add_child(pl_instance)
-		
-		incoming_scene.add_child(tools_preload.instance())
-		print("G_MNG: - TOOLS")
+	incoming_scene.add_child(pl_instance)
+	
+	incoming_scene.add_child(tools_preload.instance())
+	print("G_MNG: - TOOLS")
 
 func game_setup_and_start():
 	n_mng.pl.global_position  = n_mng.spawn.get_node("1").global_position

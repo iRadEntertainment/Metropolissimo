@@ -8154,7 +8154,7 @@ func _draw():
 		
 	elif $vec_mov.visible: $vec_mov.visible = false"
 
-[node name="player" instance=ExtResource( 1 )]
+[node name="player" index="0" instance=ExtResource( 1 )]
 collision_layer = 4
 collision_mask = 1025
 collision/safe_margin = 0.01
@@ -8385,6 +8385,7 @@ __meta__ = {
 }
 
 [node name="weapons" type="Node2D" parent="." index="4"]
+editor/display_folded = true
 position = Vector2( 48, -32 )
 script = ExtResource( 20 )
 
@@ -8545,6 +8546,12 @@ data = {
 "id": "out",
 "position": Vector2( 1406, 134 ),
 "type": "output"
+}, {
+"filter": [ NodePath("../body_parts/hips/body:rotation_degrees") ],
+"from": "idle0",
+"id": "idle0",
+"position": Vector2( 73, 9 ),
+"type": "animation"
 }, {
 "filter": [  ],
 "from": "fr_walk01",
@@ -8780,12 +8787,6 @@ data = {
 "id": "anim 7",
 "position": Vector2( 194, 235 ),
 "type": "animation"
-}, {
-"filter": [ NodePath("../body_parts/hips/body:rotation_degrees") ],
-"from": "idle0",
-"id": "idle0",
-"position": Vector2( 73, 9 ),
-"type": "animation"
 } ]
 }
 
@@ -8793,7 +8794,7 @@ data = {
 master_player = NodePath("../legs")
 data = {
 "active": false,
-"connections": [ "tr_main", "out", 0, "idle0", "anxiety", 0, "random_idle", "anxiety", 1, "anim 6", "tr_walk", 0, "anim", "tr_walk", 1, "anim 7", "tr_walk", 2, "anim 9", "tr_walk", 3, "anim 2", "tr_run", 0, "anim 5", "tr_run", 1, "anim 3", "tr_run", 2, "anim 8", "tr_run", 3, "anim 4", "jump_up", 0, "fr_jump1", "jump_up", 1, "anim 10", "jump_up", 2, "anxiety", "tr_main", 0, "crouch", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "anim 16", "tr_crouch_walk", 0, "anim 15", "tr_crouch_walk", 1, "anim 17", "tr_crouch_walk", 2, "anim 18", "tr_crouch_walk", 3, "anim 11", "tr_stealth", 0, "anim 12", "tr_stealth", 1, "anim 13", "tr_stealth", 2, "anim 14", "tr_stealth", 3 ],
+"connections": [ "tr_main", "out", 0, "anim 6", "tr_walk", 0, "anim", "tr_walk", 1, "anim 7", "tr_walk", 2, "anim 9", "tr_walk", 3, "anim 2", "tr_run", 0, "anim 5", "tr_run", 1, "anim 3", "tr_run", 2, "anim 8", "tr_run", 3, "anim 4", "jump_up", 0, "fr_jump1", "jump_up", 1, "anim 10", "jump_up", 2, "anxiety", "tr_main", 0, "crouch", "tr_main", 1, "tr_walk", "tr_main", 2, "tr_stealth", "tr_main", 3, "tr_run", "tr_main", 4, "tr_crouch_walk", "tr_main", 5, "jump_up", "tr_main", 6, "anim 16", "tr_crouch_walk", 0, "anim 15", "tr_crouch_walk", 1, "anim 17", "tr_crouch_walk", 2, "anim 18", "tr_crouch_walk", 3, "anim 11", "tr_stealth", 0, "anim 12", "tr_stealth", 1, "anim 13", "tr_stealth", 2, "anim 14", "tr_stealth", 3, "idle0", "anxiety", 0, "random_idle", "anxiety", 1 ],
 "master": NodePath("../legs"),
 "nodes": [ {
 "filter": [  ],
@@ -8807,27 +8808,16 @@ data = {
 "type": "output"
 }, {
 "filter": [  ],
-"from": "fr_idle_crouch",
-"id": "crouch",
-"position": Vector2( 563, 101 ),
+"from": "fr_jump1",
+"id": "fr_jump1",
+"position": Vector2( 906, 473 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "idle_relax1",
-"id": "random_idle",
-"position": Vector2( 10, 112 ),
+"from": "idle0",
+"id": "idle0",
+"position": Vector2( 15, 5 ),
 "type": "animation"
-}, {
-"autorestart": false,
-"autorestart_delay": 0.0,
-"autorestart_random_delay": 1.0,
-"fade_in": 0.02,
-"fade_out": 0.02,
-"filter": [  ],
-"id": "anxiety",
-"mix": false,
-"position": Vector2( 142, 18 ),
-"type": "oneshot"
 }, {
 "filter": [  ],
 "from": "fr_walk01",
@@ -9020,29 +9010,39 @@ data = {
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "idle0",
-"id": "idle0",
-"position": Vector2( 15, 5 ),
+"from": "fr_idle_crouch",
+"id": "crouch",
+"position": Vector2( 563, 101 ),
 "type": "animation"
 }, {
 "filter": [  ],
-"from": "fr_jump1",
-"id": "fr_jump1",
-"position": Vector2( 906, 473 ),
+"from": "idle_relax1",
+"id": "random_idle",
+"position": Vector2( 10, 112 ),
 "type": "animation"
+}, {
+"autorestart": false,
+"autorestart_delay": 0.0,
+"autorestart_random_delay": 1.0,
+"fade_in": 0.02,
+"fade_out": 0.02,
+"filter": [  ],
+"id": "anxiety",
+"mix": false,
+"position": Vector2( 142, 18 ),
+"type": "oneshot"
 } ]
 }
 
 [node name="anim_n" type="Node2D" parent="." index="9"]
 
 [node name="timers" type="Node2D" parent="." index="10"]
-editor/display_folded = true
 visible = false
 
 [node name="ready_fire" type="Timer" parent="timers" index="0"]
 
 [node name="can_jump" type="Timer" parent="timers" index="1"]
-wait_time = 0.15
+wait_time = 0.2
 one_shot = true
 
 [node name="double_tap" type="Timer" parent="timers" index="2"]

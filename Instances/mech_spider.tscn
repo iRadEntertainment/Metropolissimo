@@ -1,21 +1,22 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/mech_spider.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0012_Forma-2.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0001_Forma-8.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0002_Forma-7.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0014_Forma-12.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0007_Forma-3.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0006_Forma-4.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0005_Forma-11.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0003_Forma-6.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0004_Forma-5.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0000_Forma-1.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0011_Forma-9.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0008_Forma-15.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0013_Forma-10.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0010_Forma-13.png" type="Texture" id=15]
-[ext_resource path="res://Sprites/enemies/mach_spider/mach_spider_0000s_0009_Forma-14.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0012_Forma-2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0001_Forma-8.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0002_Forma-7.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0014_Forma-12.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/lights/light_cone.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0007_Forma-3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0006_Forma-4.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0005_Forma-11.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0003_Forma-6.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0004_Forma-5.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0000_Forma-1.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0011_Forma-9.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0008_Forma-15.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0013_Forma-10.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0010_Forma-13.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/enemies/mach_spider/mach_spiderone_0001s_0009_Forma-14.png" type="Texture" id=17]
 
 [node name="mech_spider" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -40,18 +41,24 @@ texture = ExtResource( 4 )
 
 [node name="glass" type="Sprite" parent="body"]
 show_behind_parent = true
-position = Vector2( -5.53575, -15.6649 )
+position = Vector2( -6.20008, -15.098 )
 texture = ExtResource( 5 )
 
-[node name="cap" type="Sprite" parent="body"]
-position = Vector2( -25.9105, -21.2811 )
+[node name="Light2D" type="Light2D" parent="body/glass"]
+position = Vector2( -6.83575, 3.90662 )
+scale = Vector2( 0.120138, 0.120138 )
 texture = ExtResource( 6 )
+offset = Vector2( 120, 0 )
+
+[node name="cap" type="Sprite" parent="body"]
+position = Vector2( -26.4087, -19.9524 )
+texture = ExtResource( 7 )
 offset = Vector2( 11.5711, -2.37901 )
 
 [node name="leg_low_f" type="Sprite" parent="body"]
 editor/display_folded = true
 position = Vector2( 12.2088, 11.1467 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 offset = Vector2( 7.26788, -0.659142 )
 __meta__ = {
 "_edit_bone_": true,
@@ -60,13 +67,13 @@ __meta__ = {
 
 [node name="piston2" type="Sprite" parent="body/leg_low_f"]
 position = Vector2( 15.4587, -0.71347 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 offset = Vector2( 3.02182, -3.59405 )
 
 [node name="piston1" type="Sprite" parent="body/leg_low_f"]
 editor/display_folded = true
 position = Vector2( 17.5992, 3.80524 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 offset = Vector2( 7.55927, 6.64553 )
 __meta__ = {
 "_edit_bone_": true
@@ -74,7 +81,7 @@ __meta__ = {
 
 [node name="leg_f" type="Sprite" parent="body/leg_low_f/piston1"]
 position = Vector2( 19.0261, 16.6479 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 offset = Vector2( -7.86081, -6.39629 )
 __meta__ = {
 "_edit_bone_": true
@@ -85,7 +92,7 @@ position = Vector2( -15.3431, -28.8564 )
 
 [node name="foot_f" type="Sprite" parent="body/leg_low_f/piston1/leg_f"]
 position = Vector2( 3.32959, 10.4644 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( 0.0552368, 7.32095 )
 __meta__ = {
 "_edit_bone_": true
@@ -100,7 +107,7 @@ __meta__ = {
 [node name="leg_low_b" type="Sprite" parent="body"]
 editor/display_folded = true
 position = Vector2( -19.8978, 9.4819 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 offset = Vector2( -2.93363, 1.75667 )
 __meta__ = {
 "_edit_bone_": true,
@@ -110,21 +117,20 @@ __meta__ = {
 [node name="piston2" type="Sprite" parent="body/leg_low_b"]
 show_behind_parent = true
 position = Vector2( -8.56177, 0.237823 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 offset = Vector2( -1.70234, -3.49229 )
 
 [node name="piston1" type="Sprite" parent="body/leg_low_b"]
 position = Vector2( -9.40737, 4.89082 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 offset = Vector2( -8.20433, 5.89902 )
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="leg_b" type="Sprite" parent="body/leg_low_b/piston1"]
-show_behind_parent = true
 position = Vector2( -14.8813, 11.45 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 offset = Vector2( 3.2044, -4.71899 )
 __meta__ = {
 "_edit_bone_": true
@@ -134,9 +140,8 @@ __meta__ = {
 position = Vector2( 9.68483, -25.7913 )
 
 [node name="foot_b" type="Sprite" parent="body/leg_low_b/piston1/leg_b"]
-show_behind_parent = true
 position = Vector2( -4.75654, 17.1235 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 offset = Vector2( -2.99163, 5.50757 )
 __meta__ = {
 "_edit_bone_": true
@@ -150,5 +155,5 @@ __meta__ = {
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
-polygon = PoolVector2Array( -22.0442, -45.0817, -10.5215, -42.1445, 13.2017, -42.3704, 22.691, -64.738, 34.8915, -70.3864, 36.699, -83.0388, 22.691, -83.0388, 22.2391, -71.2902, 10.9424, -71.7421, 5.97177, -94.1097, -12.1031, -98.1765, -25.6592, -98.8543, -26.1111, -89.1391, -32.6632, -89.1391, -31.0817, -77.8423, -25.6592, -69.7086, -25.8851, -55.7006 )
+polygon = PoolVector2Array( -26.0652, -45.9456, -10.5215, -42.1445, 13.2017, -42.3704, 24.6775, -66.539, 36.1162, -73.4526, 11.5148, -73.2589, 4.92864, -96.1168, -26.2589, -99.0225, -27.2954, -91.2259, -32.6514, -88.5621, -32.0702, -76.9394, -25.6592, -69.7086 )
 

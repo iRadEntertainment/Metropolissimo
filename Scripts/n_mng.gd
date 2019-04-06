@@ -8,6 +8,7 @@ var tm
 var tm_solid
 var tm_climb
 var tm_platf
+var cam_ctrl
 var cam
 var gui
 var pl
@@ -19,7 +20,7 @@ signal nodes_updated
 
 func update_nodes(scene):
 	var nodes = []
-	var paths = ["tm","tm/solid","tm/climb","tm/platf","cam_ctrl","GUI","player","cnt/spawn","cnt","tools"]
+	var paths = ["tm","tm/solid","tm/climb","tm/platf","cam_ctrl","cam_ctrl/cam","GUI","player","cnt/spawn","cnt","tools"]
 	
 	for i in range(paths.size()):
 		if scene.get_node(paths[i]) == null:
@@ -31,10 +32,11 @@ func update_nodes(scene):
 	tm_solid = nodes[1]
 	tm_climb = nodes[2]
 	tm_platf = nodes[3]
-	cam      = nodes[4]
-	gui      = nodes[5]
-	pl       = nodes[6]
-	spawn    = nodes[7]
-	cnt      = nodes[8]
-	tools    = nodes[9]
+	cam_ctrl = nodes[4]
+	cam      = nodes[5]
+	gui      = nodes[6]
+	pl       = nodes[7]
+	spawn    = nodes[8]
+	cnt      = nodes[9]
+	tools    = nodes[10]
 	emit_signal("nodes_updated")

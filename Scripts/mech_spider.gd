@@ -10,6 +10,7 @@ var patrol_x_right = 200
 var ik_script_leg_r # Script
 var ik_script_leg_l # Script
 
+var vec_mov = Vector2()
 
 func _ready():
 	set_process(false)
@@ -23,7 +24,8 @@ var t = 0
 func _process(d):
 	t += d
 	ik_legs(d)
-	move_and_collide(Vector2(sin(t)*50*d,0))
+	vec_mov = Vector2(sin(t)*50*d,0)
+	move_and_collide(vec_mov)
 
 
 

@@ -539,6 +539,7 @@ func _ready():
 
 func _on_tree_item_activated():
 	var path = get_selected().get_metadata(0)
+	print(\"MAIN MENU debug tree: loading %s\"%[path])
 	audio_mng.music_fade_out()
 	g_mng.load_stage_from_main_menu(path)
 "
@@ -773,6 +774,7 @@ margin_bottom = 272.0
 [node name="thumb_load" parent="hbox_bttm/cnt_load_game/hbox/btns_load" instance=ExtResource( 8 )]
 
 [node name="cnt_opts" type="Control" parent="hbox_bttm"]
+editor/display_folded = true
 visible = false
 margin_left = 266.0
 margin_right = 1248.0
@@ -1056,7 +1058,6 @@ percent_visible = false
 script = SubResource( 49 )
 
 [node name="cnt_debug" type="Control" parent="hbox_bttm"]
-editor/display_folded = true
 margin_left = 266.0
 margin_right = 1248.0
 margin_bottom = 300.0

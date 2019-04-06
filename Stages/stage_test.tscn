@@ -124,6 +124,7 @@ __meta__ = {
 z_index = 15
 
 [node name="cnt" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 11 )
 
 [node name="props" type="Node2D" parent="cnt"]
