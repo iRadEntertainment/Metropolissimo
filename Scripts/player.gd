@@ -3,7 +3,7 @@
 #==========================#
 
 extends "res://Scripts/class_human.gd"
-#player status
+#player flags
 var st_on_floor   : bool = true
 var st_back_unbal : bool = false
 var st_fron_unbal : bool = false
@@ -61,6 +61,8 @@ var tr_top_detect = false
 var tr_bot_detect = false
 
 #player stats
+var life = 4
+
 var pl_stat_aim_pistol        = 0.08    # seconds
 var pl_stat_aim_follow_pistol = 10     # multiplier
 
@@ -86,6 +88,8 @@ func _ready():
 	pl_movement = PlMove.IDLE
 	$anim/tree_body.active = true
 	$anim/tree_legs.active = true
+	
+	update_life_interface()
 
 
 func _input(event):
@@ -272,6 +276,33 @@ func stick_to_slopes(vec_mov):
 
 
 #======================== STATUS ============================
+
+func update_life_interface():
+	var col = Color.red
+	if life >= 3:
+		col = Color.green
+	elif life > 1:
+		col = Color.orangered
+	
+	$body_parts/hips/body/arm_r/life1.visible = life >= 1
+	$body_parts/hips/body/arm_r/life1/light.color = col
+	
+	$body_parts/hips/body/arm_r/life2.visible = life >= 2
+	$body_parts/hips/body/arm_r/life2/light.color = col
+	
+	$rmted_front2/forearm_r/life3.visible = life >= 3
+	$rmted_front2/forearm_r/life3/light.color = col
+	
+	$rmted_front2/forearm_r/life4.visible = life >= 4
+	$rmted_front2/forearm_r/life4/light.color = col
+
+
+func get_hit(val=1,HIT_NORM = Vector2(), hit_pos = Vector2()):
+	life -= val
+	update_life_interface()
+
+
+#======================== FLAGS ============================
 func check_pl_on_floor():
 	if $rays/floor_b.is_colliding() or $rays/floor_f.is_colliding():
 		if not st_on_floor: st_on_floor = true
@@ -643,6 +674,8 @@ func fire():
 
 func weapon_reload():
 	$weapons.reload()
+
+
 
 
 #========================== UTILS ==============================

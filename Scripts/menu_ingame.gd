@@ -30,18 +30,18 @@ func _input(event):
 		if event.scancode == KEY_ESCAPE and event.is_pressed():
 			get_tree().paused = !get_tree().paused
 			$menu.visible = get_tree().paused
-			n_mng.cam.get_node("pos").visible = get_tree().paused
+			n_mng.cam_ctrl.get_node("pos").visible = get_tree().paused
 		
 		if get_tree().paused:
-			if event.scancode == KEY_W and event.is_pressed():  n_mng.cam.global_position.y -= pan_velocity
-			if event.scancode == KEY_A and event.is_pressed():  n_mng.cam.global_position.x -= pan_velocity
-			if event.scancode == KEY_S and event.is_pressed():  n_mng.cam.global_position.y += pan_velocity
-			if event.scancode == KEY_D and event.is_pressed():  n_mng.cam.global_position.x += pan_velocity
+			if event.scancode == KEY_W and event.is_pressed():  n_mng.cam_ctrl.global_position.y -= pan_velocity
+			if event.scancode == KEY_A and event.is_pressed():  n_mng.cam_ctrl.global_position.x -= pan_velocity
+			if event.scancode == KEY_S and event.is_pressed():  n_mng.cam_ctrl.global_position.y += pan_velocity
+			if event.scancode == KEY_D and event.is_pressed():  n_mng.cam_ctrl.global_position.x += pan_velocity
 	
 	if event is InputEventMouseButton and get_tree().paused:
-		if event.button_index == BUTTON_WHEEL_UP:   n_mng.cam.get_node("cam").zoom /= 1.2
-		if event.button_index == BUTTON_WHEEL_DOWN: n_mng.cam.get_node("cam").zoom *= 1.2
-		if event.button_index == BUTTON_MIDDLE:     n_mng.cam.get_node("cam").zoom = Vector2 ( 1 , 1 )
+		if event.button_index == BUTTON_WHEEL_UP:   n_mng.cam.zoom /= 1.2
+		if event.button_index == BUTTON_WHEEL_DOWN: n_mng.cam.zoom *= 1.2
+		if event.button_index == BUTTON_MIDDLE:     n_mng.cam.zoom = Vector2 ( 1 , 1 )
 
 func _mouse_info():
 	if !data_mng.cfg_debug_mode: return

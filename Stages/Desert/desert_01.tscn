@@ -1,71 +1,138 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Sprites/backgrouds/desert_sky.jpg" type="Texture" id=1]
 [ext_resource path="res://Sprites/backgrouds/moon.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/street_entrance.gd" type="Script" id=3]
-[ext_resource path="res://Stages/Stage1/street1_wall_l.jpg" type="Texture" id=4]
-[ext_resource path="res://Scripts/tm_startup.gd" type="Script" id=5]
-[ext_resource path="res://Sprites/tileset/test_bg.tres" type="TileSet" id=6]
-[ext_resource path="res://Sprites/tileset/test_solid2.tres" type="TileSet" id=7]
-[ext_resource path="res://Sprites/tileset/test_solid.tres" type="TileSet" id=8]
-[ext_resource path="res://Sprites/tileset/test_climb2.tres" type="TileSet" id=9]
-[ext_resource path="res://Instances/tm_debug.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scripts/cnt.gd" type="Script" id=11]
-[ext_resource path="res://Sprites/lights/light_ellipse.png" type="Texture" id=12]
-[ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sprites/backgrouds/desert_dunes.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/backgrouds/desert_dune_mid.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/backgrouds/desert_dune_close.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/backgrouds/cloud_01.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/street_entrance.gd" type="Script" id=7]
+[ext_resource path="res://Stages/Stage1/street1_wall_l.jpg" type="Texture" id=8]
+[ext_resource path="res://Scripts/tm_startup.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/tileset/test_bg.tres" type="TileSet" id=10]
+[ext_resource path="res://Sprites/tileset/test_solid2.tres" type="TileSet" id=11]
+[ext_resource path="res://Sprites/tileset/test_solid.tres" type="TileSet" id=12]
+[ext_resource path="res://Sprites/tileset/test_climb2.tres" type="TileSet" id=13]
+[ext_resource path="res://Instances/tm_debug.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Sprites/backgrouds/overlays/desert_overlay_0_01.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/backgrouds/overlays/desert_tile_filler02.png" type="Texture" id=16]
+[ext_resource path="res://Scripts/cnt.gd" type="Script" id=17]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_00.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_00_nrm.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_01.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_01_nrm.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_02.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_06.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_07.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_03.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_03_nrm.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/backgrouds/props/desert_plant_05.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/lights/light_ellipse.png" type="Texture" id=28]
+[ext_resource path="res://Instances/dummy.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Instances/lobster.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Shaders/fuego_shader.tres" type="Material" id=31]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends ParallaxBackground
-
-func _ready():
-	pass
-
-func _process(delta):
-	offset = -OS.window_size/2
-"
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends Sprite
-
-func _ready():
-	pass
-
-func _process(delta):
-	scale = Vector2(n_mng.cam.zoom.x , n_mng.cam.zoom.x)"
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.0
+glow_bloom = 0.03
+glow_blend_mode = 0
+glow_hdr_threshold = 1.84
+glow_hdr_luminance_cap = 123.49
+glow_hdr_scale = 1.48
+glow_bicubic_upscale = true
+adjustment_contrast = 0.98
 
 [node name="desert_01" type="Node2D"]
+__meta__ = {
+"_edit_horizontal_guides_": [ 1200.0 ]
+}
 
-[node name="bg" type="ParallaxBackground" parent="."]
-scroll_limit_begin = Vector2( -1000, -1000 )
-scroll_limit_end = Vector2( 10000, 10000 )
+[node name="bg_fixed" type="ParallaxBackground" parent="."]
+editor/display_folded = true
 scroll_ignore_camera_zoom = true
-script = SubResource( 1 )
 
-[node name="fixed" type="ParallaxLayer" parent="bg"]
+[node name="fixed" type="ParallaxLayer" parent="bg_fixed"]
+editor/display_folded = true
 motion_scale = Vector2( 0, 0 )
 
-[node name="sky" type="Sprite" parent="bg/fixed"]
+[node name="sky" type="TextureRect" parent="bg_fixed/fixed"]
+self_modulate = Color( 0.278431, 0.133333, 0.133333, 1 )
+margin_left = -976.0
+margin_top = -656.0
+margin_right = 995.0
+margin_bottom = 576.0
 texture = ExtResource( 1 )
-centered = false
-script = SubResource( 2 )
+stretch_mode = 1
 
-[node name="far" type="ParallaxLayer" parent="bg"]
-motion_scale = Vector2( 0.01, 0.005 )
-
-[node name="moon" type="Sprite" parent="bg/far"]
-position = Vector2( 640, 240 )
+[node name="moon" type="Sprite" parent="bg_fixed/fixed"]
+position = Vector2( -460, -307 )
 texture = ExtResource( 2 )
 
+[node name="bg" type="ParallaxBackground" parent="."]
+editor/display_folded = true
+scroll_base_scale = Vector2( 0.1, 0.1 )
+scroll_ignore_camera_zoom = true
+
+[node name="far" type="ParallaxLayer" parent="bg"]
+editor/display_folded = true
+motion_scale = Vector2( 0.2, 0 )
+motion_mirroring = Vector2( 3360, 0 )
+
+[node name="dunes" type="TextureRect" parent="bg/far"]
+self_modulate = Color( 0.623529, 0.623529, 0.623529, 1 )
+margin_top = -80.0
+margin_right = 3360.0
+margin_bottom = 138.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+
+[node name="mid" type="ParallaxLayer" parent="bg"]
+editor/display_folded = true
+position = Vector2( 0, 240 )
+motion_scale = Vector2( 0.3, 0 )
+motion_mirroring = Vector2( 3360, 0 )
+
+[node name="dunes" type="TextureRect" parent="bg/mid"]
+self_modulate = Color( 0.423529, 0.423529, 0.423529, 1 )
+margin_top = -189.0
+margin_right = 3360.0
+margin_bottom = -1.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+
 [node name="close" type="ParallaxLayer" parent="bg"]
-visible = false
+editor/display_folded = true
+position = Vector2( 0, 240 )
+motion_scale = Vector2( 1, 0 )
+motion_mirroring = Vector2( 3360, 0 )
+
+[node name="dunes" type="TextureRect" parent="bg/close"]
+self_modulate = Color( 0.411765, 0.388235, 0.388235, 1 )
+margin_top = -29.0
+margin_right = 3360.0
+margin_bottom = 166.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+
+[node name="clouds" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2( 1, 0.1 )
+motion_mirroring = Vector2( 2000, 0 )
+
+[node name="cloud1" type="Sprite" parent="bg/clouds"]
+modulate = Color( 0.364706, 0.294118, 0.32549, 1 )
+position = Vector2( 192, -224 )
+texture = ExtResource( 6 )
 
 [node name="bg_streets" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="street1" type="Node2D" parent="bg_streets"]
 editor/display_folded = true
 visible = false
 position = Vector2( 1920, 1120 )
-script = ExtResource( 3 )
+script = ExtResource( 7 )
 
 [node name="vsn" type="VisibilityNotifier2D" parent="bg_streets/street1"]
 
@@ -73,18 +140,18 @@ script = ExtResource( 3 )
 
 [node name="left" type="Sprite" parent="bg_streets/street1"]
 position = Vector2( -220, 0 )
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
 
 [node name="right" type="Sprite" parent="bg_streets/street1"]
 position = Vector2( 256, -192 )
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
 
 [node name="tm" type="Node2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 5 )
+script = ExtResource( 9 )
 
 [node name="bg" type="TileMap" parent="tm"]
-tile_set = ExtResource( 6 )
+tile_set = ExtResource( 10 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 0
 collision_mask = 0
@@ -94,7 +161,7 @@ __meta__ = {
 }
 
 [node name="solid" type="TileMap" parent="tm"]
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 11 )
 cell_size = Vector2( 32, 32 )
 collision_mask = 4
 format = 1
@@ -104,7 +171,7 @@ __meta__ = {
 }
 
 [node name="platf" type="TileMap" parent="tm"]
-tile_set = ExtResource( 8 )
+tile_set = ExtResource( 12 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 1024
 collision_mask = 30
@@ -114,7 +181,7 @@ __meta__ = {
 }
 
 [node name="climb" type="TileMap" parent="tm"]
-tile_set = ExtResource( 9 )
+tile_set = ExtResource( 13 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 2
 collision_mask = 2
@@ -123,14 +190,85 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="tm_debug" parent="tm" instance=ExtResource( 10 )]
+[node name="tm_debug" parent="tm" instance=ExtResource( 14 )]
 z_index = 15
 
-[node name="cnt" type="Node2D" parent="."]
+[node name="overlays" type="Node2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 11 )
+
+[node name="modulate" type="CanvasModulate" parent="overlays"]
+color = Color( 0.580392, 0.513726, 0.784314, 1 )
+
+[node name="overlay01" type="TextureRect" parent="overlays"]
+margin_top = 1952.0
+margin_right = 1537.0
+margin_bottom = 2147.0
+texture = ExtResource( 15 )
+
+[node name="fill01" type="TextureRect" parent="overlays"]
+margin_top = 2144.0
+margin_right = 6720.0
+margin_bottom = 2560.0
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 2
+
+[node name="cnt" type="Node2D" parent="."]
+script = ExtResource( 17 )
 
 [node name="props" type="Node2D" parent="cnt"]
+editor/display_folded = true
+
+[node name="plant001" type="Sprite" parent="cnt/props"]
+position = Vector2( 928, 1930.5 )
+texture = ExtResource( 18 )
+normal_map = ExtResource( 19 )
+
+[node name="plant002" type="Sprite" parent="cnt/props"]
+position = Vector2( 1728, 1987 )
+texture = ExtResource( 20 )
+normal_map = ExtResource( 21 )
+
+[node name="plant003" type="Sprite" parent="cnt/props"]
+position = Vector2( 1040, 1936 )
+texture = ExtResource( 22 )
+
+[node name="plant004" type="Sprite" parent="cnt/props"]
+position = Vector2( 3088, 1712 )
+texture = ExtResource( 22 )
+
+[node name="plant009" type="Sprite" parent="cnt/props"]
+position = Vector2( 3888, 1699 )
+texture = ExtResource( 23 )
+
+[node name="plant010" type="Sprite" parent="cnt/props"]
+position = Vector2( 8573, 2055.5 )
+texture = ExtResource( 24 )
+
+[node name="plant012" type="Sprite" parent="cnt/props"]
+position = Vector2( 8761, 2055 )
+texture = ExtResource( 24 )
+
+[node name="plant011" type="Sprite" parent="cnt/props"]
+position = Vector2( 8288, 2032 )
+texture = ExtResource( 22 )
+
+[node name="plant005" type="Sprite" parent="cnt/props"]
+position = Vector2( 7024, 2096 )
+texture = ExtResource( 22 )
+
+[node name="plant006" type="Sprite" parent="cnt/props"]
+position = Vector2( 9056, 2064 )
+texture = ExtResource( 22 )
+
+[node name="plant007" type="Sprite" parent="cnt/props"]
+position = Vector2( 8608, 2000 )
+texture = ExtResource( 25 )
+normal_map = ExtResource( 26 )
+
+[node name="plant008" type="Sprite" parent="cnt/props"]
+position = Vector2( 9600, 2041.5 )
+texture = ExtResource( 27 )
 
 [node name="bg lights" type="Node2D" parent="cnt"]
 editor/display_folded = true
@@ -139,28 +277,57 @@ __meta__ = {
 }
 
 [node name="lamp1" type="Light2D" parent="cnt/bg lights"]
-position = Vector2( 417.2, 1054 )
-texture = ExtResource( 12 )
+position = Vector2( 3600, 1616 )
+texture = ExtResource( 28 )
 
 [node name="pickups" type="Node2D" parent="cnt"]
 
 [node name="debris" type="Node2D" parent="cnt"]
 
 [node name="enemies" type="Node2D" parent="cnt"]
-editor/display_folded = true
 
-[node name="dummy" parent="cnt/enemies" instance=ExtResource( 13 )]
+[node name="dummy" parent="cnt/enemies" instance=ExtResource( 29 )]
 position = Vector2( 992, 1952 )
+
+[node name="lobster" parent="cnt/enemies" instance=ExtResource( 30 )]
+editor/display_folded = true
+position = Vector2( 1568, 2000 )
+
+[node name="lobster2" parent="cnt/enemies" instance=ExtResource( 30 )]
+editor/display_folded = true
+position = Vector2( 2096, 2048 )
+
+[node name="lobster3" parent="cnt/enemies" instance=ExtResource( 30 )]
+editor/display_folded = true
+position = Vector2( 3456, 1696 )
+
+[node name="lobster4" parent="cnt/enemies" instance=ExtResource( 30 )]
+editor/display_folded = true
+position = Vector2( 4560, 1888 )
+
+[node name="lobster5" parent="cnt/enemies" instance=ExtResource( 30 )]
+editor/display_folded = true
+position = Vector2( 304, 2016 )
 
 [node name="bullets" type="Node2D" parent="cnt"]
 
 [node name="vfx" type="Node2D" parent="cnt"]
+editor/display_folded = true
 z_index = 10
 __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="fire" type="ColorRect" parent="cnt/vfx"]
+material = ExtResource( 31 )
+margin_left = 3581.0
+margin_top = 1700.0
+margin_right = 3613.0
+margin_bottom = 1748.0
+rect_rotation = 180.0
+
 [node name="spawn" type="Node2D" parent="cnt"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -170,6 +337,9 @@ position = Vector2( 96, 2016 )
 
 [node name="1" type="Position2D" parent="cnt/spawn"]
 position = Vector2( 736, 1984 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
 
 [connection signal="screen_entered" from="bg_streets/street1/vsn" to="bg_streets/street1" method="_on_vsn_screen_entered"]
 [connection signal="screen_exited" from="bg_streets/street1/vsn" to="bg_streets/street1" method="_on_vsn_screen_exited"]

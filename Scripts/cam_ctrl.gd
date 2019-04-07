@@ -3,7 +3,7 @@
 
 extends Position2D
 
-export var offset_ahead = Vector2(150,-32)
+export var offset_ahead = Vector2(150,-160)#Vector2(150,-32)
 export var smooth       = 0.05
 
 var zoom_step    = 1.2

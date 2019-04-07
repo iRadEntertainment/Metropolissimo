@@ -28,7 +28,7 @@ func fire(obj_aimed , arr_obj_excluded):
 			ray_res = p2-p1
 			
 			var obj_temp = ray.get_collider()
-			prints("WP_PISTOL: obj hit =",obj_temp)
+#			prints("WP_PISTOL: obj hit =",obj_temp)
 			if obj_temp == null: return
 			#-----impact
 			var impact_inst = impact_tscn.instance()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bottiglia_rossa.png-648f9c516070e63bcc35491fb92c40c8.stex"
+path="res://.import/flashlight_strong.png-7020511dfd268f800f98685036710fb1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pickups/bottiglia_rossa.png"
-dest_files=[ "res://.import/bottiglia_rossa.png-648f9c516070e63bcc35491fb92c40c8.stex" ]
+source_file="res://Sprites/lights/flashlight_strong.png"
+dest_files=[ "res://.import/flashlight_strong.png-7020511dfd268f800f98685036710fb1.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

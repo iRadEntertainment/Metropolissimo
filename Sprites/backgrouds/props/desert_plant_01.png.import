@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bottiglia_viola.png-2757f18ce602b426d3d63c91e9e3a0fe.stex"
+path="res://.import/desert_plant_01.png-d841836f67b87bbf390d24c0c37690af.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pickups/bottiglia_viola.png"
-dest_files=[ "res://.import/bottiglia_viola.png-2757f18ce602b426d3d63c91e9e3a0fe.stex" ]
+source_file="res://Sprites/backgrouds/props/desert_plant_01.png"
+dest_files=[ "res://.import/desert_plant_01.png-d841836f67b87bbf390d24c0c37690af.stex" ]
 
 [params]
 
@@ -25,10 +25,10 @@ flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
-process/premult_alpha=false
+process/premult_alpha=true
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

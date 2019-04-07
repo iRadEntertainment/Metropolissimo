@@ -40,7 +40,8 @@ func _pressed():
 	var menu = menu_resource.instance()
 	
 #	get_tree().current_scene = menu
-	get_tree().get_root().add_child(menu)"
+	get_tree().get_root().add_child(menu)
+	g_mng.fl_ingame = false"
 
 [sub_resource type="GDScript" id=4]
 script/source = "#btn_tm_debug
@@ -166,12 +167,14 @@ bg_color = Color( 0.373627, 0.902344, 0.225586, 1 )
 bg_color = Color( 0.373627, 0.902344, 0.225586, 1 )
 
 [node name="menu" type="Control"]
+light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
 margin_right = -2.0
 
 [node name="sepia" type="ColorRect" parent="."]
+light_mask = 0
 material = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -180,6 +183,7 @@ __meta__ = {
 }
 
 [node name="btns_bg" type="ColorRect" parent="."]
+light_mask = 0
 material = SubResource( 2 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -194,7 +198,6 @@ __meta__ = {
 }
 
 [node name="btns" type="VBoxContainer" parent="."]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -314,6 +317,7 @@ mouse_filter = 2
 color = Color( 0.363281, 0.363281, 0.363281, 0.690588 )
 
 [node name="audio" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -325,6 +329,7 @@ margin_bottom = 128.0
 custom_constants/separation = 32
 
 [node name="audio_m" type="VSlider" parent="audio"]
+editor/display_folded = true
 margin_right = 2.0
 margin_bottom = 216.0
 rect_min_size = Vector2( 0, 32 )
@@ -344,6 +349,7 @@ texture = ExtResource( 6 )
 [node name="btns_bg4" type="ColorRect" parent="audio/audio_m"]
 modulate = Color( 0.238281, 0.238281, 0.238281, 0.707176 )
 show_behind_parent = true
+light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -16.0
@@ -393,6 +399,7 @@ step = 1.0
 percent_visible = false
 
 [node name="audio_s" type="VSlider" parent="audio"]
+editor/display_folded = true
 margin_left = 34.0
 margin_right = 36.0
 margin_bottom = 216.0
@@ -408,6 +415,7 @@ script = SubResource( 14 )
 [node name="btns_bg3" type="ColorRect" parent="audio/audio_s"]
 modulate = Color( 0.238281, 0.238281, 0.238281, 0.707176 )
 show_behind_parent = true
+light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -16.0

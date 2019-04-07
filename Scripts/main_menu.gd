@@ -8,7 +8,7 @@ var margin_offs = 40
 enum SubMenu {NONE , LOAD_GAME, OPTIONS , DEBUG}
 
 var fade_off = false
-const stage1_1_path = "res://Stages/Stage1/stage1.tscn"
+const new_game_path = "res://Stages/Desert/desert_01.tscn"#"res://Stages/Stage1/stage1.tscn"
 const stage_test    = "res://Stages/stage_test.tscn"
 
 onready var thumb_btn = preload("res://Instances/thumb_load.tscn")
@@ -48,7 +48,7 @@ func _process(delta):
 		modulate.a -= delta*2
 		if modulate.a < 0.1:
 			fade_off = false
-			g_mng.load_stage_from_main_menu(stage1_1_path)
+			g_mng.load_stage_from_main_menu(new_game_path)
 
 func mouse_parallax_bg():
 	var mouse_offs = Vector2()

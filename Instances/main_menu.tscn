@@ -692,7 +692,6 @@ margin_bottom = -16.0
 custom_constants/separation = 16
 
 [node name="btns_main" type="GridContainer" parent="hbox_bttm"]
-editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 300.0
 custom_constants/vseparation = 8
@@ -805,7 +804,6 @@ margin_bottom = 272.0
 [node name="thumb_load" parent="hbox_bttm/cnt_load_game/hbox/btns_load" instance=ExtResource( 8 )]
 
 [node name="cnt_opts" type="Control" parent="hbox_bttm"]
-editor/display_folded = true
 visible = false
 margin_left = 266.0
 margin_right = 1248.0
@@ -923,7 +921,6 @@ size_flags_vertical = 0
 theme = ExtResource( 10 )
 
 [node name="audio" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel"]
-editor/display_folded = true
 margin_left = 16.0
 margin_top = 8.0
 margin_right = 668.0

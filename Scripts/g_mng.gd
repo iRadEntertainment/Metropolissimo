@@ -112,7 +112,7 @@ func add_stage_instances(incoming_scene):
 
 func game_setup_and_start():
 	n_mng.pl.global_position  = n_mng.spawn.get_node("1").global_position
-	n_mng.cam.global_position = n_mng.spawn.get_node("1").global_position
+	n_mng.cam_ctrl.global_position = n_mng.spawn.get_node("1").global_position
 	
 	audio_mng.set_ingame_music(0 , false)
 
