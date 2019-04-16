@@ -417,7 +417,7 @@ func _pressed():
 	$CheckBox.pressed        = g_mng.fl_vfx_enabled
 	"
 
-[sub_resource type="GDScript" id=54]
+[sub_resource type="GDScript" id=41]
 script/source = "extends CheckBox
 
 func _ready():
@@ -427,7 +427,7 @@ func _toggled(val):
 	AudioServer.set_bus_mute(0,!val)
 	audio_mng.music_mute = !val"
 
-[sub_resource type="GDScript" id=41]
+[sub_resource type="GDScript" id=42]
 script/source = "extends HSlider
 
 func _ready():
@@ -437,19 +437,19 @@ func _ready():
 func _scrolled(val):
 	audio_mng.master_bus_vol = val"
 
-[sub_resource type="GDScript" id=42]
+[sub_resource type="GDScript" id=43]
 script/source = "extends ProgressBar
 
 func _process(delta):
 	value = AudioServer.get_bus_peak_volume_left_db(0,0)"
 
-[sub_resource type="GDScript" id=43]
+[sub_resource type="GDScript" id=44]
 script/source = "extends ProgressBar
 
 func _process(delta):
 	value = AudioServer.get_bus_peak_volume_right_db(0,0)"
 
-[sub_resource type="GDScript" id=55]
+[sub_resource type="GDScript" id=45]
 script/source = "extends CheckBox
 
 func _ready():
@@ -459,7 +459,7 @@ func _toggled(val):
 	AudioServer.set_bus_mute(1,!val)
 	audio_mng.music_mute = !val"
 
-[sub_resource type="GDScript" id=44]
+[sub_resource type="GDScript" id=46]
 script/source = "extends HSlider
 
 func _ready():
@@ -469,19 +469,19 @@ func _ready():
 func _scrolled(val):
 	audio_mng.music_bus_vol = val"
 
-[sub_resource type="GDScript" id=45]
+[sub_resource type="GDScript" id=47]
 script/source = "extends ProgressBar
 
 func _process(delta):
 	value = AudioServer.get_bus_peak_volume_left_db(1,0)"
 
-[sub_resource type="GDScript" id=46]
+[sub_resource type="GDScript" id=48]
 script/source = "extends ProgressBar
 
 func _process(delta):
 	value = AudioServer.get_bus_peak_volume_right_db(1,0)"
 
-[sub_resource type="GDScript" id=56]
+[sub_resource type="GDScript" id=49]
 script/source = "extends CheckBox
 
 func _ready():
@@ -491,7 +491,7 @@ func _toggled(val):
 	AudioServer.set_bus_mute(2,!val)
 	audio_mng.music_mute = !val"
 
-[sub_resource type="GDScript" id=47]
+[sub_resource type="GDScript" id=50]
 script/source = "extends HSlider
 
 func _ready():
@@ -501,24 +501,24 @@ func _ready():
 func _scrolled(val):
 	audio_mng.sound_bus_vol = val"
 
-[sub_resource type="GDScript" id=48]
+[sub_resource type="GDScript" id=51]
 script/source = "extends ProgressBar
 
 func _process(delta):
 	value = AudioServer.get_bus_peak_volume_left_db(2,0)"
 
-[sub_resource type="GDScript" id=49]
+[sub_resource type="GDScript" id=52]
 script/source = "extends ProgressBar
 
 func _process(delta):
 	value = AudioServer.get_bus_peak_volume_right_db(2,0)"
 
-[sub_resource type="GDScript" id=50]
+[sub_resource type="GDScript" id=53]
 script/source = "#btn_stage_test
 
 extends \"res://Scripts/button_menu_generic.gd\""
 
-[sub_resource type="GDScript" id=51]
+[sub_resource type="GDScript" id=54]
 script/source = "extends Tree
 
 
@@ -575,7 +575,7 @@ func _on_tree_item_activated():
 	g_mng.load_stage_from_main_menu(path)
 "
 
-[sub_resource type="GDScript" id=52]
+[sub_resource type="GDScript" id=55]
 script/source = "#btn_debug_mode
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -587,7 +587,7 @@ func _pressed():
 	data_mng.cfg_debug_mode = !data_mng.cfg_debug_mode
 	$CheckBox.pressed = data_mng.cfg_debug_mode"
 
-[sub_resource type="GDScript" id=53]
+[sub_resource type="GDScript" id=56]
 script/source = "#btn_experimental_char
 
 extends \"res://Scripts/button_menu_generic.gd\"
@@ -944,7 +944,7 @@ text = "     Master"
 margin_right = 18.0
 margin_bottom = 22.0
 theme = ExtResource( 11 )
-script = SubResource( 54 )
+script = SubResource( 41 )
 
 [node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master"]
 margin_top = 24.0
@@ -959,7 +959,7 @@ step = 2.0
 allow_greater = true
 allow_lesser = true
 ticks_on_borders = true
-script = SubResource( 41 )
+script = SubResource( 42 )
 
 [node name="left" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master"]
 margin_top = 44.0
@@ -970,7 +970,7 @@ theme = ExtResource( 12 )
 min_value = -72.0
 max_value = 12.0
 percent_visible = false
-script = SubResource( 42 )
+script = SubResource( 43 )
 
 [node name="right" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/vol_master"]
 margin_top = 52.0
@@ -982,7 +982,7 @@ min_value = -72.0
 max_value = 12.0
 value = 12.0
 percent_visible = false
-script = SubResource( 43 )
+script = SubResource( 44 )
 
 [node name="audio_ch" type="HBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel/audio"]
 margin_top = 60.0
@@ -1007,7 +1007,7 @@ text = "     Music"
 anchor_bottom = 1.0
 margin_right = 16.0
 theme = ExtResource( 11 )
-script = SubResource( 55 )
+script = SubResource( 45 )
 
 [node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music"]
 margin_top = 24.0
@@ -1022,7 +1022,7 @@ step = 2.0
 allow_greater = true
 allow_lesser = true
 ticks_on_borders = true
-script = SubResource( 44 )
+script = SubResource( 46 )
 
 [node name="left" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music"]
 margin_top = 44.0
@@ -1033,7 +1033,7 @@ theme = ExtResource( 12 )
 min_value = -72.0
 max_value = 12.0
 percent_visible = false
-script = SubResource( 45 )
+script = SubResource( 47 )
 
 [node name="right" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_music"]
 margin_top = 52.0
@@ -1045,7 +1045,7 @@ min_value = -72.0
 max_value = 12.0
 value = 12.0
 percent_visible = false
-script = SubResource( 46 )
+script = SubResource( 48 )
 
 [node name="vol_sound" type="VBoxContainer" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch"]
 margin_left = 334.0
@@ -1064,7 +1064,7 @@ text = "     Sound"
 anchor_bottom = 1.0
 margin_right = 16.0
 theme = ExtResource( 11 )
-script = SubResource( 56 )
+script = SubResource( 49 )
 
 [node name="sli" type="HSlider" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound"]
 margin_top = 24.0
@@ -1079,7 +1079,7 @@ step = 2.0
 allow_greater = true
 allow_lesser = true
 ticks_on_borders = true
-script = SubResource( 47 )
+script = SubResource( 50 )
 
 [node name="left" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound"]
 margin_top = 44.0
@@ -1090,7 +1090,7 @@ theme = ExtResource( 12 )
 min_value = -72.0
 max_value = 12.0
 percent_visible = false
-script = SubResource( 48 )
+script = SubResource( 51 )
 
 [node name="right" type="ProgressBar" parent="hbox_bttm/cnt_opts/hbox/panel/audio/audio_ch/vol_sound"]
 margin_top = 52.0
@@ -1102,7 +1102,7 @@ min_value = -72.0
 max_value = 12.0
 value = 12.0
 percent_visible = false
-script = SubResource( 49 )
+script = SubResource( 52 )
 
 [node name="cnt_debug" type="Control" parent="hbox_bttm"]
 editor/display_folded = true
@@ -1126,7 +1126,7 @@ rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
 text = "Test Stage"
-script = SubResource( 50 )
+script = SubResource( 53 )
 
 [node name="btn_save_cfg" type="Button" parent="hbox_bttm/cnt_debug"]
 anchor_left = 1.0
@@ -1154,7 +1154,7 @@ margin_right = 180.0
 margin_bottom = 228.0
 rect_min_size = Vector2( 180, 0 )
 theme = ExtResource( 10 )
-script = SubResource( 51 )
+script = SubResource( 54 )
 
 [node name="btns_opt" type="GridContainer" parent="hbox_bttm/cnt_debug/hbox"]
 margin_left = 184.0
@@ -1169,7 +1169,7 @@ rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
 text = "Debug Mode"
-script = SubResource( 52 )
+script = SubResource( 55 )
 
 [node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_debug/hbox/btns_opt/debug_mode"]
 anchor_bottom = 1.0
@@ -1189,7 +1189,7 @@ rect_min_size = Vector2( 250, 32 )
 size_flags_horizontal = 3
 theme = ExtResource( 9 )
 text = "Experimetal Char"
-script = SubResource( 53 )
+script = SubResource( 56 )
 
 [node name="CheckBox" type="CheckBox" parent="hbox_bttm/cnt_debug/hbox/btns_opt/pl_sper"]
 anchor_bottom = 1.0
