@@ -30,7 +30,7 @@ func _ready():
 func _input(event):
 	if (event is InputEventMouseButton):
 		
-		zoom_max = (8    if data_mng.cfg_debug_mode else 1.4)
+		zoom_max = (8.0  if data_mng.cfg_debug_mode else 1.4)
 		zoom_min = (0.25 if data_mng.cfg_debug_mode else 0.5)
 		
 		if (event.button_index == BUTTON_WHEEL_UP):   zoom_target = clamp(zoom_target/zoom_step, zoom_min, zoom_max)

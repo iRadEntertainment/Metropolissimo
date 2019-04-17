@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Scripts/menu_ingame.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/GUI.gd" type="Script" id=1]
 [ext_resource path="res://Shaders/quick_menu_overlay_shader.tres" type="Material" id=2]
 [ext_resource path="res://Sprites/vfx/vfx_fullscr_noise.jpg" type="Texture" id=3]
 [ext_resource path="res://Instances/ingame_menu.tscn" type="PackedScene" id=4]
@@ -480,6 +480,7 @@ layer = 0
 script = ExtResource( 1 )
 
 [node name="quick_menu" type="Control" parent="."]
+editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -540,6 +541,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="debug" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

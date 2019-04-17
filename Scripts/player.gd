@@ -732,13 +732,13 @@ func reproduce_footstep(): #called by animations
 	return
 	#---------- skipped
 	#TODO
-	if $sfx/steps.playing: return
-	
-	tiletype = TileType.GRAVEL
-	match tiletype:
-		TileType.WATER:  $sfx/steps.stream = sfx_steps_water[randi()%4]
-		TileType.GRAVEL: $sfx/steps.stream = sfx_steps_gravel[randi()%3]
-	$sfx/steps.play()
+#	if $sfx/steps.playing: return
+#
+#	tiletype = TileType.GRAVEL
+#	match tiletype:
+#		TileType.WATER:  $sfx/steps.stream = sfx_steps_water[randi()%4]
+#		TileType.GRAVEL: $sfx/steps.stream = sfx_steps_gravel[randi()%3]
+#	$sfx/steps.play()
 
 
 

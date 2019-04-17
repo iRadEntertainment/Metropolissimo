@@ -1,5 +1,5 @@
 #++++++++++++++++++++++#
-#    menu_ingame.gd    #
+#        GUI.gd        #
 #++++++++++++++++++++++#
 
 extends CanvasLayer

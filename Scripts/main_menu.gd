@@ -15,7 +15,6 @@ onready var thumb_btn = preload("res://Instances/thumb_load.tscn")
 
 
 
-
 func _ready():
 	connect_all_signals()
 	vfx_toggle(g_mng.fl_vfx_enabled)
