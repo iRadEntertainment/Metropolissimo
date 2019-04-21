@@ -8,7 +8,7 @@ extends Node
 const loading_scene_path     = "res://Instances/loading_screen.tscn"
 onready var gui_preload      = preload("res://Instances/GUI.tscn")
 onready var cam_ctrl_preload = preload("res://Instances/cam_ctrl.tscn")
-onready var pl_preload       = preload("res://Instances/player.tscn")
+onready var pl_preload       = preload("res://Instances/player_2.tscn")#preload("res://Instances/player.tscn")
 onready var pl_preload_xp    = preload("res://Instances/pl_sperim.tscn")
 onready var tools_preload    = preload("res://Instances/tools.tscn")
 
