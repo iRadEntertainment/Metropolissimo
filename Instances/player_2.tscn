@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Instances/human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/player_2.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sprites/player/personaggio__0003_avambraccio_nm.png" type="Texture" id=8]
 [ext_resource path="res://Themes/labels_small.tres" type="Theme" id=9]
 [ext_resource path="res://Audio/sfx_jump.wav" type="AudioStream" id=10]
+[ext_resource path="res://Instances/player.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
@@ -8165,7 +8166,7 @@ position = Vector2( 0, -27 )
 remote_path = NodePath("../../rmted_front/hips_rmted")
 
 [node name="body" type="Sprite" parent="body_parts/hips" index="0"]
-position = Vector2( 1, -1 )
+position = Vector2( -4.05312e-006, -1 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8 )
 vframes = 12
@@ -8174,7 +8175,7 @@ frame = 21
 
 [node name="neck" type="Sprite" parent="body_parts/hips/body" index="0"]
 show_behind_parent = true
-position = Vector2( -1, -16 )
+position = Vector2( 0, -16 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -1 )
 vframes = 12
@@ -8190,6 +8191,7 @@ hframes = 3
 frame = 3
 
 [node name="test_light" type="Light2D" parent="body_parts/hips/body/neck/head" index="0"]
+visible = false
 position = Vector2( 6.43245, -4.87498 )
 texture = ExtResource( 4 )
 offset = Vector2( 486.491, -9.9818 )
@@ -8207,7 +8209,7 @@ position = Vector2( 4, 2 )
 remote_path = NodePath("../../../../../../../rays/sight")
 
 [node name="arm_r" type="Sprite" parent="body_parts/hips/body" index="1"]
-position = Vector2( -5, -17 )
+position = Vector2( -4, -17 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 4 )
 vframes = 12
@@ -8227,7 +8229,7 @@ position = Vector2( 0, 3 )
 
 [node name="arm_l" type="Sprite" parent="body_parts/hips/body" index="2"]
 show_behind_parent = true
-position = Vector2( 5, -17 )
+position = Vector2( 6, -17 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 4 )
 vframes = 12
@@ -8255,10 +8257,11 @@ position = Vector2( 0, 3 )
 
 [node name="leg_r" type="RemoteTransform2D" parent="body_parts/hips" index="1"]
 position = Vector2( -4, 5 )
+z_index = 1
 remote_path = NodePath("../../../rmted_front/leg_r_rmted")
 
 [node name="up_leg_r" type="Sprite" parent="body_parts/hips/leg_r" index="0"]
-position = Vector2( 0, 8 )
+position = Vector2( 0, 9 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 4 )
 vframes = 12
@@ -8266,7 +8269,7 @@ hframes = 3
 frame = 30
 
 [node name="foot_r" type="Sprite" parent="body_parts/hips/leg_r/up_leg_r" index="0"]
-position = Vector2( 0, 11 )
+position = Vector2( 0, 10 )
 scale = Vector2( 0.999999, 0.999999 )
 texture = ExtResource( 3 )
 offset = Vector2( 1, 1 )
@@ -8279,7 +8282,7 @@ position = Vector2( 4, 3 )
 
 [node name="leg_l" type="Sprite" parent="body_parts/hips" index="2"]
 show_behind_parent = true
-position = Vector2( 4, 5.5 )
+position = Vector2( 4, 6 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 4 )
 vframes = 12
@@ -8287,7 +8290,7 @@ hframes = 3
 frame = 27
 
 [node name="up_leg_l" type="Sprite" parent="body_parts/hips/leg_l" index="0"]
-position = Vector2( 0, 7.5 )
+position = Vector2( 0, 8 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 4 )
 vframes = 12
@@ -8295,7 +8298,7 @@ hframes = 3
 frame = 30
 
 [node name="foot_l" type="Sprite" parent="body_parts/hips/leg_l/up_leg_l" index="0"]
-position = Vector2( 0, 11 )
+position = Vector2( 0, 10 )
 texture = ExtResource( 3 )
 offset = Vector2( 1, 1 )
 vframes = 12
@@ -8324,7 +8327,7 @@ rotation = 1.5708
 remote_path = NodePath("../../../weapons/wp_pistol")
 
 [node name="leg_r_rmted" type="Sprite" parent="rmted_front" index="1"]
-position = Vector2( -4, -22 )
+position = Vector2( -4, -21 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 4 )
 vframes = 12
@@ -8367,7 +8370,7 @@ hframes = 3
 frame = 15
 
 [node name="hand_r" type="Sprite" parent="rmted_front2/forearm_r" index="0"]
-position = Vector2( 1, 10 )
+position = Vector2( 2, 10 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 1 )
 vframes = 12
@@ -8426,6 +8429,7 @@ cast_to = Vector2( 10, 0 )
 collision_mask = 56
 
 [node name="anim" type="Node2D" parent="." index="8"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -8514,6 +8518,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="draw_debug" type="Node2D" parent="." index="11"]
+editor/display_folded = true
 visible = false
 script = SubResource( 47 )
 
@@ -8528,6 +8533,7 @@ align = 1
 valign = 1
 
 [node name="sfx" type="Node2D" parent="." index="12"]
+editor/display_folded = true
 
 [node name="jump" type="AudioStreamPlayer" parent="sfx" index="0"]
 stream = ExtResource( 10 )
@@ -8537,6 +8543,9 @@ bus = "player"
 [node name="steps" type="AudioStreamPlayer" parent="sfx" index="1"]
 volume_db = -8.0
 bus = "player"
+
+[node name="player" parent="." index="13" instance=ExtResource( 11 )]
+position = Vector2( 60, -3.09944e-006 )
 
 [connection signal="timeout" from="weapons/extra/key_keep_pressed" to="." method="_on_key_keep_pressed_timeout"]
 [connection signal="timeout" from="timers/can_jump" to="." method="_on_can_jump_timeout"]
