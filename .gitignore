@@ -1,9 +1,13 @@
 
 # Godot-specific ignores
 .import/
+*.import
 export.cfg
 export_presets.cfg
 
 # Mono-specific ignores
 .mono/
-*.import
+*.cfg
+
+# Metropolissimo-specific
+metropolissimo_data/
