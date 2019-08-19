@@ -1203,5 +1203,4 @@ mouse_filter = 2
 disabled = true
 flat = true
 align = 1
-
 [connection signal="item_activated" from="hbox_bttm/cnt_debug/hbox/tree" to="hbox_bttm/cnt_debug/hbox/tree" method="_on_tree_item_activated"]

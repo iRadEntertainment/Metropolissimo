@@ -21,4 +21,3 @@ CheckBox/styles/hover = SubResource( 1 )
 CheckBox/styles/hover_pressed = SubResource( 1 )
 CheckBox/styles/normal = SubResource( 1 )
 CheckBox/styles/pressed = SubResource( 1 )
-

@@ -65,4 +65,3 @@ VSlider/styles/grabber_area = SubResource( 2 )
 VSlider/styles/grabber_disabled = SubResource( 5 )
 VSlider/styles/grabber_highlight = SubResource( 5 )
 VSlider/styles/slider = SubResource( 5 )
-

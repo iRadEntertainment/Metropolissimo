@@ -71,4 +71,3 @@ Tree/styles/selected_focus = null
 Tree/styles/title_button_hover = SubResource( 2 )
 Tree/styles/title_button_normal = SubResource( 2 )
 Tree/styles/title_button_pressed = null
-
